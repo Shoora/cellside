@@ -1,0 +1,119 @@
+.infiniteCarousel {
+  width: 100%;
+  height:220px;
+  position: relative;
+}
+
+.infiniteCarousel .wrapper {
+  width: 91%; /* .infiniteCarousel width - (.wrapper margin-left + .wrapper margin-right) */
+  overflow: auto;
+  height: 230px;
+  margin: 0 30px;
+  position: absolute;
+  top: 0;
+}
+
+.infiniteCarousel .wraper {
+  width: 65%; /* .infiniteCarousel width - (.wrapper margin-left + .wrapper margin-right) */
+  overflow: auto;
+  height: 200px;
+  margin: 0 30px;
+  position: absolute;
+  top: 0;
+}
+
+.infiniteCarousel .wrapper ul {
+  width: 80%; /* single item * n */
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  position: absolute;
+  top: 0;
+  z-index:1000;
+}
+
+.infiniteCarousel ul li {
+  display:block;
+  float:left;
+  padding: 10px 10px;
+  height: 85px;
+  width: 110px;
+}
+
+.infiniteCarousel ul li img {
+    padding: 3px;
+    border: 1px solid #E7E7E7;
+    margin-bottom:5px;
+}
+
+.infiniteCarousel ul li .name a {
+    color: #38B0E3;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.infiniteCarousel ul li .price {
+    display: block;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 4px;
+}
+.infiniteCarousel ul li .price-old {
+    color: #F00;
+    text-decoration: line-through;
+}
+.infiniteCarousel ul li .price-new {
+    font-weight: bold;
+}
+
+.infiniteCarousel ul li .rating {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.infiniteCarousel ul:hover li img {
+  border-color: #666;
+}
+
+.infiniteCarousel ul:hover li:hover img {
+  border-color:#999;
+}
+
+.infiniteCarousel ul li a img {
+  display:block;
+}
+
+.infiniteCarousel .arrow {
+  display: block;
+  height: 36px;
+  width: 37px;
+  background: url(../image/arrow.png) no-repeat 0 0;
+  text-indent: -999px;
+  position: absolute;
+  top: 70px;
+  cursor: pointer;
+  outline: 0;
+  z-index:100;
+}
+
+.infiniteCarousel .forward {
+  background-position: 0 0;
+  right: -10px;
+}
+
+.infiniteCarousel .back {
+  background-position: 0 -72px;
+  left: -10px;
+}
+
+.infiniteCarousel .forward:hover {
+  background-position: 0 -36px;
+}
+
+.infiniteCarousel .back:hover {
+  background-position: 0 -108px;
+}

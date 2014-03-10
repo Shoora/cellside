@@ -1,0 +1,17 @@
+<modification>
+	<id>UKSB Sitemaps</id>
+	<version>1.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>http://www.opencart-extensions.co.uk</author>
+	<file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="replace"><![CDATA[$this->document->addLink($this->url->link('product/product', 'product_id=' . $this->request->get['product_id']), 'canonical');]]></search>
+			<add><![CDATA[$this->load->model('feed/uksb_sitemaps');
+		if($this->config->get('uksb_sitemap_fullpath')=='full'&&$this->model_feed_uksb_sitemaps->getCategoryPath($this->request->get['product_id'])!='0'){
+		    $this->document->addLink($this->url->link('product/product', 'path=' . $this->model_feed_uksb_sitemaps->getCategoryPath($this->request->get['product_id']) . '&product_id=' . $this->request->get['product_id']), 'canonical');
+		}else{
+		    $this->document->addLink($this->url->link('product/product', 'product_id=' . $this->request->get['product_id']), 'canonical');
+		}]]></add>
+		</operation>
+	</file>
+</modification>

@@ -1,0 +1,68 @@
+#filterpro_box .box-content {
+    padding: 5px;
+}
+#filterpro_box input {
+    margin: 0;
+}
+#filterpro_box td, #filterpro_box th, #filterpro_box input, #filterpro_box select, #filterpro_box a {
+    font-family: 'Amaranth';
+}
+#filterpro_box a, #filterpro_box a:visited {
+    color: #D14747;
+}
+#filterpro_box .option_box {
+	border:1px solid #ccc;
+	margin-bottom:10px;
+	padding:0 5px;
+	border-radius:5px;
+}
+#filterpro_box .option_box .option_name {
+	background:#efefef;
+	color:#0C0C0C;
+	padding:5px;
+	margin-left:-5px;
+	margin-right:-5px;
+	cursor:pointer;
+}
+#filterpro_box .option_box table{
+	margin-bottom: 5px;
+    margin-top: 5px;
+}
+#filterpro_box input[type="text"] {
+	background:#FFF;
+	color:#666;
+}
+#filterpro_box .price_limit {
+    border: 0;
+    color: #38B0E3;
+    font-weight:300;
+    width: 60px;
+	text-align:center;
+}
+#filterpro_box .ui-widget-header {
+    background: none repeat scroll 0 0 #F9F9F9;
+    border: 0 none;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+#filterpro_box .ui-state-hover, #filterpro_box .ui-state-focus, #filterpro_box .ui-state-active {
+    border: 1px solid #38B0E3;
+    background: none repeat scroll 0 0 #d9f2fc;
+}
+#filterpro_box #slider-range {
+	margin:10px 5px;
+}
+#filterpro_box .min_price_text{
+	color:#808080;
+}	
+#filterpro_box label{
+	color:#666;	
+}
+#filterpro_box .option_box table tr td{
+	padding-right:10px;	
+}
+#filterpro_box a.clear_filter {
+    border-bottom: thin dashed;
+    text-decoration: none;
+    float: right;
+}

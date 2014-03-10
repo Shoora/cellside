@@ -1,0 +1,124 @@
+<!--
+
+Readme English: http://shop.workshop200.com/en/blog?news_id=5
+
+Note: This readme relates to the main branch of extension which is distributed under ionCube.
+You are currently using Open Source version without access to any updates, but you can still 
+find a lot of useful information in readme.
+
+The developer is not responsible for any problems that arose after or as a consequence of the modification 
+of the original source of extension. Everything supposed work fine just AS IT IS. 
+
+Developer: workshop200@yandex.ru
+
+Note: In a case you need to get free technical support you need to provide the following information:
+1. When and where did you purchase the extension?
+2. What account \ email was used?
+
+-->
+<modification>
+	<id>Chain Discount Module</id>
+	<version>1.12.4</version>
+	<vqmver>1.2.3</vqmver>
+	<author>cmd (shop.workshop200.com :: workshop200@yandex.ru)</author>
+	
+	<file name="admin/language/*/catalog/product.php">
+		<operation>
+			<search position="before" index="1"><![CDATA[// Error]]></search>
+			<add><![CDATA[
+				$_['entry_chain_discount_moudle'] = 'Chain Discount Module';
+			]]>				
+			</add>
+		</operation>
+	</file>
+	<file name="admin/view/template/catalog/product_form.tpl">
+		<operation>
+			<search position="before" index="1"><![CDATA[<div id="tab-image">]]></search>
+			<add><![CDATA[
+				<script>
+					 //add the button to nav
+					$('<a href="#tab-chain"><?php echo $this->language->get('entry_chain_discount_moudle'); ?></a>').hide().appendTo("#tabs").fadeIn(1000);
+					$('#tab-general').before('<div id="tab-chain"><img src="view/image/chain_loader.gif"></div>');
+					$('#tabs a').tabs();
+
+					var chain_group_tpl = '';
+					var chain_manager_ad = '<?php echo (defined(DIR_APPLICATION) && file_exists(DIR_APPLICATION . 'controller/module/chain_manager.php')) ? 'true' : 'false'; ?>';
+					var token = '<?php echo $token; ?>';
+					var product_id = '<?php echo $this->request->get['product_id']; ?>';
+<?php
+	if (version_compare(VERSION, '1.5.1.3', '<'))
+		{
+			$autocomplite = '151';
+		}
+	else 
+		{
+			$autocomplite = '152';
+		}
+?>
+					var autocomplite = '<?php echo $autocomplite; ?>';
+				</script>
+				<script type="text/javascript" src="view/javascript/chain.js"></script>
+			]]>				
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="after" index="1"><![CDATA[function index() {]]></search>
+			<add><![CDATA[
+				if (method_exists($this->load, 'helper')) {
+					$this->load->helper('value');
+				} else {
+					require_once(DIR_SYSTEM . 'helper/value.php'); 
+				}
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation>
+			<search position="before" index="1"><![CDATA[<?php echo $footer; ?>]]></search>
+			<add><![CDATA[
+				<?php 
+					if (isset($product_id) && $this->config->get('chain_settings_data') && function_exists('index_value')) 
+					{ 
+						
+						echo '<link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/flexslider_chain.css" media="screen">';
+						echo '<link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/chain.css" media="screen">';
+						echo '<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/tipsy.css" media="screen">';
+						
+						// Load language data
+						$this->language->load('product/chain'); 
+						
+						// Product ID
+						$chain_js_query = 'p_id='.$product_id;
+						
+						// Chain settings
+						$chain_settings = $this->config->get('chain_settings_data');
+
+						// Redirect 
+						if (index_value($chain_settings, 'chain_action_on_success') == 'redirect') {
+							$chain_js_query .= '&redirect='.urlencode(index_value($chain_settings, 'chain_action_redirect_url'));
+						}
+						
+						// Slider settings
+						$chain_js_query .= '&slider_autoscroll='.index_value($chain_settings, 'chain_slider_autoscroll');
+						$chain_js_query .= '&slider_mousewheel='.index_value($chain_settings, 'chain_slider_mousewheel');
+						$chain_js_query .= '&slider_nav='.index_value($chain_settings, 'chain_slider_nav');
+						
+						// Display 
+						$chain_js_query .= '&position_type='.index_value($chain_settings, 'chain_display_chain_position_type');
+						$chain_js_query .= '&position_container='.urlencode(index_value($chain_settings, 'chain_display_chain_position_container'));
+						$chain_js_query .= '&chain_tab='.index_value($chain_settings, 'chain_display_chain_tab');
+						$chain_js_query .= '&ajax_loader='.base64_encode(index_value($chain_settings, 'chain_ajax_loader'));
+						
+						// Other
+						$chain_js_query .= '&tab_title='.urlencode($this->language->get('heading_title'));
+						
+						echo '<script type="text/javascript" src="chain.php?'. $chain_js_query .'"></script>';
+					} 
+				?>
+			]]>				
+			</add>
+		</operation>
+	</file>
+</modification> 

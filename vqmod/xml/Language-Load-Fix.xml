@@ -1,0 +1,31 @@
+<modification>
+	<id><![CDATA[Fixes Call to undefined method Loader::language() error at OpenCart 1.5.5. Can be applied to earlier versions without harm.]]></id>
+	<version><![CDATA[1.0]]></version>
+	<vqmver><![CDATA[]]></vqmver>
+	<author><![CDATA[MaxD http://OpenShop.org.ua]]></author>
+
+	<file name="system/engine/loader.php">
+		<operation error="skip">
+			<search position="replace" offset="2"><![CDATA[public function language($language) {]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+		<operation error="log">
+			<search position="before"><![CDATA[public function database]]></search>
+			<add><![CDATA[
+			//MXS
+			public function language($language) { 
+				$lang = $this->registry->get('language'); return $lang->load($language);
+    			}
+    			//MXE
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="system/library/language.php">
+		<operation error="log">
+			<search position="after" index="2"><![CDATA[$this->data = array_merge($this->data, $_);]]></search>
+			<add><![CDATA[return $this->data; // MXI]]></add>
+		</operation>
+	</file>
+	
+</modification>

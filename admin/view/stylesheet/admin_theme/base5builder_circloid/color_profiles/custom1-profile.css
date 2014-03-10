@@ -1,0 +1,187 @@
+/* Custom Color Profile 1 */
+
+/* General Style */
+a,
+a:visited{
+	color: #000000;
+}
+a:hover,
+a:focus{
+	color: #005580;
+}
+
+/* Menu Item - Default State */
+ul.mainnav > li > a,
+ul.mainnav > li > a:visited{
+	background-image: url("../../../../image/admin_theme/base5builder_circloid/color_profiles/custom1_profile/css-sprite.png");
+}
+
+/* Menu Item - Hover State */
+ul.mainnav > li.menu-open > a,
+ul.mainnav > li > a:hover,
+ul.mainnav > li > a:focus{
+	color: #000000;
+	background-color:  #FFFFFF;
+	padding-bottom: 10px;
+}
+ul.mainnav > li > ul > li a:hover,
+ul.mainnav > li > ul > li a:focus{
+	color: #005580;
+}
+ul.mainnav > li#dashboard.menu-open > a,
+ul.mainnav > li#dashboard > a:hover,
+ul.mainnav > li#dashboard > a:focus{
+	background-position: -161px -17px;
+	border-bottom: 3px solid #00a99d;
+}
+ul.mainnav > li#catalog.menu-open > a,
+ul.mainnav > li#catalog > a:hover,
+ul.mainnav > li#catalog > a:focus{
+	background-position: -161px -111px;
+	border-bottom: 3px solid #e86219;
+}
+ul.mainnav > li#extension.menu-open > a,
+ul.mainnav > li#extension > a:hover,
+ul.mainnav > li#extension > a:focus{
+	background-position: -161px -203px;
+	border-bottom: 3px solid #ffc40d;
+}
+ul.mainnav > li#sale.menu-open > a,
+ul.mainnav > li#sale > a:hover,
+ul.mainnav > li#sale > a:focus{
+	background-position: -161px -299px;
+	border-bottom: 3px solid #2d89ef;
+}
+ul.mainnav > li#system.menu-open > a,
+ul.mainnav > li#system > a:hover,
+ul.mainnav > li#system > a:focus{
+	background-position: -161px -390px;
+	border-bottom: 3px solid #ee1111;
+}
+ul.mainnav > li#reports.menu-open > a,
+ul.mainnav > li#reports > a:hover,
+ul.mainnav > li#reports > a:focus{
+	background-position: -161px -484px;
+	border-bottom: 3px solid #99b433;
+}
+ul.mainnav > li#help.menu-open > a,
+ul.mainnav > li#help > a:hover,
+ul.mainnav > li#help > a:focus{
+	background-position: -161px -578px;
+	border-bottom: 3px solid #ff0097;
+}
+
+/* Menu Item - Selected State */
+ul.mainnav > li.selected > a,
+ul.mainnav > li.selected > a:visited{
+	background-color: #FFFFFF;
+	padding-bottom: 10px;
+	color: #000000;
+}
+ul.mainnav > li#dashboard.selected > a,
+ul.mainnav > li#dashboard.selected > a:visited{
+	background-position: -306px -17px;
+	border-bottom: 3px solid #00a99d;
+}
+ul.mainnav > li#catalog.selected > a,
+ul.mainnav > li#catalog.selected > a:visited{
+	background-position: -306px -111px;
+	border-bottom: 3px solid #e86219;
+}
+ul.mainnav > li#extension.selected > a,
+ul.mainnav > li#extension.selected > a:visited{
+	background-position: -306px -203px;
+	border-bottom: 3px solid #ffc40d;
+}
+ul.mainnav > li#sale.selected > a,
+ul.mainnav > li#sale.selected > a:visited{
+	background-position: -306px -299px;
+	border-bottom: 3px solid #2d89ef;
+}
+ul.mainnav > li#system.selected > a,
+ul.mainnav > li#system.selected > a:visited{
+	background-position: -306px -390px;
+	border-bottom: 3px solid #ee1111;
+}
+ul.mainnav > li#reports.selected > a,
+ul.mainnav > li#reports.selected > a:visited{
+	background-position: -306px -484px;
+	border-bottom: 3px solid #99b433;
+}
+ul.mainnav > li#help.selected > a,
+ul.mainnav > li#help.selected > a:visited{
+	background-position: -306px -578px;
+	border-bottom: 3px solid #ff0097;
+}
+#menu-control .menu-control-outer.opened .menu-control-inner,
+#menu-control .menu-control-outer .menu-control-inner:hover,
+#menu-control .menu-control-outer .menu-control-inner:focus{
+	border-top: 1px solid #00C2B5;
+	background:#00A99D;
+}
+
+/* Secondary Menu */
+.header .secondary-menu > ul > li > ul a:hover,
+.header .secondary-menu > ul > li > ul a:focus{
+	color: #005580;
+}
+
+/* Right Column */
+#right-column #content{
+	border-top: 5px solid #00A99D !important;
+}
+.sales-value .sales-value-estimates .sales-value-estimates-figures .estimates .sales-value-estimates-amount{
+	color: #0858d0;
+}
+body.custom1-profile .order-customer-statistic .dashboard-content{
+	border-bottom: 3px solid #00A99D;
+}
+body.custom1-profile .order-customer-statistic-day .dashboard-content{
+	border-bottom: 3px solid #FA4444;
+}
+body.custom1-profile .order-customer-statistic-week .dashboard-content{
+	border-bottom: 3px solid #2D89EF;
+}
+body.custom1-profile .order-customer-statistic-month .dashboard-content{
+	border-bottom: 3px solid #FF0097;
+}
+body.custom1-profile .order-customer-statistic-year .dashboard-content{
+	border-bottom: 3px solid #FA4444;
+}
+body.custom1-profile .sales-value .dashboard-content{
+	border-bottom: 3px solid #F38630;
+}
+body.custom1-profile .other-stats .dashboard-content{
+	border-bottom: 3px solid #FA4444;
+}
+body.custom1-profile .top-customers .dashboard-content{
+	border-bottom: 3px solid #0098D9;
+}
+body.custom1-profile .top-products .dashboard-content{
+	border-bottom: 3px solid #A3C100;
+}
+body.custom1-profile .latest .dashboard-content{
+	border-bottom: 3px solid #00A99D;
+}
+table.list thead{
+	background-color: #2E2E2E;
+	color: #FFFFFF;
+}
+table.list thead a:link,
+table.list thead a:visited{
+	color: #FFFFFF;
+}
+table.list thead a:hover,
+table.list thead a:focus{
+	text-decoration: underline;
+}
+
+/* CSS for high-resolution devices */
+@media only screen and (-Webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
+	ul.mainnav > li > a,
+	ul.mainnav > li > a:visited{
+		background-image: url("../../../../image/admin_theme/base5builder_circloid/color_profiles/custom1_profile/css-sprite@2x.png");
+		background-size: 500px 1000px;
+		background-repeat: no-repeat;
+	}
+}

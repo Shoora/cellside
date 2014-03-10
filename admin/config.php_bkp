@@ -1,0 +1,30 @@
+<?php
+// HTTP
+define('HTTP_SERVER', 'http://dev2.cellside.ca/admin/');
+define('HTTP_CATALOG', 'http://dev2.cellside.ca/');
+
+// HTTPS
+define('HTTPS_SERVER', 'http://dev2.cellside.ca/admin/');
+define('HTTPS_CATALOG', 'http://dev2.cellside.ca/');
+
+// DIR
+define('DIR_APPLICATION', '/home/cellside/public_html/dev2/admin/');
+define('DIR_SYSTEM', '/home/cellside/public_html/dev2/system/');
+define('DIR_DATABASE', '/home/cellside/public_html/dev2/system/database/');
+define('DIR_LANGUAGE', '/home/cellside/public_html/dev2/admin/language/');
+define('DIR_TEMPLATE', '/home/cellside/public_html/dev2/admin/view/template/');
+define('DIR_CONFIG', '/home/cellside/public_html/dev2/system/config/');
+define('DIR_IMAGE', '/home/cellside/public_html/dev2/image/');
+define('DIR_CACHE', '/home/cellside/public_html/dev2/system/cache/');
+define('DIR_DOWNLOAD', '/home/cellside/public_html/dev2/download/');
+define('DIR_LOGS', '/home/cellside/public_html/dev2/system/logs/');
+define('DIR_CATALOG', '/home/cellside/public_html/dev2/catalog/');
+
+// DB
+define('DB_DRIVER', 'mysql');
+define('DB_HOSTNAME', 'localhost');
+define('DB_USERNAME', 'cellside_dev2');
+define('DB_PASSWORD', 'developMent123');
+define('DB_DATABASE', 'cellside_dev2');
+define('DB_PREFIX', 'oc_');
+?>

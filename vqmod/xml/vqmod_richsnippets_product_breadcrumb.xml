@@ -1,0 +1,31 @@
+<modification>
+	<id><![CDATA[Add GR Rich Snippet to opencart]]></id>
+	<version><![CDATA[1.1]]></version>
+	<vqmver><![CDATA[2.1.7]]></vqmver>
+	<author><![CDATA[TransPacific Software]]></author>
+	<file name="catalog/view/theme/*/template/product/product.tpl">
+	<operation  error="skip">
+			<search position="after"><![CDATA[<div class="breadcrumb">]]></search>
+          <add><![CDATA[<div xmlns:v="http://rdf.data-vocabulary.org/#">]]></add>
+		</operation>
+		
+		<operation error="skip">
+			<search position="before"><![CDATA[<a href="<?php echo $breadcrumb['href']; ?>">]]></search>
+          <add><![CDATA[<span typeof="v:Breadcrumb">]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<a href="<?php echo $breadcrumb['href']; ?>">]]></search>
+          <add><![CDATA[<a href="<?php echo $breadcrumb['href']; ?>" rel="v:url" property="v:title">]]></add>
+		</operation>
+			<operation error="skip">
+			<search position="after"><![CDATA[<?php echo $breadcrumb['text']; ?></a>]]></search>
+          <add><![CDATA[</span>]]></add>
+		</operation>
+					<operation error="skip">
+			<search position="before"><![CDATA[ <h1><?php echo $heading_title; ?></h1>]]></search>
+          <add><![CDATA[</div>]]></add>
+		</operation>
+	</file> 
+
+</modification>
+ 

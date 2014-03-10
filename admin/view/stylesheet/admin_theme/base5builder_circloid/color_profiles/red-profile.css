@@ -1,0 +1,119 @@
+/* Red Color Profile */
+
+/* General Style */
+a,
+a:visited{
+	color: #DB6E00;
+}
+a:hover,
+a:focus{
+	color: #9C2A2A;
+}
+
+/* Menu Item - Default State */
+ul.mainnav > li > a,
+ul.mainnav > li > a:visited{
+	background-image: url("../../../../image/admin_theme/base5builder_circloid/color_profiles/red_profile/css-sprite.png");
+}
+
+/* Menu Item - Hover State */
+ul.mainnav > li.menu-open > a,
+ul.mainnav > li > a:hover,
+ul.mainnav > li > a:focus{
+	border-bottom: 3px solid #EE1111 !important;
+}
+ul.mainnav > li.selected > a,
+ul.mainnav > li.selected > a:visited{
+	border-bottom: 3px solid #EE1111 !important;
+}
+ul.mainnav > li > ul > li a:hover,
+ul.mainnav > li > ul > li a:focus{
+	color: #EE1111;
+}
+#menu-control .menu-control-outer.opened .menu-control-inner,
+#menu-control .menu-control-outer .menu-control-inner:hover,
+#menu-control .menu-control-outer .menu-control-inner:focus{
+	border-top: 1px solid #ED4C4C;
+	background:#EE1111;
+}
+
+/* Secondary Menu */
+.header .secondary-menu > ul > li > ul a:hover,
+.header .secondary-menu > ul > li > ul a:focus{
+	color: #EE1111;
+}
+
+/* Right Column */
+#right-column #content{
+	border-top: 5px solid #EE1111 !important;
+}
+.other-stats .other-stats-block .other-stats-block-number{
+	color: #777777;
+}
+.other-stats .other-stats-block .other-stats-block-text a{
+	
+}
+.sales-value .sales-value-legend .number-stat-number{
+	color: #1D1D1D;
+}
+.sales-value .sales-value-estimates .sales-value-estimates-figures .estimates .sales-value-estimates-amount{
+	color: #1D1D1D;
+}
+body.red-profile .order-customer-statistic .dashboard-content{
+	border-bottom: 3px solid #EE1111;
+}
+body.red-profile .order-customer-statistic-day .dashboard-content{
+	border-bottom: 3px solid #EE1111;
+}
+body.red-profile .order-customer-statistic-week .dashboard-content{
+	border-bottom: 3px solid #EE1111;
+}
+body.red-profile .order-customer-statistic-month .dashboard-content{
+	border-bottom: 3px solid #EE1111;
+}
+body.red-profile .order-customer-statistic-year .dashboard-content{
+	border-bottom: 3px solid #EE1111;
+}
+body.red-profile .sales-value .dashboard-content{
+	border-bottom: 3px solid #EE1111;
+}
+body.red-profile .other-stats .dashboard-content{
+	border-bottom: 3px solid #EE1111;
+}
+body.red-profile .top-customers .dashboard-content{
+	border-bottom: 3px solid #EE1111;
+}
+body.red-profile .top-products .dashboard-content{
+	border-bottom: 3px solid #EE1111;
+}
+body.red-profile .latest .dashboard-content{
+	border-bottom: 3px solid #EE1111;
+}
+table.list thead{
+	background-color: #ED3E3E;
+	color: #FFFFFF;
+}
+table.list thead a:link,
+table.list thead a:visited{
+	color: #FFFFFF;
+}
+table.list tbody tr:hover{
+	background: #FFF0F0;
+}
+
+/* Charts Tooltips */
+#flotTip{
+	background: #FFC7C7;
+	border: 1px solid #C70E0E;
+	color: #C70E0E;
+}
+
+/* CSS for high-resolution devices */
+@media only screen and (-Webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
+	ul.mainnav > li > a,
+	ul.mainnav > li > a:visited{
+		background-image: url("../../../../image/admin_theme/base5builder_circloid/color_profiles/red_profile/css-sprite@2x.png");
+		background-size: 500px 1000px;
+		background-repeat: no-repeat;
+	}
+}

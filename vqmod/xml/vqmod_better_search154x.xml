@@ -1,0 +1,60 @@
+<modification>
+
+	<id>Better search - Improves search results by using AND condition instead of OR. This eliminates lots of irrelevant results and also enables searching using model number of a product</id>
+	<version>1.5.3</version>
+	<vqmver>2.1.5</vqmver>
+	<author>Cart Ideas - Mail : contact@hereforsupport.com</author>
+
+	<file name="catalog/model/catalog/product.php" >
+		<operation >
+			<search position="after"><![CDATA[
+			public function getProducts($data = array()) {
+			]]></search>
+			<add><![CDATA[
+			if (isset($data['filter_name']))
+				$data['filter_name'] = str_replace(" ","%",$data['filter_name']);
+			if (isset($data['filter_tag']))
+				$data['filter_tag'] = str_replace(" ","%",$data['filter_tag']);
+			]]>
+			</add>
+		</operation >
+		
+		<operation >
+			<search position="after"><![CDATA[
+			public function getTotalProducts($data = array()) {
+			]]></search>
+			<add><![CDATA[
+			if (isset($data['filter_name']))
+				$data['filter_name'] = str_replace(" ","%",$data['filter_name']);
+			if (isset($data['filter_tag']))
+				$data['filter_tag'] = str_replace(" ","%",$data['filter_tag']);
+			]]></add>
+		</operation>
+		
+		<operation >
+			<search position="replace"><![CDATA[
+			$sql .= ")";
+			]]></search>
+			<add><![CDATA[
+			]]></add>
+		</operation>
+
+		<operation >
+			<search position="after" offset="1"><![CDATA[
+			$sql .= " OR LCASE(p.mpn) = '" . $this->db->escape(utf8_strtolower($data['filter_name'])) . "'";
+			]]></search>
+			<add><![CDATA[
+			$sql .= ")";
+			]]></add>
+		</operation>
+		
+		<operation >
+			<search position="replace"><![CDATA[
+			$sql .= "MATCH(pd.tag) AGAINST('" . $this->db->escape(utf8_strtolower($data['filter_tag'])) . "')";
+			]]></search>
+			<add><![CDATA[
+			$sql .= "LCASE(pd.tag) LIKE '%" . $this->db->escape(utf8_strtolower($data['filter_tag'])) . "%'";
+			]]></add>
+		</operation>
+	</file>
+</modification>

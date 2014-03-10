@@ -1,0 +1,227 @@
+/******************************************************
+ * @package Pav Opencart Theme Framework for Opencart 1.5.x
+ * @version 1.1
+ * @author http://www.pavothemes.com
+ * @copyright	Copyright (C) Augus 2013 PavoThemes.com <@emai:pavothemes@gmail.com>.All rights reserved.
+ * @license		GNU General Public License version 2
+*******************************************************/
+
+/* 
+ * Showcase
+ */
+.box-media {
+	.box-content {
+		background: transparent;
+	}
+	.media.first {
+		background: url("@{theme-image-path-base}bg-media.png") repeat scroll 0 0 @theme-color-default;
+	}
+	.media {
+		color: @white;
+		text-align: center;
+		min-height: 150px;
+		text-transform: uppercase;
+		text-align: center;
+		.media-object {
+			width: 100%;
+			min-height: 150px;
+		}
+		h3 {
+			font-size: 30px;
+			font-weight: bold;
+			margin-top: 40px;
+		}
+		a.pull-left{
+			margin-right: -45px;
+		}
+		a.pull-right{
+			margin-left: -45px;
+		}
+		.media-right {
+			text-align: right;
+		   p{
+				margin-right: 0;
+				margin-left: 30px;
+			}
+		}
+		p {
+			font-size: @font-size-base + 1;
+			font-weight: bold;
+			color: #000;
+		}
+	}
+}
+
+/* 
+ * Promotion
+ */
+
+.newest{
+	margin-top: 30px;
+	padding: 0;
+	.box-heading {
+		font-size: @font-size-base + 8;
+	}
+	.carousel-controls {
+		top: 13px;
+		right: 0;
+	}
+	.product-block {
+		.wishlist, .compare {
+			width: 50%;
+		}
+		.image {
+			float: left;
+			width: 48%;
+			border: 1px solid @product-boder-color;
+			margin-right: 15px;
+		}
+		&:hover {
+			.compare-wishlish .wishlist > a {
+	            left: 57%;
+			}
+			.compare-wishlish .compare > a {
+	            right: 57%;
+			}
+		}
+	}
+	.product-meta {
+		padding: 5px;
+		.rating {
+			display: block;
+		}
+	}
+}
+.discount {
+	padding: 0px 18px;
+	margin-top: 43px;
+	margin-bottom: 30px;
+	background-color: #f7f7f7;
+	.carousel-controls {
+		right: -1px;
+		top: -1px;
+	}
+	border: 1px solid @product-boder-color;
+	.box-heading {
+		border-bottom: none;
+		margin-bottom: 0 !important;
+		span {                
+			color: @theme-color-secondary;
+		}
+	}
+	.box-content {
+		padding: 7px 0px 11px 0;
+		background-color: #f7f7f7;
+	}
+	.product-block {
+		margin-bottom: 0 !important;
+		background-color: #f7f7f7;
+		&:hover {
+			.image {
+				.img:after {
+					.opacity (0);
+				}
+			}
+		}
+		.description, {
+			display: block;
+		}
+		.rating {
+			display: none;
+		}
+		.compare-wishlish {
+			top: 195%;
+			width: 50%;
+			left: inherit;
+			right: 0;
+			.wishlist, .compare {
+				width: 20%;
+				opacity: 1;
+				a {
+					color: @white;
+					background-color: @gray-lighter;
+					&:hover {
+						background-color: @theme-color-hover;
+						.box-shadow ( 0 0 0 20px @theme-color-hover inset);
+						.transition( all 0.6s ease 0s);
+					}
+				}
+			}
+			.wishlist {
+				a {
+					left: inherit;
+					right: 0;
+				}
+			}
+			.compare {
+				margin-left: 4%;
+				a {
+					left: 0;
+				}
+			}
+			.tooltip {
+				width: 250%;
+			}
+		}
+	}
+	.image {
+		margin-bottom: 20px;
+		background-color: #fff;
+		.product-label-special {
+			top: inherit;
+			bottom: 10px;
+			right: 13px;
+			width: 63px;
+			height: 63px;
+			border-radius: 35px;
+			font-size: @font-size-base + 2;
+			border: 5px solid #ffb3b2;
+			line-height: 54px;
+		}
+	}
+	.product-meta {
+		padding: 0;
+	}
+}
+
+
+
+.subcribe {
+	.box {
+		padding: 0;
+	}
+	.newsletter-submit {
+		height: 35px;
+		margin-bottom: 10px;
+		.form-control {
+			width: 70%;
+			height: 100%;
+			border: 0;
+			border-radius: 0;
+			float: left;
+			background: #323232;
+			color: white;
+		}
+		.button {
+			height: 100%;
+			width: 30%;
+		}
+	}
+	.box .box-heading {
+		padding-bottom: 15px !important;
+    	padding-top: 20px !important;
+	}
+	.social {
+		ul {
+			& > li {
+				width: 40px;
+				height: 40px;
+				float: left;
+				margin-right: 10px;
+				span {
+					padding-left: 4px !important;
+				}
+			}
+		}
+	}
+}

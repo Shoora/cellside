@@ -1,0 +1,60 @@
+.pav-megamenu{
+	position: relative;	
+}
+
+.widget-banner .w-banner{
+ margin: 6px 10px; 
+	float: left;
+} 
+
+.pavo-widget .menu-title{
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #21272c;
+    font-family: "proximanova-semibold", serif;
+    line-height: 40px;
+    padding: 10px 0px;
+}
+
+.pavo-widget iframe {
+	height: 200px;
+	margin-bottom: 10px;
+}
+.widget-inner ul li {
+}
+
+.widget-product-list .image{
+	float: left;
+	margin-right: 10px;
+  	border: 1px solid #E5E5E5;
+}
+.widget-product-list .product-block {
+	border: 0;
+}
+
+.widget-product-list .cart {
+	display: none;
+}
+
+.widget-product-list .name {
+	font-size: 14px;
+}
+.widget-product-list .price {
+	font-size: 15px;
+	margin-bottom: 0;
+}
+.navbar-default .navbar-toggle {
+    background-color: #FF6766;
+    border-color:  #FF4E4D;
+    margin: 7px 0 8px 0;
+    padding-bottom: 10px;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #FF3E3D;
+}
+.navbar {
+	min-height: 50px;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}

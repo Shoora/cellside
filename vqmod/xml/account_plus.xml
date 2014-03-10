@@ -1,0 +1,1787 @@
+<modification>
+	<id>Account Plus</id>
+	<version>1.5.5.x</version>
+	<vqmver>2.0.0</vqmver>
+	<author>samdz(issamoc@gmail.com)</author>
+    
+    <!-- ******************************************* START: CUSTOMER ACCOUNT -->
+    
+	<file name="catalog/view/theme/*/template/account/account.tpl">
+		<operation>
+			<search position="replace" ><![CDATA[
+            <h1><?php echo $heading_title; ?></h1>
+            ]]></search>
+			<add><![CDATA[
+            <?php if($title=='') { ?>
+            <h1><?php echo $heading_title; ?></h1>
+            <?php } else { ?>
+            <h1><?php echo $title; ?></h1>
+            <?php } ?>
+            ]]></add>
+		</operation>
+        
+        <operation>
+			<search position="replace" offset="27" ><![CDATA[
+            <h2><?php echo $text_my_account; ?></h2>
+            ]]></search>
+			<add><![CDATA[
+            <?php if($welcome_a==1 && $style_a<>'icons-4' && $style_a<>'icons-5') { ?>
+            <h2><?php echo $text_greeting_a; ?></h2>
+            <?php } ?>
+            <?php if($tabs==1 && $style_a<>'icons-4' && $style_a<>'icons-5') { ?>
+            <div id="tabs" class="htabs">
+              <?php if($edit_link==0 or $password_link==0  or $address_link==0  or $wishlist_link==0 or $logout_link==0) { ?>
+              <a href="#tab-account"><?php if($title_account=='') { ?><?php echo $text_my_account; ?><?php } else { ?><?php echo $title_account; ?><?php } ?></a>
+              <?php } ?>
+              <?php if($order_link==0 or $download_link==0 or $reward_link==0 or $return_link==0 or $transaction_link==0 ) { ?>
+              <a href="#tab-order"><?php if($title_orders=='') { ?><?php echo $text_my_orders; ?><?php } else { ?><?php echo $title_orders; ?><?php } ?></a>
+              <?php } ?>
+              <?php if($newsletter_link==0) { ?>
+              <a href="#tab-newsletter"><?php if($title_newsletter=='') { ?><?php echo $text_newsletter; ?><?php } else { ?><?php echo $title_newsletter; ?><?php } ?></a>
+              <?php } ?>
+            </div>
+            <?php } ?>
+            <?php if($style_a=='default') { ?>
+            <?php if($tabs==1) { ?>
+            <div id="tab-account">
+            <?php } ?>
+            <?php if($edit_link==0 or $password_link==0  or $address_link==0  or $wishlist_link==0 or $logout_link==0) { ?>
+            <?php if($tabs==0) { ?>
+            <?php if($title_account=='') { ?>
+            <h2><?php echo $text_my_account; ?></h2>
+            <?php } else { ?>
+            <h2><?php echo $title_account; ?></h2>
+            <?php } ?>
+            <?php } ?>
+              <div class="content">
+                <ul>
+                  <?php if($edit_link==0) { ?>  
+                  <li><a href="<?php echo $edit; ?>"><?php echo $text_edit; ?></a></li>
+                  <?php } ?>
+                  <?php if($password_link==0) { ?>
+                  <li><a href="<?php echo $password; ?>"><?php echo $text_password; ?></a></li>
+                  <?php } ?>
+                  <?php if($address_link==0) { ?>
+                  <li><a href="<?php echo $address; ?>"><?php echo $text_address; ?></a></li>
+                  <?php } ?>
+                  <?php if($wishlist_link==0) { ?>
+                  <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
+                  <?php } ?>
+                  <?php if($logout_link==0) { ?>
+                  <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
+                  <?php } ?>
+                </ul>
+              </div>
+             <?php } ?> 
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?>
+            <?php if($tabs==1) { ?>
+            <div id="tab-order">
+            <?php } ?>
+              <?php if($order_link==0 or $download_link==0 or $reward_link==0 or $return_link==0 or $transaction_link==0 ) { ?>
+              <?php if($tabs==0) { ?>
+              <?php if($title_orders=='') { ?>
+              <h2><?php echo $text_my_orders; ?></h2>
+              <?php } else { ?>
+              <h2><?php echo $title_orders; ?></h2>
+              <?php } ?>
+            
+            <?php } ?>  
+              <div class="content">
+                <ul>
+                  <?php if($order_link==0) { ?>
+                  <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
+                  <?php } ?>
+                  <?php if($download_link==0) { ?>
+                  <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
+                  <?php } ?>
+                  <?php if($reward_link==0) { ?>
+                  <?php if ($reward) { ?>
+                  <li><a href="<?php echo $reward; ?>"><?php echo $text_reward; ?></a></li>
+                  <?php } ?>
+                  <?php } ?>
+                  <?php if($return_link==0) { ?>
+                  <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
+                  <?php } ?>
+                  <?php if($transaction_link==0) { ?>
+                  <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
+                  <?php } ?>
+                </ul>
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?>
+              <?php } ?>
+             </div>
+             <?php if($tabs==1) { ?>
+             <div id="tab-newsletter">
+             <?php } ?>
+              <?php if($newsletter_link==0) { ?>
+              <?php if($tabs==0) { ?>
+              <?php if($title_newsletter=='') { ?>
+              <h2><?php echo $text_newsletter; ?></h2>
+              <?php } else { ?>
+              <h2><?php echo $title_newsletter; ?></h2>
+              <?php } ?>
+              <?php } ?>
+              <div class="content">
+                <ul>
+                  <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
+                </ul>
+              </div>
+            <?php } ?>
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?>
+            </div>
+            <?php } ?>
+            
+            <?php if($style_a=='icons-1') { ?>
+            <?php if($tabs==1) { ?>
+            <div id="tab-account">
+            <?php } ?>
+            <?php if($edit_link==0 or $password_link==0  or $address_link==0  or $wishlist_link==0 or $logout_link==0) { ?>  
+              <?php if($tabs==0) { ?>
+            <?php if($title_account=='') { ?>
+            <h2><?php echo $text_my_account; ?></h2>
+            <?php } else { ?>
+            <h2><?php echo $title_account; ?></h2>
+            <?php } ?>
+
+              <?php } ?>   
+              <div class="content">
+                <ul>
+                    <?php if($edit_link==0) { ?>
+                    <div  style="float: left; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/edit.png" alt="<?php echo $text_edit; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $edit; ?>" style="font-weight: bold;"><?php echo $text_edit; ?></a><br>
+                    <?php echo $text_edit_desc; ?></div>
+                    <?php } ?>
+                    <?php if($password_link==0) { ?>
+                    <div style="float: right; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/password.png" alt="<?php echo $text_password; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $password; ?>" style="font-weight: bold;"><?php echo $text_password; ?></a><br>
+                    <?php echo $text_password_desc; ?></div>
+                    <?php } ?>
+                    <?php if($address_link==0) { ?>
+                    <div style="float: left; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/address.png" alt="<?php echo $text_address; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $address; ?>" style="font-weight: bold;"><?php echo $text_address; ?></a><br>
+                    <?php echo $text_address_desc; ?></div>
+                    <?php } ?>
+                    <?php if($wishlist_link==0) { ?>
+                    <div  style="float: right; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/wishlist.png" alt="<?php echo $text_wishlist; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $wishlist; ?>" style="font-weight: bold;"><?php echo $text_wishlist; ?></a><br>
+                    <?php echo $text_wishlist_desc; ?></div>
+                    <?php } ?>
+                    <?php if($logout_link==0) { ?>
+                    <div  style="float: right; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/logout.png" alt="logout" style="float: left; margin-right: 8px;  "><a href="<?php echo $logout; ?>" style="font-weight: bold;"><?php echo $text_logout; ?></a><br>
+                    <?php echo $text_logout_desc; ?></div>
+                    <?php } ?>
+                </ul>
+              </div>
+            <?php } ?>
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?> 
+
+            <?php if($tabs==1) { ?>
+            <div id="tab-order">
+            <?php } ?>
+
+            <?php if($order_link==0 or $download_link==0  or $reward_link==0  or $return_link==0 or $transaction_link==0) { ?>            
+              <?php if($tabs==0) { ?>
+              <?php if($title_orders=='') { ?>
+              <h2><?php echo $text_my_orders; ?></h2>
+              <?php } else { ?>
+              <h2><?php echo $title_orders; ?></h2>
+              <?php } ?>
+              <?php } ?> 
+              <div class="content">
+                <ul>
+                    <?php if($order_link==0) { ?>
+                    <div style="float: left; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/orders.png" alt="<?php echo $text_order; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $order; ?>" style="font-weight: bold;"><?php echo $text_order; ?></a><br>
+                    <?php echo $text_order_desc; ?></div>
+                    <?php } ?>
+                    <?php if($download_link==0) { ?>    
+                    <div style="float: right; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/downloads.png" alt="<?php echo $text_download; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $download; ?>" style="font-weight: bold;"><?php echo $text_download; ?></a><br>
+                    <?php echo $text_download_desc; ?></div>
+                    <?php } ?>
+                    <?php if($reward_link==0) { ?>
+                    <div style="float: left; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/rewards.png" alt="<?php echo $text_reward; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $reward; ?>" style="font-weight: bold;"><?php echo $text_reward; ?></a><br>
+                    <?php echo $text_reward_desc; ?></div>
+                    <?php } ?>
+                    <?php if($return_link==0) { ?>
+                    <div style="float: right; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/returns.png" alt="<?php echo $text_return; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $return; ?>" style="font-weight: bold;"><?php echo $text_return; ?></a><br>
+                    <?php echo $text_return_desc; ?></div>
+                    <?php } ?>
+                    <?php if($transaction_link==0) { ?>
+                    <div style="float: left; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/transaction.png" alt="<?php echo $text_transaction; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $transaction; ?>" style="font-weight: bold;"><?php echo $text_transaction; ?></a><br>
+                    <?php echo $text_transaction_desc; ?></div>
+                    <?php } ?>
+                </ul>
+              </div>
+              <?php } ?>
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?> 
+ 
+            <?php if($tabs==1) { ?>
+            <div id="tab-newsletter">
+            <?php } ?>
+              <?php if($newsletter_link==0) { ?>      
+              <?php if($tabs==0) { ?>
+              <?php if($title_newsletter=='') { ?>
+              <h2><?php echo $text_newsletter; ?></h2>
+              <?php } else { ?>
+              <h2><?php echo $title_newsletter; ?></h2>
+              <?php } ?>
+              
+              <?php } ?> 
+              <div class="content">
+                <ul>
+                  <div style="float: left; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/newsletter.png" alt="<?php echo $text_newsletter; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $newsletter; ?>" style="font-weight: bold;"><?php echo $text_newsletter; ?></a><br>
+                  <?php echo $text_newsletter_desc; ?></div>
+                </ul>
+              </div>
+             <?php } ?> 
+            
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?> 
+            </div>
+            <?php } ?>
+            
+            <?php if($style_a=='icons-2') { ?>
+            <?php if($tabs==1) { ?>
+            <div id="tab-account">
+            <?php } ?> 
+                    <?php if($edit_link==0) { ?>                
+                    <div>
+                        <a href="<?php echo $edit; ?>" id="s-account" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/edit.png);" >
+                        <h5 ><?php echo $text_edit; ?></h5>
+                        </a>
+                    </div>
+                  <?php } ?>
+                  <?php if($password_link==0) { ?>
+                    <div>
+                	     <a href="<?php echo $password; ?>" id="s-password" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/password.png);">
+                         <h5 ><?php echo $text_password; ?></h5>
+                         </a>
+                    </div>
+                 <?php } ?>
+                 <?php if($address_link==0) { ?>
+                    <div>
+                	     <a href="<?php echo $address; ?>" id="s-address" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/address.png);">
+                         <h5 ><?php echo $text_address; ?></h5>
+                         </a>
+                    </div>
+                 <?php } ?>
+                 <?php if($wishlist_link==0) { ?>
+                    <div>
+                	   <a href="<?php echo $wishlist; ?>" id="s-wishlist" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/wishlist.png);">
+                       <h5 ><?php echo $text_wishlist; ?></h5>
+                       </a>
+                    </div>
+                  <?php } ?>
+                <?php if($tabs==1) { ?>
+                <?php if($logout_link==0) { ?>
+                    <div>
+                      <a href="<?php echo $logout; ?>" id="s-logout" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/logout.png);">
+                      <h5 ><?php echo $text_logout; ?></h5>
+                      </a>
+                    </div>
+                <?php } ?>
+                <?php } ?>
+                  <?php if($tabs==1) { ?>
+                  </div>
+                  <?php } ?>
+                  <?php if($tabs==1) { ?>
+                  <div id="tab-order">
+                  <?php } ?>
+                  <?php if($order_link==0) { ?>
+                    <div>
+                	   <a href="<?php echo $order; ?>" id="s-orders" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/orders.png);">
+                       <h5 ><?php echo $text_order; ?></h5>
+                       </a>
+                    </div>
+                <?php } ?>
+                <?php if($download_link==0) { ?>
+                    <div>
+                	   <a href="<?php echo $download; ?>" id="s-downloads" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/downloads.png);">
+                       <h5 ><?php echo $text_download; ?></h5>
+                       </a>
+                    </div>
+                <?php } ?>
+                <?php if($reward_link==0) { ?>
+                    <div>
+                	   <a href="<?php echo $reward; ?>" id="s-rewards" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/rewards.png);">
+                       <h5 ><?php echo $text_reward; ?></h5>
+                       </a>
+                    </div>
+                <?php } ?>
+                <?php if($return_link==0) { ?>
+                    <div>
+                	   <a href="<?php echo $return; ?>" id="s-returns" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/returns.png);">
+                       <h5 ><?php echo $text_return; ?></h5>
+                       </a>
+                    </div>
+                   <?php } ?>
+                   <?php if($transaction_link==0) { ?> 
+                    <div>
+                      <a href="<?php echo $transaction; ?>" id="s-transaction" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/transaction.png);">
+                      <h5 ><?php echo $text_transaction; ?></h5>
+                      </a>
+                    </div>
+                <?php } ?>
+                 <?php if($tabs==1) { ?>
+                </div>
+                <?php } ?>
+                 <?php if($tabs==1) { ?>
+                <div id="tab-newsletter">
+                <?php } ?>
+                <?php if($newsletter_link==0) { ?>
+                    <div>
+                	   <a href="<?php echo $newsletter; ?>" id="s-newsletter" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/newsletter.png);">
+                       <h5 ><?php echo $text_newsletter; ?></h5>
+                       </a>
+                    </div>
+                <?php } ?>
+                 <?php if($tabs==0) { ?>
+                <?php if($logout_link==0) { ?>
+                    <div>
+                      <a href="<?php echo $logout; ?>" id="s-logout" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/logout.png);">
+                      <h5 ><?php echo $text_logout; ?></h5>
+                      </a>
+                    </div>
+                <?php } ?>
+                <?php } ?>
+                    <br/><br/>
+                <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/page.css" /> 
+            </div><?php if($tabs==1) { ?></div><?php } ?>
+            <?php } ?>
+            
+             
+            
+        <?php if($style_a=='icons-3') { ?>
+           <ol class="rectangle-list-a">	    		
+                <?php if($account_link==0 or $edit_link==0 or $password_link==0  or $address_link==0  or $wishlist_link==0) { ?>
+                <?php if($tabs==0) { ?>
+                <?php if($title_account=='') { ?>
+                <b><?php echo $text_my_account; ?></b>
+                <?php } else { ?>
+                <b><?php echo $title_account; ?></b>
+                <?php } ?>
+                <?php } ?>
+                <?php } ?>
+                <?php if($tabs==1) { ?>
+                <div id="tab-account">
+                <?php } ?>
+                <ol>
+                <?php if($edit_link==0) { ?>
+                <li><a href="<?php echo $edit; ?>" ><?php echo $text_edit; ?><span style="color:#444;">   |  <?php echo $text_edit_desc; ?></span></a></li></li>
+            	<?php } ?>  
+                <?php if($password_link==0) { ?>
+                <li><a href="<?php echo $password; ?>" ><?php echo $text_password; ?><span style="color:#444;">   |  <?php echo $text_password_desc; ?></span></a></li>
+            	<?php } ?>  
+                <?php if($address_link==0) { ?>
+                <li><a href="<?php echo $address; ?>" ><?php echo $text_address;; ?><span style="color:#444;">   |  <?php echo $text_address_desc; ?></span></a></li>
+            	<?php } ?>  
+                <?php if($wishlist_link==0) { ?>
+                <li><a href="<?php echo $wishlist; ?>" ><?php echo $text_wishlist; ?><span style="color:#444;">   |  <?php echo $text_wishlist_desc; ?></span></a></li>
+                <?php } ?>
+                <?php if($logout_link==0) { ?>  
+                <ol>
+                <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?><span style="color:#444;">   |  <?php echo $text_logout_desc; ?></span></a></li>
+                </ol>
+                <?php } ?>
+                </ol>
+                <?php if($order_link==0 or $download_link==0 or $reward_link==0 or $return_link==0 or $transaction_link==0 ) { ?>
+                <?php if($tabs==0) { ?>
+                <br />
+                <?php if($title_orders=='') { ?>
+                <b><?php echo $text_my_orders; ?></b>
+                <?php } else { ?>
+                <b><?php echo $title_orders; ?></b>
+                <?php } ?>
+                <?php } ?>
+                <?php } ?>
+                <?php if($tabs==1) { ?>
+                </div>
+                <?php } ?>
+                <?php if($tabs==1) { ?>
+                <div id="tab-order">
+                <?php } ?>
+                <ol>
+                <?php if($order_link==0) { ?>
+                <li><a href="<?php echo $order; ?>" ><?php echo $text_order; ?><span style="color:#444;">   |  <?php echo $text_order_desc; ?></span></a></li>
+            	<?php } ?>  
+                <?php if($download_link==0) { ?>
+                <li><a href="<?php echo $download; ?>" ><?php echo $text_download; ?><span style="color:#444;">   |  <?php echo $text_download_desc; ?></span></a></li>
+            	<?php } ?>  
+                <?php if($reward_link==0) { ?>
+                <li><a href="<?php echo $reward; ?>" ><?php echo $text_reward; ?><span style="color:#444;">   |  <?php echo $text_reward_desc; ?></span></a></li>
+            	<?php } ?>  
+                <?php if($return_link==0) { ?>
+                <li><a href="<?php echo $return; ?>" ><?php echo $text_return; ?><span style="color:#444;">   |  <?php echo $text_return_desc; ?></span></a></li>
+                <?php } ?>  
+                <?php if($transaction_link==0) { ?>
+                <li><a href="<?php echo $transaction; ?>" ><?php echo $text_transaction; ?><span style="color:#444;">   |  <?php echo $text_transaction_desc; ?></span></a></li>
+            	<?php } ?>  
+                </ol>
+                <?php if($tabs==1) { ?>
+                </div>
+                <?php } ?>
+                <?php if($newsletter_link==0) { ?>
+                <?php if($tabs==0) { ?>
+                <br />
+                <?php if($title_newsletter=='') { ?>
+                <b><?php echo $text_newsletter; ?></b>
+                <?php } else { ?>
+                <b><?php echo $title_newsletter; ?></b>
+                <?php } ?>
+              
+                <?php } ?>
+                <?php if($tabs==1) { ?>
+                <div id="tab-newsletter">
+                <?php } ?>
+                <ol>
+                <?php if($newsletter_link==0) { ?>
+                <li><a href="<?php echo $newsletter; ?>" ><?php echo $text_newsletter; ?><span style="color:#444;">   |  <?php echo $text_newsletter_desc; ?></span></a></li>
+                <?php } ?>
+                </ol>
+                </div>
+                <?php } ?>
+                <?php if($tabs==1) { ?>
+                </div>
+                <?php } ?>
+             </ol>       
+                
+        <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/modern.css" />
+        <?php } ?>
+        
+        <?php if($style_a=='icons-4') { ?>        
+         <div class="container">
+		  <section class="aca-container">
+            <?php if($welcome_a==1) { ?>
+            <div>
+            <input id="aca-1" name="accordiona-1" type="radio" checked />
+			<label for="aca-1">Welcome</label>
+			<article class="aca-mini">
+            <div style="text-align: center; padding-top: 15px;">
+            <p><?php echo $text_greeting_a; ?>  </p>
+            </div>
+            </article>
+		    </div>
+            <?php } ?>
+            <?php if($edit_link==0 or $password_link==0  or $address_link==0  or $wishlist_link==0) { ?>        
+            <div>
+			<input id="aca-2" name="accordiona-1" type="radio"  <?php if($welcome_a==0) { ?>checked<?php } ?>/>
+			<label for="aca-2">
+            <?php if($title_account=='') { ?>
+            <?php echo $text_my_account; ?>
+            <?php } else { ?>
+            <?php echo $title_account; ?>
+            <?php } ?>
+            </label>
+			<article class="aca-small">
+			<ul class="mylist">
+            <?php if($edit_link==0) { ?>
+            <li><?php if($style_a=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_a; ?>/edit.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px;">&nbsp;<?php } ?>
+            <a href="<?php echo $edit; ?>" ><?php echo $text_edit; ?></a></li>
+            <?php } ?>
+            <?php if($password_link==0) { ?>
+            <li><?php if($style_a=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_a; ?>/password.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px;">&nbsp;<?php } ?>
+            <a href="<?php echo $password; ?>"  ><?php echo $text_password; ?></a></li>
+            <?php } ?>
+            <?php if($address_link==0) { ?>
+            <li><?php if($style_a=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_a; ?>/address.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px;">&nbsp;<?php } ?>
+            <a href="<?php echo $address; ?>"><?php echo $text_address; ?></a></li>
+            <?php } ?>
+            <?php if($wishlist_link==0) { ?>
+            <li><?php if($style_a=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_a; ?>/wishlist.png" style="vertical-align:bottom; width:20px; height:20px padding-bottom: 3px;">&nbsp;<?php } ?> 
+            <a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
+            <?php } ?>
+            <?php if($logout_link==0) { ?>
+            <li><?php if($style_a=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_a; ?>/address.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px;">&nbsp;<?php } ?>
+            <a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
+            <?php } ?>
+            </ul>
+			</article>
+			</div>
+			<?php } ?>
+            <?php if($order_link==0 or $download_link==0 or $reward_link==0 or $return_link==0 or $transaction_link==0 ) { ?>
+            <div>
+			<input id="aca-3" name="accordiona-1" type="radio" />
+			<label for="aca-3">
+            <?php if($title_orders=='') { ?>
+            <?php echo $text_my_orders; ?>
+            <?php } else { ?>
+            <?php echo $title_orders; ?>
+            <?php } ?>
+            </label>
+			<article class="aca-small">
+			<ul  class="mylist">
+            <?php if($order_link==0) { ?>
+            <li><?php if($style_a=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_a; ?>/orders.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px; padding-top: 3px">&nbsp;<?php } ?>
+            <a href="<?php echo $order; ?>" ><?php echo $text_order; ?></a></li>
+            <?php } ?>
+            <?php if($download_link==0) { ?>
+            <li><?php if($style_a=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_a; ?>/downloads.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px;">&nbsp;<?php } ?>
+            <a href="<?php echo $download; ?>" ><?php echo $text_download; ?></a></li>
+            <?php } ?>
+            <?php if($reward_link==0) { ?>
+            <li><?php if($style_a=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_a; ?>/rewards.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px;">&nbsp;<?php } ?>
+            <a href="<?php echo $reward; ?>" ><?php echo $text_reward; ?></a></li>
+            <?php } ?>
+            <?php if($return_link==0) { ?>
+            <li><?php if($style_a=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_a; ?>/returns.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px";>&nbsp;<?php } ?>
+            <a href="<?php echo $return; ?>" ><?php echo $text_return; ?></a></li>
+            <?php } ?>
+            <?php if($transaction_link==0) { ?>
+            <li><?php if($style_a=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_a; ?>/transaction.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px;">&nbsp;<?php } ?>
+            <a href="<?php echo $transaction; ?>" ><?php echo $text_transaction; ?></a></li>
+            <?php } ?>
+            </ul>
+			</article>
+			</div>
+            <?php } ?>
+            <?php if($newsletter_link==0) { ?>
+            <div>
+			<input id="aca-4" name="accordiona-1" type="radio" />
+			<label for="aca-4">
+            <?php if($title_newsletter=='') { ?>
+            <?php echo $text_newsletter; ?>
+            <?php } else { ?>
+            <?php echo $title_newsletter; ?>
+            <?php } ?>
+            </label>
+			<article class="aca-mini2">
+			<ul class="mylist">
+            <li><?php if($style_a=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_a; ?>/newsletter.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px; padding-top: 3px">&nbsp;<?php } ?>
+            <a href="<?php echo $newsletter; ?>" ><?php echo $text_newsletter; ?></a></li>
+            </ul>
+			</article>
+			</div>
+			<?php } ?>
+		    </section>
+            </div> 
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/accordion_s.css" />
+           </div> 
+          <?php } ?>
+          
+          <?php if($style_a=='icons-5') { ?>        
+         <div class="container">
+		  <section class="aca-container">
+            <?php if($welcome_a==1) { ?>
+            <div>
+            <input id="aca-1" name="accordiona-1" type="radio" checked/>
+			<label for="aca-1">Welcome</label>
+			<article class="aca-mini">
+            <div style="text-align: center; padding-top: 15px;">
+            <p><?php echo $text_greeting_a; ?>  </p>
+            </div>
+            </article>
+		    </div>
+            <?php } ?>
+            <?php if($edit_link==0 or $password_link==0  or $address_link==0  or $wishlist_link==0 or $logout_link==0) { ?>        
+            <div>
+			<input id="aca-2" name="accordiona-1" type="radio"   <?php if($welcome_a==0) { ?>checked<?php } ?>/>
+			<label for="aca-2">
+            <?php if($title_account=='') { ?>
+            <?php echo $text_my_account; ?>
+            <?php } else { ?>
+            <?php echo $title_account; ?>
+            <?php } ?>
+            </label>
+			<article class="aca-small">
+			<ul class="mylist">
+                    <?php if($edit_link==0) { ?>
+                    <div  style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/edit.png" alt="<?php echo $text_edit; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $edit; ?>" style="font-weight: bold;"><?php echo $text_edit; ?></a><br>
+                    <?php echo $text_edit_desc; ?></div>
+                    <?php } ?>
+                    <?php if($password_link==0) { ?>
+                    <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/password.png" alt="<?php echo $text_password; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $password; ?>" style="font-weight: bold;"><?php echo $text_password; ?></a><br>
+                    <?php echo $text_password_desc; ?></div>
+                    <?php } ?>
+                    <?php if($address_link==0) { ?>
+                    <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/address.png" alt="<?php echo $text_address; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $address; ?>" style="font-weight: bold;"><?php echo $text_address; ?></a><br>
+                    <?php echo $text_address_desc; ?></div>
+                    <?php } ?>
+                    <?php if($wishlist_link==0) { ?>
+                    <div  style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/wishlist.png" alt="<?php echo $text_wishlist; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $wishlist; ?>" style="font-weight: bold;"><?php echo $text_wishlist; ?></a><br>
+                    <?php echo $text_wishlist_desc; ?></div>
+                    <?php } ?>
+                    <?php if($logout_link==0) { ?>
+                    <div  style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/logout.png" alt="logout" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $logout; ?>" style="font-weight: bold;"><?php echo $text_logout; ?></a><br>
+                    <?php echo $text_logout_desc; ?></div>
+                    <?php } ?>
+            </ul>
+			</article>
+			</div>
+			<?php } ?>
+            <?php if($order_link==0 or $download_link==0 or $reward_link==0 or $return_link==0 or $transaction_link==0 ) { ?>
+            <div>
+			<input id="aca-3" name="accordiona-1" type="radio" />
+			<label for="aca-3">
+            <?php if($title_orders=='') { ?>
+            <?php echo $text_my_orders; ?>
+            <?php } else { ?>
+            <?php echo $title_orders; ?>
+            <?php } ?>
+            </label>
+			<article class="aca-small">
+			<ul  class="mylist">
+            <?php if($order_link==0) { ?>
+                    <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/orders.png" alt="<?php echo $text_order; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $order; ?>" style="font-weight: bold;"><?php echo $text_order; ?></a><br>
+                    <?php echo $text_order_desc; ?></div>
+                    <?php } ?>
+                    <?php if($download_link==0) { ?>    
+                    <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/downloads.png" alt="<?php echo $text_download; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $download; ?>" style="font-weight: bold;"><?php echo $text_download; ?></a><br>
+                    <?php echo $text_download_desc; ?></div>
+                    <?php } ?>
+                    <?php if($reward_link==0) { ?>
+                    <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/rewards.png" alt="<?php echo $text_reward; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $reward; ?>" style="font-weight: bold;"><?php echo $text_reward; ?></a><br>
+                    <?php echo $text_reward_desc; ?></div>
+                    <?php } ?>
+                    <?php if($return_link==0) { ?>
+                    <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/returns.png" alt="<?php echo $text_return; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $return; ?>" style="font-weight: bold;"><?php echo $text_return; ?></a><br>
+                    <?php echo $text_return_desc; ?></div>
+                    <?php } ?>
+                    <?php if($transaction_link==0) { ?>
+                    <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/transaction.png" alt="<?php echo $text_transaction; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $transaction; ?>" style="font-weight: bold;"><?php echo $text_transaction; ?></a><br>
+                    <?php echo $text_transaction_desc; ?></div>
+                    <?php } ?>
+            </ul>
+			</article>
+			</div>
+            <?php } ?>
+            <?php if($newsletter_link==0) { ?>
+            <div>
+			<input id="aca-4" name="accordiona-1" type="radio" />
+			<label for="aca-4">
+            <?php if($title_newsletter=='') { ?>
+            <?php echo $text_newsletter; ?>
+            <?php } else { ?>
+            <?php echo $title_newsletter; ?>
+            <?php } ?>
+              
+            </label>
+			<article class="aca-mini2">
+			<ul class="mylist">
+            <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/newsletter.png" alt="<?php echo $text_newsletter; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $newsletter; ?>" style="font-weight: bold;"><?php echo $text_newsletter; ?></a><br>
+                  <?php echo $text_newsletter_desc; ?></div>
+            </ul>
+			</article>
+			</div>
+			<?php } ?>
+		    </section>
+            </div> 
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/accordion_i.css" />
+           </div> 
+          <?php } ?>
+          
+          
+          <?php if($style_a=='icons-6') { ?>
+            <div class="alinks">
+            <ul>
+            <?php if($tabs==1) { ?>
+            <div id="tab-account">
+            <?php } ?>
+                    <?php if($edit_link==0) { ?>
+                    <li>
+                    <a href="<?php echo $edit; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/edit.png" alt="<?php echo $text_edit; ?>" "><?php echo $text_edit; ?></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($password_link==0) { ?>
+                    <li>
+                    <a href="<?php echo $password; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/password.png" alt="<?php echo $text_password; ?>" "><?php echo $text_password; ?></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($address_link==0) { ?>
+                    <li>
+                    <a href="<?php echo $address; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/address.png" alt="<?php echo $text_address; ?>" "><?php echo $text_address; ?></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($wishlist_link==0) { ?>
+                    <li>
+                    <a href="<?php echo $wishlist; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/wishlist.png" alt="<?php echo $text_wishlist; ?>" "><?php echo $text_wishlist; ?></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($logout_link==0) { ?>
+                    <li>
+                    <a href="<?php echo $logout; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/logout.png" alt="logout" "><?php echo $text_logout; ?></a><br>
+                    </li>
+                    <?php } ?>
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?> 
+            <?php if($tabs==1) { ?>
+            <div id="tab-order">
+            <?php } ?>
+                    <?php if($order_link==0) { ?>
+                    <li>
+                    <a href="<?php echo $order; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/orders.png" alt="<?php echo $text_order; ?>" "><?php echo $text_order; ?></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($download_link==0) { ?>    
+                    <li>
+                    <a href="<?php echo $download; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/downloads.png" alt="<?php echo $text_download; ?>" "><?php echo $text_download; ?></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($reward_link==0) { ?>
+                    <li>
+                    <a href="<?php echo $reward; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/rewards.png" alt="<?php echo $text_reward; ?>" "><?php echo $text_reward; ?></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($return_link==0) { ?>
+                    <li>
+                    <a href="<?php echo $return; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/returns.png" alt="<?php echo $text_return; ?>" "><?php echo $text_return; ?></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($transaction_link==0) { ?>
+                    <li>
+                    <a href="<?php echo $transaction; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/transaction.png" alt="<?php echo $text_transaction; ?>" "><?php echo $text_transaction; ?></a><br>
+                    </li>
+                    <?php } ?>
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?> 
+            <?php if($tabs==1) { ?>
+            <div id="tab-newsletter">
+            <?php } ?>
+                <li>
+                  <a href="<?php echo $newsletter; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/newsletter.png" alt="<?php echo $text_newsletter; ?>" "><?php echo $text_newsletter; ?></a><br>
+                </li>  
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?>
+                </ul>
+            </div> 
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/metroui_i.css" />
+            </div>
+            <?php } ?>
+
+          <?php if($style_a=='icons-7') { ?>
+            <div class="alinks2">
+            <ul>
+            <?php if($tabs==1) { ?>
+            <div id="tab-account">
+            <?php } ?>
+                    <?php if($edit_link==0) { ?>
+                    <li class="edit">
+                    <a href="<?php echo $edit; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/edit.png" alt="<?php echo $text_edit; ?>" "><p><?php echo $text_edit; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($password_link==0) { ?>
+                    <li class="password">
+                    <a href="<?php echo $password; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/password.png" alt="<?php echo $text_password; ?>" "><p><?php echo $text_password; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($address_link==0) { ?>
+                    <li  class="address">
+                    <a href="<?php echo $address; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/address.png" alt="<?php echo $text_address; ?>" "><p><?php echo $text_address; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($wishlist_link==0) { ?>
+                    <li  class="wishlist">
+                    <a href="<?php echo $wishlist; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/wishlist.png" alt="<?php echo $text_wishlist; ?>" "><p><?php echo $text_wishlist; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($logout_link==0) { ?>
+                    <li  class="logout">
+                    <a href="<?php echo $logout; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/logout.png" alt="logout" "><p><?php echo $text_logout; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?> 
+            <?php if($tabs==1) { ?>
+            <div id="tab-order">
+            <?php } ?>
+                    <?php if($order_link==0) { ?>
+                    <li  class="order">
+                    <a href="<?php echo $order; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/orders.png" alt="<?php echo $text_order; ?>" "><p><?php echo $text_order; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($download_link==0) { ?>    
+                    <li  class="download">
+                    <a href="<?php echo $download; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/downloads.png" alt="<?php echo $text_download; ?>" "><p><?php echo $text_download; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($reward_link==0) { ?>
+                    <li class="reward">
+                    <a href="<?php echo $reward; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/rewards.png" alt="<?php echo $text_reward; ?>" "><p><?php echo $text_reward; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($return_link==0) { ?>
+                    <li  class="return">
+                    <a href="<?php echo $return; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/returns.png" alt="<?php echo $text_return; ?>" "><p><?php echo $text_return; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($transaction_link==0) { ?>
+                    <li class="transaction">
+                    <a href="<?php echo $transaction; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/transaction.png" alt="<?php echo $text_transaction; ?>" "><p><?php echo $text_transaction; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?> 
+            <?php if($tabs==1) { ?>
+            <div id="tab-newsletter">
+            <?php } ?>
+                <li  class="newsletter">
+                  <a href="<?php echo $newsletter; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_a; ?>/newsletter.png" alt="<?php echo $text_newsletter; ?>" "><p><?php echo $text_newsletter; ?></p></a><br>
+                </li>  
+            <?php if($tabs==1) { ?>
+            </div>
+            <?php } ?>
+                </ul>
+            </div> 
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/metroui_i.css" />
+            </div>
+            <?php } ?>
+
+
+            <script type="text/javascript" src="catalog/view/javascript/jquery/tabs.js"></script>  
+            <script type="text/javascript"><!--
+            $('.htabs a').tabs();
+            //--></script>
+            ]]></add>
+		</operation>
+	</file>
+    
+	<file name="catalog/controller/account/account.php">
+		<operation>
+			<search position="before" ><![CDATA[
+            public function index() {
+            ]]></search>
+			<add><![CDATA[
+            private $_name = 'accountplus';
+            ]]></add>
+		</operation>
+        
+        <operation>
+			<search position="after" ><![CDATA[
+            $this->document->setTitle($this->language->get('heading_title'));
+            ]]></search>
+			<add><![CDATA[
+        		$this->language->load('module/accountplus');
+        		
+            	$this->data['heading_title_1'] = $this->language->get('heading_title_1');
+            	$this->data['heading_title_2'] = $this->language->get('heading_title_2');
+                
+        		$this->data['text_logout'] = $this->language->get('text_logout');
+        		$this->data['text_account'] = $this->language->get('text_account');
+        		$this->data['text_edit'] = $this->language->get('text_edit');
+        		$this->data['text_password'] = $this->language->get('text_password');
+                $this->data['text_address'] = $this->language->get('text_address');
+        		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
+        		$this->data['text_order'] = $this->language->get('text_order');
+        		$this->data['text_download'] = $this->language->get('text_download');
+        		$this->data['text_return'] = $this->language->get('text_return');
+        		$this->data['text_transaction'] = $this->language->get('text_transaction');
+        		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
+                $this->data['text_welcome'] = $this->language->get('text_welcome');
+                $this->data['text_my_newsletter'] = $this->language->get('text_my_newsletter');
+                $this->data['text_my_orders'] = $this->language->get('text_my_orders');
+                $this->data['text_my_account'] = $this->language->get('text_my_account');
+                $this->data['text_reward'] = $this->language->get('text_reward');
+                $this->data['text_greeting_a'] = sprintf($this->language->get('text_logged'), $this->customer->getFirstName());
+                                     
+        		$this->data['logged'] = $this->customer->isLogged();
+        		$this->data['logout'] = $this->url->link('account/logout', '', 'SSL');
+                $this->data['address'] = $this->url->link('account/address', '', 'SSL');
+        		$this->data['edit'] = $this->url->link('account/edit', '', 'SSL');
+        		$this->data['password'] = $this->url->link('account/password', '', 'SSL');
+        		$this->data['wishlist'] = $this->url->link('account/wishlist');
+        		$this->data['order'] = $this->url->link('account/order', '', 'SSL');
+        		$this->data['download'] = $this->url->link('account/download', '', 'SSL');
+        		$this->data['return'] = $this->url->link('account/return', '', 'SSL');
+        		$this->data['transaction'] = $this->url->link('account/transaction', '', 'SSL');
+        		$this->data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');
+                $this->data['reward'] = $this->url->link('account/reward', '', 'SSL');
+                
+                $this->data['title'] = $this->config->get($this->_name . '_title' . $this->config->get('config_language_id'));
+        		$this->data['title_account'] = $this->config->get($this->_name . '_title_account' . $this->config->get('config_language_id'));
+                $this->data['title_orders'] = $this->config->get($this->_name . '_title_orders' . $this->config->get('config_language_id'));
+                $this->data['title_newsletter'] = $this->config->get($this->_name . '_title_newsletter' . $this->config->get('config_language_id'));
+                $this->data['icon'] = $this->config->get($this->_name . '_icon');
+                $this->data['email_icon'] = $this->config->get($this->_name . '_email_icon');
+                $this->data['put_icon'] = $this->config->get($this->_name . '_put_icon');
+                $this->data['welcome_a'] = $this->config->get($this->_name . '_welcome_a');
+                $this->data['welcome_v'] = $this->config->get($this->_name . '_welcome_v');
+                $this->data['tabs'] = $this->config->get($this->_name . '_tabs');
+                $this->data['welcome_v'] = $this->config->get($this->_name . '_welcome_v');
+                $this->data['bt_logout'] = $this->config->get($this->_name . '_bt_logout');
+                $this->data['ico_logout'] = $this->config->get($this->_name . '_ico_logout');
+                
+                $this->data['account_link'] = $this->config->get($this->_name . '_account_link');
+                $this->data['edit_link'] = $this->config->get($this->_name . '_edit_link');
+                $this->data['password_link'] = $this->config->get($this->_name . '_password_link');
+                $this->data['address_link'] = $this->config->get($this->_name . '_address_link');
+                $this->data['wishlist_link'] = $this->config->get($this->_name . '_wishlist_link');
+                $this->data['logout_link'] = $this->config->get($this->_name . '_logout_link');
+                $this->data['order_link'] = $this->config->get($this->_name . '_order_link');
+                $this->data['download_link'] = $this->config->get($this->_name . '_download_link');
+                $this->data['reward_link'] = $this->config->get($this->_name . '_reward_link');
+                $this->data['return_link'] = $this->config->get($this->_name . '_return_link');
+                $this->data['transaction_link'] = $this->config->get($this->_name . '_transaction_link');
+                $this->data['newsletter_link'] = $this->config->get($this->_name . '_newsletter_link');
+                
+                $this->data['text_edit_desc'] = $this->language->get('text_edit_desc');
+                $this->data['text_password_desc'] = $this->language->get('text_password_desc');
+                $this->data['text_address_desc'] = $this->language->get('text_address_desc');
+                $this->data['text_wishlist_desc'] = $this->language->get('text_wishlist_desc');
+                $this->data['text_order_desc'] = $this->language->get('text_order_desc');
+                $this->data['text_download_desc'] = $this->language->get('text_download_desc');
+                $this->data['text_reward_desc'] = $this->language->get('text_reward_desc');
+                $this->data['text_return_desc'] = $this->language->get('text_return_desc');
+                $this->data['text_transaction_desc'] = $this->language->get('text_transaction_desc');
+                $this->data['text_newsletter_desc'] = $this->language->get('text_newsletter_desc');
+                $this->data['text_logout_desc'] = $this->language->get('text_logout_desc');
+                $this->data['text_logout'] = $this->language->get('text_logout');
+                
+                
+                $this->data['style_a'] = $this->config->get($this->_name . '_style_a');
+                 if (isset($this->request->post['style_a'])) {
+        			$this->data['style_a'] = $this->request->post['style_a'];
+        		} else {
+        			$this->data['style_a'] = $this->config->get('style_a');
+        		}   
+                
+                  $this->data['icotype_a'] = $this->config->get($this->_name . '_icotype_a');
+                 if (isset($this->request->post['icotype_a'])) {
+        			$this->data['icotype_a'] = $this->request->post['icotype_a'];
+        		} else {
+        			$this->data['icotype_a'] = $this->config->get('icotype_a');
+        		}   
+                
+                   $this->data['head_ico'] = $this->config->get($this->_name . '_head_ico');
+                 if (isset($this->request->post['head_ico'])) {
+        			$this->data['head_ico'] = $this->request->post['head_ico'];
+        		} else {
+        			$this->data['head_ico'] = $this->config->get('head_ico');
+        		}   
+                    
+        	   $this->load->model('localisation/language');
+        		
+        		$languages = $this->model_localisation_language->getLanguages();
+        		
+        		foreach ($languages as $language) {
+        			if (isset($this->request->post[$this->_name . '_title_1' . $language['language_id']])) {
+        				$this->data[$this->_name . '_title_1' . $language['language_id']] = $this->request->post[$this->_name . '_title_1' . $language['language_id']];
+        			} else {
+        				$this->data[$this->_name . '_title_1' . $language['language_id']] = $this->config->get($this->_name . '_title_1' . $language['language_id']);
+        			}
+                    
+                    if (isset($this->request->post[$this->_name . '_title_2' . $language['language_id']])) {
+        				$this->data[$this->_name . '_title_2' . $language['language_id']] = $this->request->post[$this->_name . '_title_2' . $language['language_id']];
+        			} else {
+        				$this->data[$this->_name . '_title_2' . $language['language_id']] = $this->config->get($this->_name . '_title_2' . $language['language_id']);
+        			}
+                   
+        		}
+            ]]></add>
+		</operation>
+        
+	</file>
+    
+    <file name="catalog/language/english/account/account.php">
+		<operation>
+			<search position="before" ><![CDATA[
+            ?>
+            ]]></search>
+			<add><![CDATA[
+            //Text Improved
+            $_['text_edit_desc']        = 'Edit your account details.';
+            $_['text_password_desc']    = 'Change your password.';
+            $_['text_address_desc']     = 'Modify your address book entries.';
+            $_['text_wishlist_desc']    = 'Modify your wish list';
+            $_['text_order_desc']      = 'View your orders history';
+            $_['text_download_desc']    = 'Your downloads';
+            $_['text_reward_desc']      = 'Reward points';
+            $_['text_return_desc']      = 'View your return requests';
+            $_['text_transaction_desc'] = 'View your your Transactions.';
+            $_['text_newsletter_desc']  = 'Subscribe / unsubscribe to newsletter.';
+            $_['text_logout_desc']      = 'Logout from your account.';
+            ]]></add>
+		</operation>
+        
+	</file>
+    
+    <!-- ******************************************* END: CUSTOMER ACCOUNT -->
+    
+    <!-- ******************************************* START: AFFILIATE ACCOUNT -->
+    
+	<file name="catalog/view/theme/*/template/affiliate/account.tpl">
+		<operation>
+			<search position="replace" ><![CDATA[
+            <h1><?php echo $heading_title; ?></h1>
+            ]]></search>
+			<add><![CDATA[
+            <?php if($title_a=='') { ?>
+            <h1><?php echo $heading_title; ?></h1>
+            <?php } else { ?>
+            <h1><?php echo $title_a; ?></h1>
+            <?php } ?>
+            ]]></add>
+		</operation>
+        
+        <operation>
+			<search position="replace" offset="20" ><![CDATA[
+            <h2><?php echo $text_my_account; ?></h2>
+            ]]></search>
+			<add><![CDATA[
+            <?php if($welcome_af==1 && $style_af<>'icons-4' && $style_af<>'icons-5') { ?>
+            <h2><?php echo $text_greeting_af; ?></h2>
+            <?php } ?>
+
+            <?php if($tabs_a==1 && $style_af<>'icons-4' && $style_af<>'icons-5') { ?>
+            <div id="tabs_a" class="htabs">
+              <?php if($edit_link_a==0 or $password_link_a==0  or $payment_link_a==0  or $logout_link_a==0) { ?>
+              <a href="#tab-account"><?php if($title_account_a=='') { ?><?php echo $text_my_account; ?><?php } else { ?><?php echo $title_account_a; ?><?php } ?></a>
+              <?php } ?>
+              <?php if($tracking_link_a==0 ) { ?>
+              <a href="#tab-tracking"><?php if($title_tracking_a=='') { ?><?php echo $text_my_tracking; ?><?php } else { ?><?php echo $title_tracking_a; ?><?php } ?></a>
+              <?php } ?>
+              <?php if($transaction_link_a ==0) { ?>
+              <a href="#tab-transaction"><?php if($title_transaction_a=='') { ?><?php echo $text_my_transactions; ?><?php } else { ?><?php echo $title_transaction_a; ?><?php } ?></a>
+              <?php } ?>
+            </div>
+            <?php } ?>
+            <?php if($style_af=='default') { ?>
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-account">
+            <?php } ?>
+            <?php if($edit_link_a==0 or $password_link_a==0  or $payment_link_a==0  or $logout_link_a==0) { ?>
+            <?php if($tabs_a==0) { ?>
+            <?php if($title_account_a=='') { ?>
+            <h2><?php echo $text_my_account; ?></h2>
+            <?php } else { ?>
+            <h2><?php echo $title_account_a; ?></h2>
+            <?php } ?>
+            <?php } ?>
+              <div class="content">
+                <ul>
+                  <?php if($edit_link_a==0) { ?>  
+                  <li><a href="<?php echo $edit; ?>"><?php echo $text_edit; ?></a></li>
+                  <?php } ?>
+                  <?php if($password_link_a==0) { ?>
+                  <li><a href="<?php echo $password; ?>"><?php echo $text_password; ?></a></li>
+                  <?php } ?>
+                  <?php if($payment_link_a==0) { ?>
+                  <li><a href="<?php echo $payment; ?>"><?php echo $text_payment_a; ?></a></li>
+                  <?php } ?>
+                  <?php if($logout_link_a==0) { ?>
+                  <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
+                  <?php } ?>
+                </ul>
+              </div>
+             <?php } ?> 
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?>
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-tracking">
+            <?php } ?>
+              <?php if($tracking_link_a==0) { ?>
+              <?php if($tabs_a==0) { ?>
+              <?php if($title_tracking_a=='') { ?>
+              <h2><?php echo $text_my_tracking; ?></h2>
+              <?php } else { ?>
+              <h2><?php echo $title_tracking_a; ?></h2>
+              <?php } ?>
+            
+            <?php } ?>  
+              <div class="content">
+                <ul>
+                  <?php if($tracking_link_a==0) { ?>
+                  <li><a href="<?php echo $tracking; ?>"><?php echo $text_tracking_a; ?></a></li>
+                  <?php } ?>
+                </ul>
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?>
+              <?php } ?>
+             </div>
+             <?php if($tabs_a==1) { ?>
+             <div id="tab-transaction">
+             <?php } ?>
+              <?php if($transaction_link_a==0) { ?>
+              <?php if($tabs_a==0) { ?>
+              <?php if($title_transaction_a=='') { ?>
+              <h2><?php echo $text_my_transactions; ?></h2>
+              <?php } else { ?>
+              <h2><?php echo $title_transaction_a; ?></h2>
+              <?php } ?>
+              <?php } ?>
+              <div class="content">
+                <ul>
+                  <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
+                </ul>
+              </div>
+            <?php } ?>
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?>
+            </div>
+            <?php } ?>
+            
+            <?php if($style_af=='icons-1') { ?>
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-account">
+            <?php } ?>
+            <?php if($edit_link_a==0 or $password_link_a==0  or $payment_link_a==0  or $logout_link_a==0) { ?>  
+              <?php if($tabs_a==0) { ?>
+            <?php if($title_account_a=='') { ?>
+            <h2><?php echo $text_my_account; ?></h2>
+            <?php } else { ?>
+            <h2><?php echo $title_account_a; ?></h2>
+            <?php } ?>
+              <?php } ?>   
+              <div class="content">
+                <ul>
+                    <?php if($edit_link_a==0) { ?>
+                    <div  style="float: left; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/edit.png" alt="<?php echo $text_edit; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $edit; ?>" style="font-weight: bold;"><?php echo $text_edit; ?></a><br>
+                    <?php echo $text_edit_desc_a; ?></div>
+                    <?php } ?>
+                    <?php if($password_link_a==0) { ?>
+                    <div style="float: right; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/password.png" alt="<?php echo $text_password; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $password; ?>" style="font-weight: bold;"><?php echo $text_password; ?></a><br>
+                    <?php echo $text_password_desc_a; ?></div>
+                    <?php } ?>
+                    <?php if($payment_link_a==0) { ?>
+                    <div style="float: left; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/rewards.png" alt="<?php echo $text_payment; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $payment; ?>" style="font-weight: bold;"><?php echo $text_payment_a; ?></a><br>
+                    <?php echo $text_payment_desc_a; ?></div>
+                    <?php } ?>
+                    <?php if($logout_link_a==0) { ?>
+                    <div  style="float: right; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/logout.png" alt="logout" style="float: left; margin-right: 8px;  "><a href="<?php echo $logout; ?>" style="font-weight: bold;"><?php echo $text_logout; ?></a><br>
+                    <?php echo $text_logout_desc_a; ?></div>
+                    <?php } ?>
+              </div>
+            <?php } ?>
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?> 
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-tracking">
+            <?php } ?>
+            <?php if($tracking_link_a==0) { ?>            
+              <?php if($tabs_a==0) { ?>
+              <?php if($title_tracking_a=='') { ?>
+              <h2><?php echo $text_my_tracking; ?></h2>
+              <?php } else { ?>
+              <h2><?php echo $title_tracking_a; ?></h2>
+              <?php } ?>
+              <?php } ?> 
+              <div class="content">
+                <ul>
+                    <?php if($tracking_link_a==0) { ?>
+                    <div style="float: left; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/returns.png" alt="<?php echo $text_tracking; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $tracking; ?>" style="font-weight: bold;"><?php echo $text_tracking_a; ?></a><br>
+                    <?php echo $text_tracking_desc_a; ?></div>
+                    <?php } ?>
+                </ul>
+              </div>
+              <?php } ?>
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?> 
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-transaction">
+            <?php } ?>
+              <?php if($transaction_link_a==0) { ?>      
+              <?php if($tabs_a==0) { ?>
+              <?php if($title_transaction_a=='') { ?>
+              <h2><?php echo $text_my_transactions; ?></h2>
+              <?php } else { ?>
+              <h2><?php echo $title_transaction_a; ?></h2>
+              <?php } ?>
+              <?php } ?> 
+              <div class="content">
+                <ul>
+                  <div style="float: left; width: 35%; margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/transaction.png" alt="<?php echo $text_transaction; ?>" style="float: left; margin-right: 8px;  "><a href="<?php echo $transaction; ?>" style="font-weight: bold;"><?php echo $text_transaction; ?></a><br>
+                  <?php echo $text_transaction_desc_a; ?></div>
+                </ul>
+              </div>
+             <?php } ?> 
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?> 
+            </div>
+            <?php } ?>
+            <?php if($style_af=='icons-2') { ?>
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-account">
+            <?php } ?> 
+                    <?php if($edit_link_a==0) { ?>                
+                    <div>
+                        <a href="<?php echo $edit; ?>" id="s-account" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/edit.png);" >
+                        <h5 ><?php echo $text_edit; ?></h5>
+                        </a>
+                    </div>
+                  <?php } ?>
+                  <?php if($password_link_a==0) { ?>
+                    <div>
+                	     <a href="<?php echo $password; ?>" id="s-password" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/password.png);">
+                         <h5 ><?php echo $text_password; ?></h5>
+                         </a>
+                    </div>
+                 <?php } ?>
+                 <?php if($payment_link_a==0) { ?>
+                    <div>
+                	     <a href="<?php echo $payment; ?>" id="s-address" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/rewards.png);">
+                         <h5 ><?php echo $text_payment_a; ?></h5>
+                         </a>
+                    </div>
+                 <?php } ?>
+                <?php if($tabs_a==1) { ?>
+                <?php if($logout_link_a==0) { ?>
+                    <div>
+                      <a href="<?php echo $logout; ?>" id="s-logout" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/logout.png);">
+                      <h5 ><?php echo $text_logout; ?></h5>
+                      </a>
+                    </div>
+                <?php } ?>
+                <?php } ?>
+                  <?php if($tabs_a==1) { ?>
+                  </div>
+                  <?php } ?>
+                  <?php if($tabs_a==1) { ?>
+                  <div id="tab-tracking">
+                  <?php } ?>
+                  <?php if($tracking_link_a==0) { ?>
+                    <div>
+                	   <a href="<?php echo $tracking; ?>" id="s-orders" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/returns.png);">
+                       <h5 ><?php echo $text_tracking_a; ?></h5>
+                       </a>
+                    </div>
+                <?php } ?>
+                 <?php if($tabs_a==1) { ?>
+                </div>
+                <?php } ?>
+                 <?php if($tabs_a==1) { ?>
+                <div id="tab-transaction">
+                <?php } ?>
+                <?php if($transaction_link_a==0) { ?>
+                    <div>
+                	   <a href="<?php echo $transaction; ?>" id="s-newsletter" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/transaction.png);">
+                       <h5 ><?php echo $text_transaction; ?></h5>
+                       </a>
+                    </div>
+                <?php } ?>
+                 <?php if($tabs_a==0) { ?>
+                <?php if($logout_link_a==0) { ?>
+                    <div>
+                      <a href="<?php echo $logout; ?>" id="s-logout" class="shorticons-box" style=" background-image:url(catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/logout.png);">
+                      <h5 ><?php echo $text_logout; ?></h5>
+                      </a>
+                    </div>
+                <?php } ?>
+                <?php } ?>
+                    <br/><br/>
+                <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/page.css" /> 
+            </div><?php if($tabs_a==1) { ?></div><?php } ?>
+            <?php } ?>
+            
+        <?php if($style_af=='icons-3') { ?>
+           <ol class="rectangle-list-af">	    		
+                <?php if($account_link_a==0 or $edit_link_a==0 or $password_link_a==0  or $payment_link_a==0) { ?>
+                <?php if($tabs_a==0) { ?>
+                <?php if($title_account_a=='') { ?>
+                <b><?php echo $text_my_account; ?></b>
+                <?php } else { ?>
+                <b><?php echo $title_account_a; ?></b>
+                <?php } ?>
+                <?php } ?>
+                <?php } ?>
+                <?php if($tabs_a==1) { ?>
+                <div id="tab-account">
+                <?php } ?>
+                <ol>
+                <?php if($edit_link_a==0) { ?>
+                <li><a href="<?php echo $edit; ?>" ><?php echo $text_edit; ?><span style="color:#444;">   |  <?php echo $text_edit_desc_a; ?></span></a></li></li>
+            	<?php } ?>  
+                <?php if($password_link_a==0) { ?>
+                <li><a href="<?php echo $password; ?>" ><?php echo $text_password; ?><span style="color:#444;">   |  <?php echo $text_password_desc_a; ?></span></a></li>
+            	<?php } ?>  
+                <?php if($payment_link_a==0) { ?>
+                <li><a href="<?php echo $payment; ?>" ><?php echo $text_payment_a;; ?><span style="color:#444;">   |  <?php echo $text_payment_desc_a; ?></span></a></li>
+            	<?php } ?>  
+                <?php if($logout_link_a==0) { ?>  
+                <ol>
+                <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?><span style="color:#444;">   |  <?php echo $text_logout_desc_a; ?></span></a></li>
+                </ol>
+                <?php } ?>
+                </ol>
+                <?php if($tracking_link_a==0 ) { ?>
+                <?php if($tabs_a==0) { ?>
+                <br />
+                <?php if($title_tracking_a=='') { ?>
+                <b><?php echo $text_my_tracking; ?></b>
+                <?php } else { ?>
+                <b><?php echo $title_tracking_a; ?></b>
+                <?php } ?>
+                <?php } ?>
+                <?php } ?>
+                <?php if($tabs_a==1) { ?>
+                </div>
+                <?php } ?>
+                <?php if($tabs_a==1) { ?>
+                <div id="tab-tracking">
+                <?php } ?>
+                <ol>
+                <?php if($tracking_link_a==0) { ?>
+                <li><a href="<?php echo $tracking; ?>" ><?php echo $text_tracking; ?><span style="color:#444;">   |  <?php echo $text_tracking_desc_a; ?></span></a></li>
+            	<?php } ?>  
+                </ol>
+                <?php if($tabs_a==1) { ?>
+                </div>
+                <?php } ?>
+                <?php if($transaction_link_a==0) { ?>
+                <?php if($tabs_a==0) { ?>
+                <br />
+                <?php if($title_transaction_a=='') { ?>
+                <b><?php echo $text_my_transactions; ?></b>
+                <?php } else { ?>
+                <b><?php echo $title_transaction_a; ?></b>
+                <?php } ?>
+                <?php } ?>
+                <?php if($tabs_a==1) { ?>
+                <div id="tab-transaction">
+                <?php } ?>
+                <ol>
+                <?php if($transaction_link_a==0) { ?>
+                <li><a href="<?php echo $transaction; ?>" ><?php echo $text_transaction; ?><span style="color:#444;">   |  <?php echo $text_transaction_desc_a; ?></span></a></li>
+                <?php } ?>
+                </ol>
+                </div>
+                <?php } ?>
+                <?php if($tabs_a==1) { ?>
+                </div>
+                <?php } ?>
+             </ol>       
+        <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/modern_f.css" />
+        <?php } ?>
+        
+        <?php if($style_af=='icons-4') { ?>        
+         <div class="container">
+		  <section class="acaf-container">
+            <?php if($welcome_af==1) { ?>
+            <div>
+            <input id="acaf-1" name="accordionaf-1" type="radio" checked />
+			<label for="acaf-1">Welcome</label>
+			<article class="acaf-mini">
+            <div style="text-align: center; padding-top: 15px;">
+            <p><?php echo $text_greeting_af; ?>  </p>
+            </div>
+            </article>
+		    </div>
+            <?php } ?>
+            <?php if($edit_link_a==0 or $password_link_a==0  or $payment_link_a==0) { ?>        
+            <div>
+			<input id="acaf-2" name="accordionaf-1" type="radio"  <?php if($welcome_af==0) { ?>checked<?php } ?>/>
+			<label for="acaf-2">
+            <?php if($title_account_a=='') { ?>
+            <?php echo $text_my_account; ?>
+            <?php } else { ?>
+            <?php echo $title_account_a; ?>
+            <?php } ?>
+            </label>
+			<article class="acaf-small">
+			<ul class="mylist">
+            <?php if($edit_link_a==0) { ?>
+            <li><?php if($style_af=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_af; ?>/edit.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px;">&nbsp;<?php } ?>
+            <a href="<?php echo $edit; ?>" ><?php echo $text_edit; ?></a></li>
+            <?php } ?>
+            <?php if($password_link_a==0) { ?>
+            <li><?php if($style_af=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_af; ?>/password.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px;">&nbsp;<?php } ?>
+            <a href="<?php echo $password; ?>"  ><?php echo $text_password; ?></a></li>
+            <?php } ?>
+            <?php if($payment_link_a==0) { ?>
+            <li><?php if($style_af=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_af; ?>/rewards.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px;">&nbsp;<?php } ?>
+            <a href="<?php echo $payment; ?>"><?php echo $text_payment_a; ?></a></li>
+            <?php } ?>
+            <?php if($logout_link_a==0) { ?>
+            <li><?php if($style_af=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_af; ?>/logout.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px;">&nbsp;<?php } ?>
+            <a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
+            <?php } ?>
+            </ul>
+			</article>
+			</div>
+			<?php } ?>
+            <?php if($tracking_link_a==0) { ?>
+            <div>
+			<input id="acaf-3" name="accordionaf-1" type="radio" />
+			<label for="acaf-3">
+            <?php if($title_tracking_a=='') { ?>
+            <?php echo $text_my_tracking; ?>
+            <?php } else { ?>
+            <?php echo $title_tracking_a; ?>
+            <?php } ?>
+            </label>
+			<article class="acaf-mini2">
+			<ul  class="mylist">
+            <?php if($tracking_link_a==0) { ?>
+            <li><?php if($style_af=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_af; ?>/returns.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px; padding-top: 3px">&nbsp;<?php } ?>
+            <a href="<?php echo $tracking; ?>" ><?php echo $text_tracking; ?></a></li>
+            <?php } ?>
+            </ul>
+			</article>
+			</div>
+            <?php } ?>
+            <?php if($transaction_link_a==0) { ?>
+            <div>
+			<input id="acaf-4" name="accordionaf-1" type="radio" />
+			<label for="acaf-4">
+            <?php if($title_transaction_a=='') { ?>
+            <?php echo $text_my_transactions; ?>
+            <?php } else { ?>
+            <?php echo $title_transaction_a; ?>
+            <?php } ?>
+            </label>
+			<article class="acaf-mini2">
+			<ul class="mylist">
+            <li><?php if($style_af=='icons-1') { ?><img src="catalog/view/theme/default/image/loginplus/mini/<?php echo $icotype_af; ?>/transaction.png" style="vertical-align:bottom; width:20px; height:20px; padding-bottom: 3px; padding-top: 3px">&nbsp;<?php } ?>
+            <a href="<?php echo $transaction; ?>" ><?php echo $text_transaction; ?></a></li>
+            </ul>
+			</article>
+			</div>
+			<?php } ?>
+		    </section>
+            </div> 
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/accordion_sf.css" />
+           </div> 
+          <?php } ?>
+          
+       <?php if($style_af=='icons-5') { ?>        
+         <div class="container">
+		  <section class="acaf-container">
+            <?php if($welcome_af==1) { ?>
+            <div>
+            <input id="acaf-1" name="accordionaf-1" type="radio" checked/>
+			<label for="acaf-1">Welcome</label>
+			<article class="acaf-mini">
+            <div style="text-align: center; padding-top: 15px;">
+            <p><?php echo $text_greeting_af; ?>  </p>
+            </div>
+            </article>
+		    </div>
+            <?php } ?>
+            <?php if($edit_link_a==0 or $password_link_a==0  or $payment_link_a==0  or $logout_link_a==0) { ?>        
+            <div>
+			<input id="acaf-2" name="accordionaf-1" type="radio" <?php if($welcome_af==0) { ?>checked<?php } ?>  />
+			<label for="acaf-2">
+            <?php if($title_account_a=='') { ?>
+            <?php echo $text_my_account; ?>
+            <?php } else { ?>
+            <?php echo $title_account_a; ?>
+            <?php } ?>
+            </label>
+			<article class="acaf-small">
+			<ul class="mylist">
+                    <?php if($edit_link_a==0) { ?>
+                    <div  style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/edit.png" alt="<?php echo $text_edit; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $edit; ?>" style="font-weight: bold;"><?php echo $text_edit; ?></a><br>
+                    <?php echo $text_edit_desc_a; ?></div>
+                    <?php } ?>
+                    <?php if($password_link_a==0) { ?>
+                    <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/password.png" alt="<?php echo $text_password; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $password; ?>" style="font-weight: bold;"><?php echo $text_password; ?></a><br>
+                    <?php echo $text_password_desc_a; ?></div>
+                    <?php } ?>
+                    <?php if($payment_link_a==0) { ?>
+                    <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/rewards.png" alt="<?php echo $text_address; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $payment; ?>" style="font-weight: bold;"><?php echo $text_payment_a; ?></a><br>
+                    <?php echo $text_payment_desc_a; ?></div>
+                    <?php } ?>
+                    <?php if($logout_link_a==0) { ?>
+                    <div  style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/logout.png" alt="logout" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $logout; ?>" style="font-weight: bold;"><?php echo $text_logout; ?></a><br>
+                    <?php echo $text_logout_desc_a; ?></div>
+                    <?php } ?>
+            </ul>
+			</article>
+			</div>
+			<?php } ?>
+            <?php if($tracking_link_a==0) { ?>
+            <div>
+			<input id="acaf-3" name="accordionaf-1" type="radio" />
+			<label for="acaf-3">
+            <?php if($title_tracking_a=='') { ?>
+            <?php echo $text_my_tracking; ?>
+            <?php } else { ?>
+            <?php echo $title_tracking_a; ?>
+            <?php } ?>
+            </label>
+			<article class="acaf-mini2">
+			<ul  class="mylist">
+            <?php if($tracking_link_a==0) { ?>
+                    <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/returns.png" alt="<?php echo $text_order; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $tracking; ?>" style="font-weight: bold;"><?php echo $text_tracking; ?></a><br>
+                    <?php echo $text_tracking_desc_a; ?></div>
+                    <?php } ?>
+            </ul>
+			</article>
+			</div>
+            <?php } ?>
+            <?php if($transaction_link_a==0) { ?>
+            <div>
+			<input id="acaf-4" name="accordionaf-1" type="radio" />
+			<label for="acaf-4">
+            <?php if($title_transaction_a=='') { ?>
+            <?php echo $text_my_transactions; ?>
+            <?php } else { ?>
+            <?php echo $title_transaction_a; ?>
+            <?php } ?>
+            </label>
+			<article class="acaf-mini2">
+			<ul class="mylist">
+            <div style=" margin-bottom: 10px; padding: 5px;"><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/transaction.png" alt="<?php echo $text_transaction; ?>" style="float: left; margin-right: 8px;  " width=35px; height=35px;><a href="<?php echo $transaction; ?>" style="font-weight: bold;"><?php echo $text_transaction; ?></a><br>
+                  <?php echo $text_transaction_desc_a; ?></div>
+            </ul>
+			</article>
+			</div>
+			<?php } ?>
+		    </section>
+            </div> 
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/accordion_if.css" />
+           </div> 
+          <?php } ?>
+          
+          <?php if($style_af=='icons-6') { ?>
+            <div class="aflinks">
+            <ul>
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-account">
+            <?php } ?>
+                    <?php if($edit_link_a==0) { ?>
+                    <li>
+                    <a href="<?php echo $edit; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/edit.png" alt="<?php echo $text_edit; ?>" "><?php echo $text_edit; ?></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($password_link_a==0) { ?>
+                    <li>
+                    <a href="<?php echo $password; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/password.png" alt="<?php echo $text_password; ?>" "><?php echo $text_password; ?></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($payment_link_a==0) { ?>
+                    <li>
+                    <a href="<?php echo $payment; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/rewards.png" alt="<?php echo $text_payment; ?>" "><?php echo $text_payment_a; ?></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($logout_link_a==0) { ?>
+                    <li>
+                    <a href="<?php echo $logout; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/logout.png" alt="logout" "><?php echo $text_logout; ?></a><br>
+                    </li>
+                    <?php } ?>
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?> 
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-tracking">
+            <?php } ?>
+                    <?php if($tracking_link_a==0) { ?>
+                    <li>
+                    <a href="<?php echo $tracking; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/returns.png" alt="<?php echo $text_tracking; ?>" "><?php echo $text_tracking_a; ?></a><br>
+                    </li>
+                    <?php } ?>
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?> 
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-transaction">
+            <?php } ?>
+                <li>
+                  <a href="<?php echo $transaction; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/transaction.png" alt="<?php echo $text_transaction; ?>" "><?php echo $text_transaction; ?></a><br>
+                </li>  
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?>
+                </ul>
+            </div> 
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/metroui_if.css" />
+            </div>
+            <?php } ?>
+  
+          <?php if($style_af=='icons-7') { ?>
+            <div class="aflinks2">
+            <ul>
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-account">
+            <?php } ?>
+                    <?php if($edit_link_a==0) { ?>
+                    <li class="edit">
+                    <a href="<?php echo $edit; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/edit.png" alt="<?php echo $text_edit; ?>" "><p><?php echo $text_edit; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($password_link_a==0) { ?>
+                    <li class="password">
+                    <a href="<?php echo $password; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/password.png" alt="<?php echo $text_password; ?>" "><p><?php echo $text_password; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($payment_link_a==0) { ?>
+                    <li class="payment">
+                    <a href="<?php echo $payment; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/rewards.png" alt="<?php echo $text_payment; ?>" "><p><?php echo $text_payment_a; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+                    <?php if($logout_link_a==0) { ?>
+                    <li class="logout">
+                    <a href="<?php echo $logout; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/logout.png" alt="logout" "><p><?php echo $text_logout; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?> 
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-tracking">
+            <?php } ?>
+                    <?php if($tracking_link_a==0) { ?>
+                    <li class="tracking">
+                    <a href="<?php echo $tracking; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/returns.png" alt="<?php echo $text_tracking; ?>" "><p><?php echo $text_tracking_a; ?></p></a><br>
+                    </li>
+                    <?php } ?>
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?> 
+            <?php if($tabs_a==1) { ?>
+            <div id="tab-transaction">
+            <?php } ?>
+                <li class="transaction">
+                  <a href="<?php echo $transaction; ?>" ><img src="catalog/view/theme/default/image/accountplus/icons/<?php echo $icotype_af; ?>/transaction.png" alt="<?php echo $text_transaction; ?>" "><p><?php echo $text_transaction; ?></p></a><br>
+                </li>  
+            <?php if($tabs_a==1) { ?>
+            </div>
+            <?php } ?>
+                </ul>
+            </div> 
+            <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/accountplus/metroui_if.css" />
+            </div>
+            <?php } ?>
+            <script type="text/javascript" src="catalog/view/javascript/jquery/tabs.js"></script>  
+            <script type="text/javascript"><!--
+            $('.htabs a').tabs();
+            //--></script>
+            ]]></add>
+		</operation>
+	</file>
+    
+	<file name="catalog/controller/affiliate/account.php">
+		<operation>
+			<search position="before" ><![CDATA[
+            public function index() {
+            ]]></search>
+			<add><![CDATA[
+            private $_name = 'accountplus';
+            ]]></add>
+		</operation>
+        
+        <operation>
+			<search position="after" ><![CDATA[
+            $this->document->setTitle($this->language->get('heading_title'));
+            ]]></search>
+			<add><![CDATA[
+        		$this->language->load('module/accountplus');
+        		
+        		$this->data['text_logout'] = $this->language->get('text_logout');
+        		$this->data['text_account'] = $this->language->get('text_account');
+        		$this->data['text_edit'] = $this->language->get('text_edit');
+        		$this->data['text_password'] = $this->language->get('text_password');
+        		$this->data['text_order'] = $this->language->get('text_order');
+        		$this->data['text_transaction'] = $this->language->get('text_transaction');
+                $this->data['entry_password'] = $this->language->get('entry_password');
+                $this->data['text_welcome'] = $this->language->get('text_welcome');
+                $this->data['text_my_account'] = $this->language->get('text_my_account');
+                $this->data['text_greeting_af'] = sprintf($this->language->get('text_greeting_a'), $this->affiliate->getFirstName());
+                     
+        		$this->data['logout'] = $this->url->link('affiliate/logout', '', 'SSL');
+                $this->data['address'] = $this->url->link('affiliate/address', '', 'SSL');
+        		$this->data['account'] = $this->url->link('affiliate/account', '', 'SSL');
+        		$this->data['edit'] = $this->url->link('affiliate/edit', '', 'SSL');
+        		$this->data['password'] = $this->url->link('affiliate/password', '', 'SSL');
+        		$this->data['transaction'] = $this->url->link('affiliate/transaction', '', 'SSL');
+                
+                $this->data['title_a'] = $this->config->get($this->_name . '_title_a' . $this->config->get('config_language_id'));
+        		$this->data['title_account_a'] = $this->config->get($this->_name . '_title_account_a' . $this->config->get('config_language_id'));
+                $this->data['title_tracking_a'] = $this->config->get($this->_name . '_title_tracking_a' . $this->config->get('config_language_id'));
+                $this->data['title_transaction_a'] = $this->config->get($this->_name . '_title_transaction_a' . $this->config->get('config_language_id'));
+                $this->data['icon_a'] = $this->config->get($this->_name . '_icon_a');
+                $this->data['welcome'] = $this->config->get($this->_name . '_welcome');
+                $this->data['welcome_af'] = $this->config->get($this->_name . '_welcome_af');
+                $this->data['tabs_a'] = $this->config->get($this->_name . '_tabs_a');
+                
+                $this->data['account_link_a'] = $this->config->get($this->_name . '_account_link_a');
+                $this->data['edit_link_a'] = $this->config->get($this->_name . '_edit_link_a');
+                $this->data['password_link_a'] = $this->config->get($this->_name . '_password_link_a');
+                $this->data['payment_link_a'] = $this->config->get($this->_name . '_payment_link_a');
+                $this->data['logout_link_a'] = $this->config->get($this->_name . '_logout_link_a');
+                $this->data['tracking_link_a'] = $this->config->get($this->_name . '_tracking_link_a');
+                $this->data['transaction_link_a'] = $this->config->get($this->_name . '_transaction_link_a');
+                $this->data['newsletter_link_a'] = $this->config->get($this->_name . '_newsletter_link_a');
+                
+                $this->data['text_edit_desc_a'] = $this->language->get('text_edit_desc_a');
+                $this->data['text_password_desc_a'] = $this->language->get('text_password_desc_a');
+                $this->data['text_payment_desc_a'] = $this->language->get('text_payment_desc_a');
+                $this->data['text_transaction_desc_a'] = $this->language->get('text_transaction_desc_a');
+                $this->data['text_tracking_desc_a'] = $this->language->get('text_tracking_desc_a');
+                $this->data['text_logout_desc_a'] = $this->language->get('text_logout_desc_a');
+                $this->data['text_logout_a'] = $this->language->get('text_logout_a');
+                $this->data['text_payment_a'] = $this->language->get('text_payment_a');
+                $this->data['text_tracking_a'] = $this->language->get('text_tracking_a');
+                
+                
+                $this->data['style_af'] = $this->config->get($this->_name . '_style_af');
+                 if (isset($this->request->post['style_af'])) {
+        			$this->data['style_af'] = $this->request->post['style_af'];
+        		} else {
+        			$this->data['style_af'] = $this->config->get('style_af');
+        		}   
+                
+                  $this->data['icotype_af'] = $this->config->get($this->_name . '_icotype_af');
+                 if (isset($this->request->post['icotype_af'])) {
+        			$this->data['icotype_af'] = $this->request->post['icotype_af'];
+        		} else {
+        			$this->data['icotype_af'] = $this->config->get('icotype_af');
+        		}   
+                
+                
+        	   $this->load->model('localisation/language');
+        		
+        		$languages = $this->model_localisation_language->getLanguages();
+        		
+        		foreach ($languages as $language) {
+        			if (isset($this->request->post[$this->_name . '_title_1' . $language['language_id']])) {
+        				$this->data[$this->_name . '_title_1' . $language['language_id']] = $this->request->post[$this->_name . '_title_1' . $language['language_id']];
+        			} else {
+        				$this->data[$this->_name . '_title_1' . $language['language_id']] = $this->config->get($this->_name . '_title_1' . $language['language_id']);
+        			}
+                    
+                    if (isset($this->request->post[$this->_name . '_title_2' . $language['language_id']])) {
+        				$this->data[$this->_name . '_title_2' . $language['language_id']] = $this->request->post[$this->_name . '_title_2' . $language['language_id']];
+        			} else {
+        				$this->data[$this->_name . '_title_2' . $language['language_id']] = $this->config->get($this->_name . '_title_2' . $language['language_id']);
+        			}
+                   
+        		}
+            ]]></add>
+		</operation>
+        
+	</file>
+    
+    <file name="catalog/language/english/affiliate/account.php">
+		<operation>
+			<search position="before" ><![CDATA[
+            ?>
+            ]]></search>
+			<add><![CDATA[
+            //Text Improved
+            $_['text_edit_desc_a']        = 'Edit your account details.';
+            $_['text_password_desc_a']    = 'Change your password.';
+            $_['text_payment_desc_a']     = 'Change your payment preferences.';
+            $_['text_wishlist_desc_a']    = 'Modify your wish list';
+            $_['text_tracking_desc_a']      = 'Custom Affiliate Tracking Code.';
+            $_['text_transaction_desc_a']    = 'View your transaction history.';
+            $_['text_reward_desc_a']      = 'Reward points';
+            $_['text_return_desc_a']      = 'View your return requests';
+            $_['text_transaction_desc_a'] = 'View your your Transactions.';
+            $_['text_newsletter_desc_a']  = 'Subscribe / unsubscribe to newsletter.';
+            $_['text_logout_desc_a']      = 'Logout from your account.';
+            $_['text_payment_a']      = 'Payment';
+            $_['text_tracking_a']      = 'Tracking code';
+            $_['text_greeting_a']      = 'Welcome back, %s';
+            $_['text_greeting_af']      = 'Welcome back, %s';
+            ]]></add>
+		</operation>
+        
+	</file>
+    
+    <!-- ******************************************* END: AFFILIATE ACCOUNT -->
+  
+</modification>

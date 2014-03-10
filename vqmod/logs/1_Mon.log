@@ -1,0 +1,1931 @@
+---------- Date: 2014-03-10 11:40:33 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vqmod_better_search154x.xml
+   id        : Better search - Improves search results by using AND condition instead of OR. This eliminates lots of irrelevant results and also enables searching using model number of a product
+   version   : 1.5.3
+   vqmver    : 2.1.5
+   author    : Cart Ideas - Mail : contact@hereforsupport.com
+
+File Name    : catalog/model/catalog/product.php(4)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $sql .= "MATCH(pd.tag) AGAINST('" . $this->db->escape(utf8_strtolower($data['filter_tag'])) . "')";
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vba image zoom.xml
+   id        : VbA Image Zoom Mod
+   version   : 1.0
+   vqmver    : 2.1.5
+   author    : VbA - http://TheHoster.net
+
+File Name    : catalog/view/theme/*/template/common/header.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <script type="text/javascript" src="catalog/view/javascript/common.js"></script>
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 11:42:43 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(1)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 11:49:17 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(1)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 11:49:41 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(1)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 11:54:30 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(1)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:14:51 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(1)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:15:15 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(1)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:30:26 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(1)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:31:13 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(1)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:33:20 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(1)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:34:36 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:35:02 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:36:06 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:37:10 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:38:25 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:40:09 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:42:24 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:43:03 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:44:13 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:50:17 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:53:49 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:55:57 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:56:27 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:57:05 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:57:58 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 12:59:43 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 13:00:00 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 13:02:28 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 13:14:26 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 13:15:10 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 13:58:16 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 13:58:52 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 13:59:08 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:00:23 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:05:45 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:06:22 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:17:01 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:18:43 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:19:50 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:20:47 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:24:38 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:25:44 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:26:07 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:26:16 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:32:54 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vqmod_richsnippets_product.xml
+   id        : Add Product GR Rich Snippets to opencart
+   version   : 1.4
+   vqmver    : 2.1.7
+   author    : TransPacific Software
+
+File Name    : admin/language/english/english.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['tab_design']              = 'Design';
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/b5b_admintheme_circloid_menu_fix.xml
+   id        : Base5Builder - Admin Theme Circloid - Menu Fix
+   version   : 
+   vqmver    : 2.0
+   author    : Base5Builder.com - support@base5builder.com
+
+File Name    : admin/view/template/admin_theme/base5builder_circloid/common/header.tpl(2)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <script type="text/javascript" src="view/javascript/jquery/jquery-1.3.2.min.js"></script>
+
+File Name    : admin/view/template/admin_theme/base5builder_circloid/common/header.tpl(3)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <li><a href="<?php echo $clear_cache; ?>" class="top"><?php echo $text_clear_cache; ?></a></li>
+
+File Name    : admin/view/template/admin_theme/base5builder_circloid/common/header.tpl(5)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <ul class="right"
+
+File Name    : admin/view/template/admin_theme/base5builder_circloid/common/header.tpl(10)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <script type="text/javascript" src="view/javascript/jquery/tabs.js"></script>
+
+File Name    : admin/view/template/admin_theme/base5builder_circloid/common/header.tpl(13)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <ul class="right
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:33:00 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=common/login
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vqmod_richsnippets_product.xml
+   id        : Add Product GR Rich Snippets to opencart
+   version   : 1.4
+   vqmver    : 2.1.7
+   author    : TransPacific Software
+
+File Name    : admin/language/english/english.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['tab_design']              = 'Design';
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:33:04 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=common/home&amp;token=a6c139e04391ffd0ea36b0a22cc42a39
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vqmod_richsnippets_product.xml
+   id        : Add Product GR Rich Snippets to opencart
+   version   : 1.4
+   vqmver    : 2.1.7
+   author    : TransPacific Software
+
+File Name    : admin/language/english/english.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['tab_design']              = 'Design';
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:33:08 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=common/home/chart&amp;token=a6c139e04391ffd0ea36b0a22cc42a39&amp;range=day
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vqmod_richsnippets_product.xml
+   id        : Add Product GR Rich Snippets to opencart
+   version   : 1.4
+   vqmver    : 2.1.7
+   author    : TransPacific Software
+
+File Name    : admin/language/english/english.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['tab_design']              = 'Design';
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:33:08 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=common/home/chart&amp;token=a6c139e04391ffd0ea36b0a22cc42a39&amp;range=week
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vqmod_richsnippets_product.xml
+   id        : Add Product GR Rich Snippets to opencart
+   version   : 1.4
+   vqmver    : 2.1.7
+   author    : TransPacific Software
+
+File Name    : admin/language/english/english.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['tab_design']              = 'Design';
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:33:08 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=common/home/chart&amp;token=a6c139e04391ffd0ea36b0a22cc42a39&amp;range=year
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vqmod_richsnippets_product.xml
+   id        : Add Product GR Rich Snippets to opencart
+   version   : 1.4
+   vqmver    : 2.1.7
+   author    : TransPacific Software
+
+File Name    : admin/language/english/english.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['tab_design']              = 'Design';
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:33:08 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=common/home/chart&amp;token=a6c139e04391ffd0ea36b0a22cc42a39&amp;range=month
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vqmod_richsnippets_product.xml
+   id        : Add Product GR Rich Snippets to opencart
+   version   : 1.4
+   vqmver    : 2.1.7
+   author    : TransPacific Software
+
+File Name    : admin/language/english/english.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['tab_design']              = 'Design';
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:33:34 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=catalog/category&amp;token=a6c139e04391ffd0ea36b0a22cc42a39
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vqmod_richsnippets_product.xml
+   id        : Add Product GR Rich Snippets to opencart
+   version   : 1.4
+   vqmver    : 2.1.7
+   author    : TransPacific Software
+
+File Name    : admin/language/english/english.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['tab_design']              = 'Design';
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:36:18 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:40:46 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:40:57 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:41:52 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:42:31 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:42:47 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:49:46 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 14:50:11 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:04:35 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:06:49 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146_152
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:08:21 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:11:09 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:12:47 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:15:02 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:16:58 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:17:03 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:22:48 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:23:18 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=93_146
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:27:42 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:29:39 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:30:54 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:31:48 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:38:08 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:39:50 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:40:17 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224_748
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:40:32 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_224_748_751
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:40:56 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:42:53 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 15:58:29 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+
+---------- Date: 2014-03-10 16:45:39 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/category&amp;path=59_93
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vqmod_better_search154x.xml
+   id        : Better search - Improves search results by using AND condition instead of OR. This eliminates lots of irrelevant results and also enables searching using model number of a product
+   version   : 1.5.3
+   vqmver    : 2.1.5
+   author    : Cart Ideas - Mail : contact@hereforsupport.com
+
+File Name    : catalog/model/catalog/product.php(4)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $sql .= "MATCH(pd.tag) AGAINST('" . $this->db->escape(utf8_strtolower($data['filter_tag'])) . "')";
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/vba image zoom.xml
+   id        : VbA Image Zoom Mod
+   version   : 1.0
+   vqmver    : 2.1.5
+   author    : VbA - http://TheHoster.net
+
+File Name    : catalog/view/theme/*/template/common/header.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <script type="text/javascript" src="catalog/view/javascript/common.js"></script>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/Default_theme_You_Save_%.xml
+   id        : Yousave%_default_theme
+   version   : 1
+   vqmver    : 2
+   author    : LizardDesign
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+
+MOD DETAILS:
+   modFile   : Z:\home\dev2.cellside.loc\www\vqmod/xml/colorandsizeplus.xml
+   id        : Color and Size
+   version   : OpenCart 1.5.x
+   vqmver    : 2.3
+   author    : Lizard2013
+
+File Name    : catalog/view/theme/*/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+----------------------------------------------------------------------
+
+

@@ -1,0 +1,345 @@
+<modification>
+
+    <id>Adds product question form and general questions module</id>
+    <version>1.1.3</version>
+    <vqmver>2.3.2</vqmver>
+    <author>bull5-i</author>
+
+    <file name="admin/controller/common/header.php">
+        <operation>
+            <search position="after"><![CDATA[
+            $this->data['text_review'] = $this->language->get('text_review');
+            ]]></search>
+            <add><![CDATA[
+        $this->data['text_questions_and_answers'] = $this->language->get('text_questions_and_answers');
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="after"><![CDATA[
+            $this->data['review'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'], 'SSL');
+            ]]></search>
+            <add><![CDATA[
+            if ($this->config->get('qap_status')) {
+                $this->data['qap'] = $this->url->link('catalog/questions_and_answers', 'token=' . $this->session->data['token'], 'SSL');
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/controller/common/home.php">
+        <operation>
+            <search position="after"><![CDATA[
+            $this->data['text_total_review_approval'] = $this->language->get('text_total_review_approval');
+            ]]></search>
+            <add><![CDATA[
+        $this->data['text_total_questions'] = $this->language->get('text_total_questions');
+        $this->data['text_total_unanswered_questions'] = $this->language->get('text_total_unanswered_questions');
+        $this->data['text_total_disabled_qas'] = $this->language->get('text_total_disabled_qas');
+            ]]></add>
+        </operation>
+        <operation>
+            <search position="after"><![CDATA[
+            $this->data['total_review_approval'] = $this->model_catalog_review->getTotalReviewsAwaitingApproval();
+            ]]></search>
+            <add><![CDATA[
+        if ($this->config->get('qap_status')) {
+            $this->load->model('catalog/questions_and_answers');
+            $this->data['qap_total_questions'] = $this->model_catalog_questions_and_answers->getTotalQuestions();
+            $this->data['qap_total_unanswered_questions'] = $this->model_catalog_questions_and_answers->getTotalUnansweredQuestions();
+            $this->data['qap_total_disabled_qas'] = $this->model_catalog_questions_and_answers->getTotalDisabledQuestionsAndAnswers();
+
+            $this->data['qap_questions'] = $this->url->link('catalog/questions_and_answers', 'token=' . $this->session->data['token'], 'SSL');
+            $this->data['qap_unanswered_questions'] = $this->url->link('catalog/questions_and_answers', 'filter_answers=0&token=' . $this->session->data['token'], 'SSL');
+            $this->data['qap_disabled_qas'] = $this->url->link('catalog/questions_and_answers', 'filter_approval=1&token=' . $this->session->data['token'], 'SSL');
+        }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/language/english/common/header.php">
+        <operation>
+            <search position="after"><![CDATA[
+            $_['text_review']
+            ]]></search>
+            <add><![CDATA[
+$_['text_questions_and_answers']       = 'Q &amp; A PRO';
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/language/english/common/home.php">
+        <operation>
+            <search position="after"><![CDATA[
+            $_['text_total_review_approval']
+            ]]></search>
+            <add><![CDATA[
+$_['text_total_questions']              = 'No. of Questions:';
+$_['text_total_unanswered_questions']   = 'Total Unanswered Questions:';
+$_['text_total_disabled_qas']           = 'Questions &amp; Answers Awaiting Approval:';
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/view/template/common/header.tpl">
+        <operation>
+            <search position="after"><![CDATA[
+            <li><a href="<?php echo $review; ?>"><?php echo $text_review; ?></a></li>
+            ]]></search>
+            <add><![CDATA[
+          <?php if(isset($qap)) { ?>
+          <li><a href="<?php echo $qap; ?>"><?php echo $text_questions_and_answers; ?></a></li>
+          <?php } ?>
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="admin/view/template/common/home.tpl">
+        <operation>
+            <search position="after" offset="1"><![CDATA[
+            <td><?php echo $total_review_approval; ?></td>
+            ]]></search>
+            <add><![CDATA[
+            <?php if(isset($qap_total_questions)) { ?>
+            <tr>
+              <td><a href="<?php echo $qap_questions; ?>"><?php echo $text_total_questions; ?></a></td>
+              <td align="right"><?php echo $qap_total_questions; ?></td>
+            </tr>
+            <tr>
+              <td><a href="<?php echo $qap_unanswered_questions; ?>"><?php echo $text_total_unanswered_questions; ?></a></td>
+              <td align="right"><?php echo $qap_total_unanswered_questions; ?></td>
+            </tr>
+            <tr>
+              <td><a href="<?php echo $qap_disabled_qas; ?>"><?php echo $text_total_disabled_qas; ?></a></td>
+              <td align="right"><?php echo $qap_total_disabled_qas; ?></td>
+            </tr>
+            <?php } ?>
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/controller/account/login.php">
+        <operation error="log">
+            <ignoreif><![CDATA[
+            // GET REQUEST REDIRECT
+            ]]></ignoreif>
+            <search position="before"><![CDATA[
+            } elseif (isset($this->session->data['redirect'])) {
+            ]]></search>
+            <add><![CDATA[
+        } elseif (isset($this->request->get['redirect'])) { // GET REQUEST REDIRECT
+            if ($this->request->get['redirect'] == "1" && isset($this->request->server['HTTP_REFERER'])) {
+                $this->data['redirect'] = $this->request->server['HTTP_REFERER'];
+            } else if (strlen($this->request->get['redirect']) >= 5) {
+                $this->data['redirect'] = $this->url->link($this->request->get['redirect'], '', 'SSL');
+            }
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/controller/common/seo_url.php">
+        <operation error="log">
+            <search position="before"><![CDATA[
+            return $this->forward($this->request->get['route'])
+            ]]></search>
+            <add><![CDATA[
+                if ($this->request->get['_route_'] == "faq") {
+                    $this->request->get['route'] = 'module/questions_and_answers/faq';
+                }
+            ]]></add>
+        </operation>
+        <operation error="log">
+            <search position="before"><![CDATA[
+            } elseif ($key == 'path') {
+            ]]></search>
+            <add><![CDATA[
+                } elseif ($key == 'route' &&  $value == 'module/questions_and_answers/faq') {
+                    $url .= '/faq';
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/controller/common/header.php">
+        <operation error="log">
+            <search position="after"><![CDATA[
+            $this->data['checkout']
+            ]]></search>
+            <add><![CDATA[
+        $this->data['qap_status'] = (int)$this->config->get('qap_status') && (int)$this->config->get('qap_enable_general_questions');
+        $this->data['text_faq'] = $this->language->get('text_faq');
+        $this->data['qap_faq'] = $this->url->link('module/questions_and_answers/faq');
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/controller/common/footer.php">
+        <operation error="log">
+            <search position="after"><![CDATA[
+            $this->data['newsletter']
+            ]]></search>
+            <add><![CDATA[
+        $this->data['qap_status'] = (int)$this->config->get('qap_status') && (int)$this->config->get('qap_enable_general_questions');
+        $this->data['text_faq'] = $this->language->get('text_faq');
+        $this->data['qap_faq'] = $this->url->link('module/questions_and_answers/faq');
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/controller/product/product.php">
+        <operation>
+            <search position="after"><![CDATA[
+            if ($product_info) {
+            ]]></search>
+            <add><![CDATA[
+            // QAP start
+            $modules = $this->config->get('questions_and_answers_module');
+
+            if (is_array($modules) && count($modules)) {
+                $qap = $modules[0];
+            } else {
+                $qap = null;
+            }
+
+            if ($this->config->get('qap_status') && isset($qap['status']) && (int)$qap['status'] && $qap['position'] == 'content_tab') {
+                $this->data['qap_status'] = 1;
+
+                $qap_module = $this->getChild('module/questions_and_answers', $qap);
+
+
+                $this->data['tab_qap'] = $this->language->get('heading_title_module_product');
+                $this->data['qas'] = $qap_module;
+            } else {
+                $this->data['qap_status'] = 0;
+            }
+            // QAP end
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/language/english/common/header.php">
+        <operation>
+            <search position="after"><![CDATA[
+            $_['text_home']
+            ]]></search>
+            <add><![CDATA[
+$_['text_faq']      = 'FAQ';
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/language/english/common/footer.php">
+        <operation>
+            <search position="after"><![CDATA[
+            $_['text_information']
+            ]]></search>
+            <add><![CDATA[
+$_['text_faq']      = 'FAQ';
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="system/engine/loader.php">
+        <operation error="skip">
+            <!-- For OpenCart 1.5.1.0 - 1.5.2.1 -->
+            <ignoreif><![CDATA[
+            public function helper($helper)
+            ]]></ignoreif>
+            <search position="before"><![CDATA[
+            public function model
+            ]]></search>
+            <add><![CDATA[
+    public function helper($helper) {
+        $file = DIR_SYSTEM . 'helper/' . $helper . '.php';
+
+        if (file_exists($file)) {
+            include_once($file);
+        } else {
+            trigger_error('Error: Could not load helper ' . $helper . '!');
+            exit();
+        }
+    }
+            ]]></add>
+        </operation>
+    </file>
+
+    <!-- For custom theme integration duplicate the following block -->
+    <!-- Copy: START -->
+    <file name="catalog/view/theme/default/template/common/header.tpl">
+        <operation error="log">
+            <!--
+                This puts the FAQ link into the header links section (the default location is after the Checkout link). If you wish to change the tab location, then this is the place to do it.
+
+                Note that custom templates can use different markup for the header links area.
+            -->
+            <search position="replace"><![CDATA[
+            <?php echo $text_checkout; ?></a>
+            ]]></search>
+            <add><![CDATA[<?php echo $text_checkout; ?></a><?php if ($qap_status) { ?><a href="<?php echo $qap_faq; ?>"><?php echo $text_faq; ?></a><?php } ?>]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/view/theme/default/template/common/footer.tpl">
+        <operation error="log">
+            <!--
+                This puts the FAQ link into the footer Extras links section (the default location is after the Specials link). If you wish to change the tab location, then this is the place to do it.
+
+                Note that custom templates can use different markup for the footer Extras links area.
+            -->
+            <search position="after"><![CDATA[
+            <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
+            ]]></search>
+            <add><![CDATA[
+      <?php if ($qap_status) { ?><li><a href="<?php echo $qap_faq; ?>"><?php echo $text_faq; ?></a></li><?php } ?>
+            ]]></add>
+        </operation>
+    </file>
+
+    <file name="catalog/view/theme/default/template/product/product.tpl">
+        <operation>
+            <!--
+                This puts the product questions tab name into its position (the default location is after the Specification tab). If you wish to change the tab location, then this is the place to do it.
+
+                Note that custom templates can use different markup for the tabs. List items are one of the most common alternatives used.
+
+                IMPORTANT! Do not change the link/anchor for the downloads tab, it must stay "tab-qap". It does not matter if your custom template is using a different naming scheme.
+            -->
+            <search position="after" offset="1"><![CDATA[
+            <a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
+            ]]></search>
+            <add><![CDATA[
+    <?php if ($qap_status) { ?>
+    <a href="#tab-qap"><?php echo $tab_qap; ?></a>
+    <?php } ?>
+            ]]></add>
+        </operation>
+        <operation>
+            <!--
+                Partial match.
+                This puts the product questions tab contents into place. The location is not that important, just make sure it is on the same level with the other tabs' content elements.
+
+                IMPORTANT! Do not change the div ID attribute, it must be "tab-qap", otherwise the extension WILL NOT WORK. It does not matter if your custom template is using a different naming scheme.
+            -->
+            <search position="after"><![CDATA[
+            <div id="tab-description"
+            ]]></search>
+            <add><![CDATA[
+  <?php if ($qap_status) { ?>
+  <div id="tab-qap" class="tab-content qap-ov" style="display:none;"><?php echo $qas; ?></div>
+  <?php } ?>
+            ]]></add>
+        </operation>
+    </file>
+    <!-- Copy: END -->
+
+</modification>
+
+<!--
+<modification>  - This is the highest level of the file and there can only be one
+<id>            - This is the name of the mod. Format: Free form text. (Informational)
+<version>       - This is the version of the mod. Format: Number and Decimal (1.0.0) (Informational)
+<author>        - This is the author of the mod. Format: Free form text (Informational)
+<file>          - This is the name of the file to modify. Requires attribute "name" as relative filename (catalog/controller/product/product.php). There can be multiple
+<operation>     - This is the wrapper of the actual operation occuring. There can be multiple operations to the same file.
+<search>        - This is the first required step of the operation. Uses an optional attribute "position" set to before|after|replace. replace is default. One per operation. Use CDATA tags to wrap code.
+<add>           - This is the second required step of the operation. Uses an optional attribute "trim" set to true|false to trim away whitespace and linebreaks. false is default. One per operation. Location of added data depends on the position of the <search> command. Use CDATA tags to wrap code.
+<![CDATA[  ]]>  - These are called CDATA tags and they are used by xml to specify that the data between should not be evaluated.
+-->

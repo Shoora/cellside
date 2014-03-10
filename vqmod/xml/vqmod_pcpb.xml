@@ -1,0 +1,676 @@
+<modification>
+	<id>Product Custom Print Builder</id>
+	<version>2.0</version>
+	<vqmver>2.x</vqmver>
+	<author>WeDoWeb.com.au | contact@wedoweb.com.au</author>
+	<file name="catalog/model/checkout/order.php">
+		<operation>
+			<search position="replace" index="1"><![CDATA[
+				foreach ($order_option_query->rows as $option) {
+			]]></search>
+			<add><![CDATA[
+				if (!isset($this->session->data['pcpb']))
+					$this->session->data['pcpb'] = array();
+				$option_custome_id = 0;		
+				if (isset($this->session->data['pcpb'][$order_product['product_id']]))
+				{
+					$this->load->model('pcpb/pcpb');
+					$optionPCPB = $this->model_pcpb_pcpb->getProductOptions($order_product['product_id']);
+
+					$optionNameID = $this->config->get('pcpb_option_save_url');
+					foreach($optionPCPB as $option){
+						if($option['option_id'] == $optionNameID){
+							$option_custome_id = $option['product_option_id'];
+							break;
+						}
+					}
+					
+				}
+				foreach ($order_option_query->rows as $option) {
+					if ($option_custome_id == $option['product_option_id'])
+					{
+						$token = $this->session->data['pcpb'][$order_product['product_id']]['token'];
+						// lay oldPath tu db len
+						$data = $this->model_pcpb_pcpb->getDataByToken($token);
+						$content = $data['content'];
+						$path_parts = pathinfo($content);
+						$fileName = $path_parts['filename'];
+						$ext = $path_parts['extension'];
+						//move file
+						$saveDir = $this->config->get('pcpb_path_folder_save_permanently');
+						if(!$saveDir || $saveDir == '' || !is_writable(DIR_IMAGE . $saveDir))
+							$saveDir = 'pcpb/view/';
+
+						$tempDir = $this->config->get('pcpb_path_folder_save_temprarily');
+						if(!$tempDir || $tempDir == '' || !is_writable(DIR_IMAGE . $tempDir))
+							$tempDir = 'pcpb/temp/';
+						
+						$newPath = DIR_IMAGE . $saveDir . $fileName . '.' . $ext; 
+						$oldPath =  DIR_IMAGE . $tempDir . $fileName . '.' . $ext; 
+												
+						rename($oldPath, $newPath);
+
+						$newPath = HTTP_SERVER . 'image/' . $saveDir . $fileName . '.' . $ext; 
+
+						//insert xuong db
+						$this->model_pcpb_pcpb->updateImage($token, $newPath);
+					}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+				$this->cache->delete('product');
+			]]></search>
+			<add><![CDATA[
+				if (isset($this->session->data['pcpb']))
+					unset($this->session->data['pcpb']);
+			]]></add>
+		</operation>	
+	</file>
+	<file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation>
+			<search position="before">
+				<![CDATA[<div class="options">]]>
+			</search>
+			<add>
+				<![CDATA[
+<?php if(isset($pcpb_enable) && $pcpb_enable == true) { ?>
+<input type="hidden" id="pcpb_product_price" value="<?php if (!$special) {echo $price;} else {echo $special;} ?>"/>
+<div class="pcpb gteie9">
+	<a href="javascript:void(0)" onclick="openPopupPCPB();" id="pcpb_iframe">
+		<input type="button" style="width:280px; margin-top:10px;" value="<?php echo $text_Build_your_own; ?> <?php echo $heading_title; ?>"  class="button">
+	</a>
+</div>
+<div class="pcpb ltie9">
+	<?php echo $text_canvas_not_support; ?>
+</div>
+<div class="pcpb-mobile">
+	<?php echo $text_mobile_not_support; ?>
+</div>
+<div class="price" id="viewyourprint" style="display:none;" >	
+	<?php echo $text_total_price; ?>: <span id="printPrice"></span> (<a target="_blank"><?php echo $text_View_your_print; ?></a>)
+</div>
+<script>
+	$(document).ready(function() {
+	<?php if(isset($optionPCPBID)) { ?>
+		$('#option-<?php echo $optionPCPBID;?>').addClass('pcpb-hidden');
+	<?php 
+		} 
+		if(isset($optionBackgroundPCPBID)) {
+	?>
+		$('#option-<?php echo $optionBackgroundPCPBID;?>').addClass('pcpb-hidden');
+	<?php 
+		} 
+		if(isset($optionPresentPCPBID)) {
+	?>
+		$('#option-<?php echo $optionPresentPCPBID;?>').addClass('pcpb-hidden');
+	<?php } ?>
+		$('.cart').hide();
+	
+		<?php if(isset($currentPrint) && !empty($currentPrint)){ ?>
+			setPCPBLink('<?php echo $currentPrint; ?>','<?php echo $product_option_value_id; ?>');
+			showViewYourPrint();
+			setTotalPrice('<?php echo $total_price; ?>');
+		<?php } ?>
+		<?php if(isset($image_option_id) && !empty($image_option_id)){ ?>
+			var image_option_id = '<?php echo($image_option_id); ?>';
+			setImageOptionId(image_option_id);
+		<?php } ?>
+		
+		//hide options if there's no other option
+		if($('.options .option').not('.options .pcpb-hidden').size() == 0)
+		{
+			$('.options').hide();
+		}
+	});
+	function openPopupPCPB(){
+		if($('input[name="option[<?php echo $optionPCPBID;?>]"]').val() != ''){
+			if(!confirm('<?php echo $text_Your_created_print_will_lost_Continues; ?>'))
+				return;
+		}
+		$.colorbox({
+			href: 'index.php?route=pcpb/create&product_id=<?php echo $product_id ?>',
+			overlayClose: false,
+			opacity: 0.5,
+			iframe: true,
+			open: true,
+			width: '90%',
+			height: '70%',
+			onLoad: function() {
+				$('#cboxClose').remove();
+			}
+		});
+	}
+	function setPriceOption(price){
+		var ori_price = $('#pcpb_product_price').val();
+		ori_price = parseFloat(ori_price.replace('$',''));
+		price = parseFloat(price) + ori_price;
+		$('#printPrice').html(price);
+	}
+	function setTotalPrice(price){
+		$('#printPrice').html(price);
+	}
+	function resizePopupPCPB(width, height){
+		$.colorbox.resize({height:height, width: width});
+	}
+	function closePopupPCPB(){
+		$.colorbox.close();
+	}
+	function setPCPBLink(url, product_option_value_id){
+		$('input[name="option[<?php echo $optionPCPBID;?>]"]').val(url);
+		$('input#option-value-'+product_option_value_id).attr('checked', 'checked');
+		$('#viewyourprint a').attr('href',url);
+	}
+	function setImageOptionId(id){
+		$('input#option-value-'+id).attr('checked', 'checked');
+	}
+	function showViewYourPrint(){
+		$('#viewyourprint').show();
+		$('.cart').show();
+	}
+</script>
+<style>
+	#pcpb_iframe
+	{
+		text-decoration: none;
+	}
+	
+	.pcpb-hidden
+	{
+		height: 0 !important;
+		margin-top: -15px;
+		overflow: hidden !important;
+	}
+	
+	.pcpb, .pcpb-mobile
+	{
+		margin-bottom: 10px;
+	}
+			
+	.ltie9, .pcpb-mobile
+	{
+		display: none;
+	}
+	@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+		.pcpb
+		{
+			display: none !important;
+		}
+		
+		.pcpb-mobile
+		{
+			display: block !important;
+		}
+	}
+</style>
+<!--[if lt IE 9]>
+	<style>
+		.gteie9
+		{
+			display: none !important;
+		}
+			
+		.ltie9
+		{
+			display: block !important;
+		}
+	</style>
+<![endif]-->
+<?php } ?>
+				]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="before" offset="1">
+				<![CDATA[
+					if ($product_info) {
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$this->language->load('module/pcpb');					
+					$this->data['text_canvas_not_support'] = $this->language->get('text_canvas_not_support');
+					$this->data['text_mobile_not_support'] = $this->language->get('text_mobile_not_support');
+    				$this->data['text_Build_your_own'] = $this->language->get('text_Build_your_own');
+					$this->data['text_total_price'] = $this->language->get('text_total_price');
+    				$this->data['text_View_your_print'] = $this->language->get('text_View_your_print');
+    				$this->data['text_Your_created_print_will_lost_Continues'] = $this->language->get('text_Your_created_print_will_lost_Continues');
+
+					$this->load->model('pcpb/pcpb');
+					$dataPCPB = $this->model_pcpb_pcpb->getProductSetting($product_id);
+					if($dataPCPB){
+						$this->data['pcpb_enable'] = ($dataPCPB['enable'] == 1) ? true : false;
+						if($this->data['pcpb_enable']){
+							$optionPCPB = $this->model_pcpb_pcpb->getProductOptions($product_id);
+
+							$optionNameID = $this->config->get('pcpb_option_save_url');
+							$optionBackgroundID = $this->config->get('pcpb_option_background');
+							$optionPrensentID = $this->config->get('pcpb_option_preset');
+
+							foreach($optionPCPB as $option){
+								if($option['option_id'] == $optionNameID){
+									$this->data['optionPCPBID'] = $option['product_option_id'];
+								}
+								else if($option['option_id'] == $optionBackgroundID){
+									$this->data['optionBackgroundPCPBID'] = $option['product_option_id'];
+								}
+								else if($option['option_id'] == $optionPrensentID){
+									$this->data['optionPresentPCPBID'] = $option['product_option_id'];
+								}
+							}
+
+							if (isset($this->session->data['pcpb']) && isset($this->session->data['pcpb'][$product_id])){
+								$pcpbUrl = $this->session->data['pcpb'][$product_id]['url'];
+								$this->data['currentPrint'] = htmlspecialchars_decode($pcpbUrl);
+								$this->data['product_option_value_id'] = $this->session->data['pcpb'][$product_id]['product_option_value_id'];
+								$this->data['image_option_id'] = $this->session->data['pcpb'][$product_id]['image_option_id'];
+								$this->data['total_price'] = $this->session->data['pcpb'][$product_id]['total_price'];
+							}
+						}
+					}
+				]]>
+			</add>
+		</operation>
+	</file>
+	<file name="admin/view/template/catalog/product_form.tpl">
+		<operation>
+			<search position="replace">
+				<![CDATA[
+					<a href="#tab-design"><?php echo $tab_design; ?></a>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<a href="#tab-design"><?php echo $tab_design; ?></a><a href="#tab-pcpb"><?php echo $tab_pcpb; ?></a>
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" index="2" offset="8">
+				<![CDATA[
+					<option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					<div id="tab-pcpb">
+						<table class="form">
+				            <tr>
+				              <td><?php echo $text_enable; ?></td>
+				              <td>
+				              		<input type="radio" name="enable" value="1" <?php if ($enable) echo "checked='checked'";?> />
+				                	<?php echo $text_yes; ?>
+				                	<input type="radio" name="enable" value="0" <?php if (!$enable) echo "checked='checked'";?>/>
+				                	<?php echo $text_no; ?>
+									<?php if (isset($error_enable) && $error_enable) { ?>
+									<span class="error"><?php echo $text_error_enable; ?></span>
+									<?php } ?>
+				              </td>
+				            </tr>
+				            <tr>
+				              <td><?php echo $text_add_text; ?></td>
+				              <td>
+				              		<input type="radio" name="add_text" value="1" <?php if ($add_text) echo "checked='checked'";?> />
+				                	<?php echo $text_yes; ?>
+				                	<input type="radio" name="add_text" value="0" <?php if (!$add_text) echo "checked='checked'";?>/>
+				                	<?php echo $text_no; ?>
+				              </td>
+				            </tr>
+				            <tr>
+				              <td><?php echo $text_add_images; ?></td>
+				              <td>
+				              		<input type="radio" name="add_images" value="1" <?php if ($add_images) echo "checked='checked'";?>/>
+				                	<?php echo $text_yes; ?>
+				                	<input type="radio" name="add_images" value="0" <?php if (!$add_images) echo "checked='checked'";?>/>
+				                	<?php echo $text_no; ?>
+				                	<?php if (isset($error_image) && $error_image) { ?>
+									<span class="error"><?php echo $text_error_image; ?></span>
+									<?php } ?>
+				              </td>
+				            </tr>
+				            <tr>
+				              <td><?php echo $text_add_custom_images; ?></td>
+				              <td>
+				              		<input type="radio" name="add_custom_images" value="1" <?php if ($add_custom_images) echo "checked='checked'";?> />
+				                	<?php echo $text_yes; ?>
+				                	<input type="radio" name="add_custom_images" value="0" <?php if (!$add_custom_images) echo "checked='checked'";?>/>
+				                	<?php echo $text_no; ?>
+				              </td>
+				            </tr>
+				            <tr>
+				              <td><?php echo $text_select_image_preset; ?></td>
+				              <td>
+				              		<input type="radio" name="select_image_preset" value="1" <?php if ($select_image_preset) echo "checked='checked'";?>/>
+				                	<?php echo $text_yes; ?>
+				                	<input type="radio" name="select_image_preset" value="0" <?php if (!$select_image_preset) echo "checked='checked'";?>/>
+				                	<?php echo $text_no; ?>
+				                	<?php if (isset($error_present) && $error_present) { ?>
+									<span class="error"><?php echo $text_error_present; ?></span>
+									<?php } ?>
+				              </td>
+				            </tr>
+				            <tr>
+				              <td><?php echo $text_upload_background; ?></td>
+				              <td>
+				              		<input type="radio" name="upload_background" value="1" <?php if ($upload_background) echo "checked='checked'";?>/>
+				                	<?php echo $text_yes; ?>
+				                	<input type="radio" name="upload_background" value="0" <?php if (!$upload_background) echo "checked='checked'";?>/>
+				                	<?php echo $text_no; ?>
+				              </td>
+				            </tr>
+				        </table>
+					</div>
+				]]>
+			</add>
+		</operation>
+	</file>
+	<file name="admin/controller/catalog/product.php">
+		<operation>
+			<search position="after" >
+				<![CDATA[
+					$this->data['tab_design'] = $this->language->get('tab_design');
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$this->language->load('module/pcpb_product');
+					$this->data['tab_pcpb'] = $this->language->get('tab_pcpb');
+					$this->data['text_enable'] = $this->language->get('text_enable');
+					$this->data['text_add_text'] = $this->language->get('text_add_text');
+					$this->data['text_add_images'] = $this->language->get('text_add_images');
+					$this->data['text_add_custom_images'] = $this->language->get('text_add_custom_images');
+					$this->data['text_select_image_preset'] = $this->language->get('text_select_image_preset');
+					$this->data['text_upload_background'] = $this->language->get('text_upload_background');
+					$this->data['text_error_enable'] = $this->language->get('text_error_enable');
+					$this->data['text_error_present'] = $this->language->get('text_error_present');
+					$this->data['text_error_image'] = $this->language->get('text_error_image');
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" >
+				<![CDATA[
+					$product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$this->load->model('module/pcpb');
+					$product_pcpb_info = $this->model_module_pcpb->getPcpbProduct($this->request->get['product_id']);
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" >
+				<![CDATA[
+					function validateForm()
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if ($this->request->post['enable'] == 1) {
+						//check for enable
+						$this->load->model('setting/setting');
+						$settings = $this->model_setting_setting->getSetting('pcpb');
+						$backgroundOptionId = isset($settings['pcpb_option_background']) ? $settings['pcpb_option_background'] : null; 
+						$urlOptionId = isset($settings['pcpb_option_save_url']) ? $settings['pcpb_option_save_url'] : null;
+						$this->data['error_enable'] = true;
+						if(!empty($backgroundOptionId) && !empty($urlOptionId)){
+							//$this->load->model('catalog/product');
+							$productOptions = $this->request->post['product_option'];
+							foreach($productOptions as $i => $proOpt){
+								$this->data['error_enable'] = true;
+								if($proOpt['option_id'] == $backgroundOptionId){
+									if(count($proOpt['product_option_value']) != 0)
+									{
+										$this->data['error_enable'] = false;
+									}
+									$this->request->post['product_option'][$i]['required'] = 0;
+									break;
+								}
+							}
+							
+							//check url
+							if($this->data['error_enable'] == false){
+								foreach($productOptions as $proOpt){
+									$this->data['error_enable'] = true;
+									if($proOpt['option_id'] == $urlOptionId){
+										$this->data['error_enable'] = false;
+										break;
+									}
+								}
+							}
+						}
+
+						if($this->request->post['select_image_preset'] == 1){
+							$this->data['error_present'] = true;
+							$presentOptionId = isset($settings['pcpb_option_preset']) ? $settings['pcpb_option_preset'] : null;
+							if(!empty($presentOptionId)){
+								foreach($productOptions as $i => $proOpt){
+									$this->data['error_present'] = true;
+									if($proOpt['option_id'] == $presentOptionId){
+										if(count($proOpt['product_option_value']) != 0)
+										{
+											$this->data['error_present'] = false;
+										}
+										$this->request->post['product_option'][$i]['required'] = 0;
+										break;
+									}
+								}
+							}
+						}
+						function echoDbg( $what, $desc = '' )
+						{
+							if ( $desc )
+								echo "<b>$desc:</b> ";
+							echo "<pre>";
+								print_r( $what );
+							echo "</pre>\n";
+						}
+						//echoDbg($this->request->post);exit();
+						if($this->request->post['add_images'] == 1){
+							$this->data['error_image'] = true;
+							if($this->request->post['add_custom_images'] == 1 || $this->request->post['select_image_preset'] == 1)
+								$this->data['error_image'] = false;
+						}
+
+						if($this->data['error_enable'] || $this->data['error_present'] || $this->data['error_image']){
+							$this->error['warning'] = $this->language->get('error_warning');;
+						}
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="after" >
+				<![CDATA[
+					$this->template = 'catalog/product_form.tpl';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if (isset($this->request->post['enable'])) {
+			      		$this->data['enable'] = $this->request->post['enable'];
+					} elseif (!empty($product_pcpb_info)) {
+						$this->data['enable'] = $product_pcpb_info['enable'];
+			    	} else {
+			      		$this->data['enable'] = '';
+			    	}
+			    	if (isset($this->request->post['add_text'])) {
+			      		$this->data['add_text'] = $this->request->post['add_text'];
+					} elseif (!empty($product_pcpb_info)) {
+						$this->data['add_text'] = $product_pcpb_info['add_text'];
+			    	} else {
+			      		$this->data['add_text'] = '';
+			    	}
+			    	if (isset($this->request->post['add_images'])) {
+			      		$this->data['add_images'] = $this->request->post['add_images'];
+					} elseif (!empty($product_pcpb_info)) {
+						$this->data['add_images'] = $product_pcpb_info['add_images'];
+			    	} else {
+			      		$this->data['add_images'] = '';
+			    	}
+			    	if (isset($this->request->post['add_custom_images'])) {
+			      		$this->data['add_custom_images'] = $this->request->post['add_custom_images'];
+					} elseif (!empty($product_pcpb_info)) {
+						$this->data['add_custom_images'] = $product_pcpb_info['add_custom_images'];
+			    	} else {
+			      		$this->data['add_custom_images'] = '';
+			    	}
+			    	if (isset($this->request->post['select_image_preset'])) {
+			      		$this->data['select_image_preset'] = $this->request->post['select_image_preset'];
+					} elseif (!empty($product_pcpb_info)) {
+						$this->data['select_image_preset'] = $product_pcpb_info['select_image_preset'];
+			    	} else {
+			      		$this->data['select_image_preset'] = '';
+			    	}
+			    	if (isset($this->request->post['upload_background'])) {
+			      		$this->data['upload_background'] = $this->request->post['upload_background'];
+					} elseif (!empty($product_pcpb_info)) {
+						$this->data['upload_background'] = $product_pcpb_info['upload_background'];
+			    	} else {
+			      		$this->data['upload_background'] = '';
+			    	}
+				]]>
+			</add>
+		</operation>
+	</file>
+	<file name="admin/model/catalog/product.php">
+		<operation>
+			<search position="before" index="1">
+				<![CDATA[
+					$this->cache->delete('product');
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if (isset($data['enable'])) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "pcpb_product SET product_id = " . (int)$product_id . ", enable = " . (int)$data['enable']. ", add_text = " . (int)$data['add_text']. ", add_images = " . (int)$data['add_images']. ", add_custom_images = " . (int)$data['add_custom_images']. ", select_image_preset = " . (int)$data['select_image_preset']. ", upload_background = " . (int)$data['upload_background']);
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before" index="2">
+				<![CDATA[
+					$this->cache->delete('product');
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					if (isset($data['enable'])) {
+						$query = $this->db->query("DELETE FROM ".DB_PREFIX."pcpb_product WHERE product_id = ".$product_id);    
+						$this->db->query("INSERT INTO " . DB_PREFIX . "pcpb_product SET product_id = " . (int)$product_id . ", enable = " . (int)$data['enable']. ", add_text = " . (int)$data['add_text']. ", add_images = " . (int)$data['add_images']. ", add_custom_images = " . (int)$data['add_custom_images']. ", select_image_preset = " . (int)$data['select_image_preset']. ", upload_background = " . (int)$data['upload_background']);
+					}
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="before" index="3">
+				<![CDATA[
+					$this->cache->delete('product');
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$query = $this->db->query("DELETE FROM ".DB_PREFIX."pcpb_product WHERE product_id = ".$product_id);
+				]]>
+			</add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/default/template/common/header.tpl">
+		<operation>
+			<search position="after" index="1">
+				<![CDATA[
+					<script type="text/javascript" src="catalog/view/javascript/common.js"></script>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+				<script type="text/javascript">
+					$(document).ready(function() {
+						$('body').prepend('<iframe src="index.php?route=pcpb/upload/checkclean" style="display: none;"></iframe>');
+					});
+				</script>
+				]]>
+			</add>
+		</operation>
+    </file>
+    <file name="admin/view/template/common/header.tpl">
+        <operation>
+			<search position="before" index="1">
+				<![CDATA[
+					<script type="text/javascript" src="view/javascript/jquery/tabs.js"></script>
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+				<link rel="stylesheet" type="text/css" href="view/stylesheet/fontselector.css" />
+                <?php if(isset($list_link_google_fonts_options)){ ?>
+                <link href='http://fonts.googleapis.com/css?family=<?php foreach ($list_link_google_fonts_options as $list_link_google_fonts) { 
+                                echo str_replace(" ", "+", $list_link_google_fonts['key'])."|";
+                            } ?>' rel='stylesheet' type='text/css'/>
+                <?php } ?>
+                <script type="text/javascript" src="view/javascript/jquery/jquery.fontselector.js"></script>
+				]]>
+			</add>
+		</operation>
+	</file>
+    <file name="admin/controller/common/header.php">
+        <operation>
+			<search position="after" index="1">
+				<![CDATA[
+					$this->data['text_zone'] = $this->language->get('text_zone');
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+				$this->load->model('setting/setting');
+                $list_fonts_google = $this->model_setting_setting->getSetting('fonts_google');
+                if($list_fonts_google != null){
+                    foreach ($list_fonts_google as $key=>$name){
+                        $this->data['list_link_google_fonts_options'][] = array(
+                            'key'     =>      $key,
+                            'pcpb_fonts_google'     =>      $name
+                        );    
+                    }
+                }
+				]]>
+			</add>
+		</operation>
+	</file>
+	<file name="admin/controller/sale/order.php">
+		<operation>
+			<search position="after" offset="2">
+				<![CDATA[
+					$options = $this->model_sale_order->getOrderOptions($this->request->get['order_id'], $product['order_product_id']);
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+					$this->load->model('pcpb/pcpb');
+					$optionPCPB = $this->model_pcpb_pcpb->getProductOptions($product['product_id']);
+					$optionNameID = $this->config->get('pcpb_option_save_url');
+					$optionBgID = $this->config->get('pcpb_option_background');
+					foreach($optionPCPB as $option1){
+						if($option1['option_id'] == $optionNameID)
+							$optionNameID = $option1['product_option_id'];
+						if($option1['option_id'] == $optionBgID)
+							$optionBgID = $option1['product_option_id'];
+					}
+					if($option['product_option_id'] == $optionNameID){
+						$option_data[] = array(
+							'name'  => $option['name'],
+							'value' => $option['value'],
+							'type'  => 'file',
+							'href'  => $option['value']
+						);
+						continue;
+					}
+				]]>
+			</add>
+		</operation>
+	</file>
+</modification>

@@ -1,0 +1,139 @@
+ 
+
+body{
+	overflow: hidden;	 
+	font-size: 12px;
+	font-family: "Arial"
+}
+.off-customize #main-preview{
+	margin-left: 0
+}
+.off-customize #pav-customize span{margin-left: 22px}
+.off-customize #pav-customize .btn-show{
+	right: -56px;
+	transition:all 0.2s;
+}
+.page-wrapper{
+ 	margin-left:300px;
+ }
+.off-customize #pav-customize{
+	left: -310px;
+}
+ 
+#customize-form{
+	position: relative;
+}
+#main-preview {
+   bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-left: 300px;
+    transition-duration: 0.2s;
+    transition-property: left, right, top, bottom, width, margin;
+}
+#main-preview iframe {
+ 
+ 
+    height: 100%;
+    
+    width: 100%;
+ 
+}
+.colorpicker{
+	z-index: 9999
+}
+#pav-customize{
+	width: 300px;
+	height: 100%;
+	position:absolute;
+	top: 0;
+	left:0px; 
+
+	z-index: 3;
+	box-shadow: 0 1px 3px #999;
+	transition-duration: 0.2s;
+    transition-property: left, right, top, bottom, width, margin;
+  	background: none repeat scroll 0 0 #F5F5F5;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+  
+}
+
+#pav-customize .wrapper{
+
+	padding: 12px; 
+}
+#customize-body input[type="text"]{
+  line-height: 18px;
+    margin: 0;
+    width: 50px;
+    color: #FFF;
+    font-size: 11px;
+     border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+     border-color: #DFDFDF;
+     padding: 3px 5px
+}
+.form-group  {
+	margin-right: 6px;
+}
+.accordion-group label, .form-group label{
+	display: block;
+	font-size: 11px;
+}
+.accordion-group label{
+	float: left;
+	min-width: 100px;	
+	margin-right:12px;
+}
+#pav-customize .btn{
+	padding: 4px 12px;
+	font-size: 11px;
+	font-weight: bold;
+}
+#pav-customize .btn-show{
+	position: absolute;
+	top: 39px;
+ 	padding:6px 18px;
+	background:#CCC;
+	right:11px;
+	z-index: 99;
+  transition:all 1.2s;
+  cursor: hand;
+  cursor: pointer;
+
+}
+#customize-body .nav-tabs, #customize-body .nav-tabs a{
+	border:none;
+}
+#customize-body .nav-tabs a{
+	background: #f9f9f9;
+	font-weight: bold;
+	font-size: 11px;	
+}
+ #customize-body .nav-tabs .active a{
+ 	background: #FFF
+ }
+ .accordion-heading .accordion-toggle{
+ 	font-weight: bold;
+ }
+.tab-content > .tab-pane, .pill-content > .pill-pane {
+    background: none repeat scroll 0 0 #FFFFFF;
+    
+    padding: 13px;
+}
+
+.bi-wrapper > div{
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin: 3px 4px;
+	border: solid 1px #999;
+	cursor:hand; cursor:pointer;
+}
+.bi-wrapper > div.active{
+	border-color:red;
+}

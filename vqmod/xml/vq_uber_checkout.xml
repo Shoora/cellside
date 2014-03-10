@@ -1,0 +1,181 @@
+<modification>
+
+	<id>OpenCart Uber Checkout v1.5.x</id>
+	<version>154.3</version>
+	<vqmver>2.1.7</vqmver>
+	<author>Qphoria</author>
+
+	<file name="catalog/controller/account/login.php">
+		<operation>
+            <search position="after"><![CDATA[
+			$this->document->setTitle
+            ]]></search>
+            <add trim="true"><![CDATA[
+			// Uber checkout redirect
+			if ($this->config->get('uber_checkout_status')) {
+				if ($this->config->get('uber_checkout_style') == 'popup') {
+					$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
+				} else {
+					$this->session->data['redirect'] = HTTP_SERVER.'account';
+					$this->redirect($this->url->link('checkout/checkout_one', '', 'SSL'));
+				}
+			}
+            ]]></add>
+        </operation>
+	</file>
+
+	<file name="catalog/controller/account/register.php">
+		<operation>
+            <search position="after"><![CDATA[
+			function index()
+            ]]></search>
+            <add trim="true"><![CDATA[
+			// Uber checkout redirect
+			if ($this->config->get('uber_checkout_status')) {
+				if ($this->config->get('uber_checkout_style') == 'popup') {
+					$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
+				} else {
+					$this->session->data['redirect'] = HTTP_SERVER.'account';
+					$this->redirect($this->url->link('checkout/checkout_one', '', 'SSL'));
+				}
+			}
+            ]]></add>
+        </operation>
+	</file>
+
+	<file name="catalog/controller/checkout/checkout.php">
+		<operation>
+            <search position="after"><![CDATA[
+			function index()
+            ]]></search>
+            <add trim="true"><![CDATA[
+			// Uber checkout redirect
+			if ($this->config->get('uber_checkout_status')) {
+				if ($this->config->get('uber_checkout_style') == 'popup') {
+					$this->session->data['popup'] = 1;
+					$this->redirect($this->url->link('checkout/cart', '', 'SSL'));
+				} else {
+					$this->redirect($this->url->link('checkout/checkout_two', '', 'SSL'));
+				}
+			}
+            ]]></add>
+        </operation>
+	</file>
+
+	<file name="catalog/controller/account/address.php">
+		<operation>
+            <search position="after"><![CDATA[
+			$this->model_account_address->addAddress($this->request->post);
+            ]]></search>
+            <add trim="true"><![CDATA[
+            // Uber checkout address change
+			if ($this->config->get('uber_checkout_status')) {
+				if (isset($this->session->data['uc_address_change'])) {
+					if ($this->config->get('uber_checkout_style') == 'popup') {
+						$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
+					} else {
+						$this->redirect($this->url->link('checkout/checkout_two', '', 'SSL'));
+					}
+				}
+			}
+            ]]></add>
+        </operation>
+	</file>
+
+	<file name="catalog/controller/checkout/cart.php">
+		<operation>
+            <search position="before" index="1"><![CDATA[
+			$this->data['products'] = array();
+            ]]></search>
+            <add trim="true"><![CDATA[
+            // Uber checkout session error check
+			if ($this->data['error_warning'] == '') {
+				if (isset($this->session->data['error'])) {
+					$this->data['error_warning'] = $this->session->data['error'];
+					unset($this->session->data['error']);
+				}
+			}
+            ]]></add>
+        </operation>
+	</file>
+
+	<file name="catalog/view/theme/*/template/module/cart.tpl" error="skip">
+		<operation error="skip">
+            <search position="replace"><![CDATA[
+			getURLVar('route') == 'checkout/checkout'
+            ]]></search>
+            <add trim="true"><![CDATA[
+            getURLVar('route') == 'checkout/checkout' || getURLVar('route') == 'checkout/checkout_two'
+            ]]></add>
+        </operation>
+	</file>
+
+	<file name="catalog/view/theme/*/template/checkout/cart.tpl" error="skip">
+		<operation error="skip">
+            <search position="before" index="1"><![CDATA[
+			</script>
+            ]]></search>
+            <add trim="true"><![CDATA[
+            jQuery(document).ready(function(){
+            <?php if (isset($this->session->data['popup'])) { ?>
+            <?php unset($this->session->data['popup']); ?>
+				if (jQuery().colorbox) {
+					// Reload parent page when colorbox closes to update any changes
+					$(document).bind('cbox_closed', function(){
+   						//parent.location.reload();
+					});
+
+					jQuery.fn.colorbox({
+						open:true,
+						href:"index.php?route=checkout/checkout_one",
+						iframe:true,
+						width:"90%",
+						height:"90%",
+						overlayClose:false,
+						scrolling:true,
+					});
+					//parent.$.fn.colorbox.resize({
+						//innerWidth: $(document).width() - 200,
+						//innerHeight: $(document).height() - 200
+					//});
+				}
+				if (jQuery().fancybox) {
+					$('body').append('<a id="hidden_link"></a>');
+					$("#hidden_link").fancybox({
+						href:"index.php?route=checkout/checkout_one",
+						type:'iframe',
+						width:"90%",
+						height:"90%",
+					}).trigger('click');
+				}
+			<?php } ?>
+			});
+            ]]></add>
+        </operation>
+	</file>
+
+	<file name="catalog/view/theme/*/template/common/success.tpl" error="skip">
+		<operation error="skip">
+            <search position="before"><![CDATA[
+			$footer
+            ]]></search>
+            <add trim="true"><![CDATA[
+            <script type="text/javascript">if (self != top) { parent.location = self.location; }</script>
+            ]]></add>
+        </operation>
+	</file>
+
+	<!-- Try to force all form based (redirect) gateways to close the iframe and send the parent -->
+	<file name="catalog/view/theme/*/template/payment/*.tpl" error="skip">
+		<operation error="skip">
+            <search position="replace"><![CDATA[
+			<form
+            ]]></search>
+            <add trim="true"><![CDATA[
+            <form <?php if ($this->config->get('uber_checkout_style') == 'popup') { echo 'target="_top" onsubmit="parent.$.fn.colorbox.close();" '; } ?>
+            ]]></add>
+        </operation>
+	</file>
+
+
+</modification>

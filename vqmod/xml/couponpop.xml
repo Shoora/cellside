@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+        <id>Coupon Pop</id>
+        <version>1.01</version>
+        <vqmver>2.3.0</vqmver>
+        <author>StoreYa</author>
+        <file name="catalog/view/theme/*/template/common/footer.tpl">
+                <operation>
+                        <search position="before"><![CDATA[
+                        </body>
+                        ]]></search>
+                        <add><![CDATA[
+                        <?php $this->load->library('couponpop'); ?>
+                        ]]></add>
+                </operation>
+        </file>
+        <file name="catalog/view/theme/*/template/module/icustomfooter.tpl">
+                <operation>
+                        <search position="before"><![CDATA[
+                        </body>
+                        ]]></search>
+                        <add><![CDATA[
+                        <?php $this->load->library('couponpop'); ?>
+                        ]]></add>
+                </operation>
+        </file>
+</modification>

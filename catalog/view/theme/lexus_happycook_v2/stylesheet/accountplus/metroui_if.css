@@ -1,0 +1,96 @@
+/* Metro UI  */
+.aflinks {float:left;  text-transform:capitalize; color:#34ACE4; }
+.aflinks ul{padding:0;}
+.aflinks li{display: inline-block; position:relative; }
+.aflinks li a img{margin: 20px 30px 15px 30px;  }
+.aflinks a {text-align: left; display:table-cell; vertical-align:bottom; width:110px; height:110px; padding:5px; color:#fff; text-decoration: none; font-size: 12px;  background:#34ace4; position:relative; font-size:14px; -moz-transition:all 0.3s ease 0s; transition:all 0.3s ease 0s; -webkit-transition:all 0.3s ease 0s;}
+.aflinks a:hover {background-color:#888; -moz-transition:all 0.3s ease 0s; transition:all 0.3s ease 0s; -webkit-transition:all 0.3s ease 0s;}
+
+.aflinks:after{visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0;}
+
+.aflinks a.wishlist{background-position:-135px 38px;}
+.aflinks a.account{background-position:-274px 38px;}
+.aflinks a.checkout{background-position:-552px 38px;}
+
+
+.aflinks li{width:120px; height:120px; margin:3px 3px;}
+.aflinks li a{font-size:13px;}
+.aflinks a{width:110px; height:110px;}
+
+/* Tabs */
+
+.htabs a { border-top: 1px solid #ddd; border-left: 1px solid #ddd; border-right: 1px solid #ddd; background:#F7F7F7; padding: 7px 15px 6px 15px; float: left; font-family: Arial, Helvetica, sans-serif; font-size: 13px; text-align: center; text-decoration: none; color:#333; margin-right: 2px; display: none; }
+.htabs a.selected { color:#34ace4; padding-bottom: 7px; background: #FFFFFF; font-weight: bold; }
+
+
+/* Metro UI 2 */
+
+.aflinks2 {float:left;  text-transform:capitalize; color:#34ACE4; }
+.aflinks2 ul{padding:0;}
+.aflinks2 li{display: inline-block; position:relative; }
+.aflinks2 li a img{margin: 25px 40px 45px 40px;  }
+.aflinks2 li a p{margin: -10px 0 10px 10px;  }
+.aflinks2 a {text-align: left; display:table-cell; vertical-align:bottom; width:130px; height:140px; padding:5px; color:#fff; text-decoration: none; font-size: 12px;   position:relative; font-size:14px; -moz-transition:all 0.3s ease 0s; transition:all 0.3s ease 0s; -webkit-transition:all 0.3s ease 0s;}
+.aflinks2 li:hover {background-color:#58BAE9; -moz-transition:all 0.3s ease 0s; transition:all 0.3s ease 0s; -webkit-transition:all 0.3s ease 0s;}
+
+.aflinks2:after{visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0;}
+
+.aflinks2 a.wishlist{background-position:-135px 38px;}
+.aflinks2 a.account{background-position:-274px 38px;}
+.aflinks2 a.checkout{background-position:-552px 38px;}
+
+
+.aflinks2 li{width:140px; height:150px; margin:3px 3px;}
+.aflinks2 li a{font-size:14px;}
+.aflinks2 a{width:130px; height:140px;}
+
+.edit{
+	background:#ffaa31;
+}
+.password {
+	background:#6cbe42;
+}
+.payment {
+	background:#ffaa31;
+}
+.logout {
+	background:#6cbe42;
+}
+.tracking {
+	background:#ffaa31;
+}
+
+.transaction {
+	background:#6cbe42;
+}
+
+.aflinks2 a, a:visited, a b {
+	-webkit-transition: color 200ms linear;
+	-moz-transition: color 200ms linear;
+	-o-transition: color 200ms linear;
+	-ms-transition: color 200ms linear;
+	transition: color 200ms linear;
+}
+.aflinks2 a:hover {
+	-webkit-transition: color 200ms linear;
+	-moz-transition: color 200ms linear;
+	-o-transition: color 200ms linear;
+	-ms-transition: color 200ms linear;
+	transition: color 200ms linear;
+}
+.aflinks2  li {
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	-o-transition: all 0.1s linear;
+	-ms-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.aflinks2  li:hover {
+   -webkit-transform: scale(0.95,0.95);
+   -moz-transform: scale(0.95,0.95);
+   -o-transform: scale(0.95,0.95);
+   -ms-transform: scale(0.95,0.95);
+   transform: scale(0.95,0.95);
+   opacity:0.95;
+   filter:alpha(opacity=95);
+}

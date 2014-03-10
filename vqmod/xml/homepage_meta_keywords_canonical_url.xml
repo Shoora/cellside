@@ -1,0 +1,52 @@
+<modification>
+        <id>Add Meta Keywords, And Canonical SEO URL For Home Page</id>
+        <version>1.0</version>
+        <vqmver>1.2.3</vqmver>
+        <author>Jeff Hunter aka Tcalp</author>
+		
+		<file name="catalog/controller/common/home.php">
+			<operation> <!-- POPULATE LANGUAGE DATA -->
+				<search position="before"><![CDATA[$this->document->setTitle]]></search>
+				<add><![CDATA[$this->document->setKeywords($this->config->get('config_meta_keywords'));
+				$this->document->addLink(HTTP_SERVER, 'canonical');]]></add>
+			</operation>
+		</file>
+				
+		<file name="admin/controller/setting/setting.php">
+			<operation> <!-- READ LANGUAGE FOR GLOBAL SETTINGS -->
+				<search position="before"><![CDATA[$this->data['entry_logo']]]></search>
+				<add><![CDATA[$this->data['entry_meta_keywords'] = $this->language->get('entry_meta_keywords');]]></add>
+			</operation>
+			<operation> <!-- READ FORM / DATA -->
+				<search position="before"><![CDATA[isset($this->request->post['config_name'])]]></search>
+				<add><![CDATA[
+			if (isset($this->request->post['config_meta_keywords'])) {
+				$this->data['config_meta_keywords'] = $this->request->post['config_meta_keywords'];
+			} elseif ($this->config->get('config_meta_keywords')) {
+				$this->data['config_meta_keywords'] = $this->config->get('config_meta_keywords');
+			} else {
+				$this->data['config_meta_keywords'] = '';
+			}
+				]]></add>
+			</operation>
+		</file>
+
+		<file name="admin/view/template/setting/setting.tpl">
+			<operation> <!-- ADD LANGUAGE ENTRIES FOR STORE SETTINGS -->
+				<search position="before" offset="1"><![CDATA[<?php echo $entry_template; ?>]]></search>
+				<add><![CDATA[
+				<tr>
+				  <td><?php echo $entry_meta_keywords; ?></td>
+				  <td><textarea name="config_meta_keywords" cols="40" rows="5"><?php echo $config_meta_keywords; ?></textarea></td>
+				</tr>
+				]]></add>
+			</operation>
+		</file>
+
+		<file name="admin/language/english/setting/setting.php">
+			<operation> <!-- ADD LANGUAGE ENTRIES FOR STORE SETTINGS -->
+				<search position="before"><![CDATA[$_['entry_title']]]></search>
+				<add><![CDATA[$_['entry_meta_keywords'] = 'Meta Keywords:';]]></add>
+			</operation>
+		</file>					
+</modification>

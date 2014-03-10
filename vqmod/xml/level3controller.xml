@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>Admin Smart Filter</id>
+	<version>1.0.0</version>
+	<vqmver>1.0.0</vqmver>
+	<author>Tymkiv Roman</author>	
+	
+	<file name="admin/controller/user/user_permission.php">
+		<operation>
+			<search position="after" ><![CDATA[ $files = glob(DIR_APPLICATION . 'controller/*/*.php'); ]]></search>
+			<add><![CDATA[
+					$temp	= glob(DIR_APPLICATION . 'controller/*/*/*.php');
+					$files = array_merge($files, $temp);
+					sort($files);
+				]]>
+			</add>
+		</operation>
+		<operation>
+			<search position="replace" ><![CDATA[ $permission = end($data) . '/' . basename($file, '.php'); ]]></search>
+			<add><![CDATA[
+					if ($data[count($data)-2] != 'controller'){
+						$permission =$data[count($data)-2] . '/' . end($data) . '/' . basename($file, '.php');
+					}else{
+						$permission = end($data) . '/' . basename($file, '.php');
+					}
+				]]>
+			</add>
+		</operation>	
+	</file>
+		<file name="admin/controller/common/home.php">
+		<operation>
+			<search position="after" offset="1" ><![CDATA[ $route .= '/' . $part[1]; ]]></search>
+			<add><![CDATA[
+					if (isset($part[2]) AND glob(DIR_APPLICATION . 'controller/*/*/'.$part[2].'.php')) {
+						$route .= '/' . $part[2];
+					}
+				]]>
+			</add>
+		</operation>	
+	</file>
+</modification>
