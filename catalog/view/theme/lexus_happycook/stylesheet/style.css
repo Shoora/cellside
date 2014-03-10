@@ -1,0 +1,599 @@
+.buttons_page{
+	background-image: url('../img/background_buttons.png');
+}
+.buttons_page header{
+	color: #af0917;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+	margin-top: 20px;
+	margin-bottom: 15px;
+}
+.alerts header{
+	margin-left: 20px;
+}
+.buttons .small{
+	height: 36px;
+	width: 121px;
+	text-align: center;
+	padding-top: 7px;
+	display: inline-block;
+	color: #fff;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+}
+.buttons .small_red{
+	background-image: url('../img/small_red.png');
+}
+.buttons .small_grey{
+	background-image: url('../img/small_grey.png');
+}
+.buttons .small_green{
+	background-image: url('../img/small_green.png');
+}
+
+.buttons .medium{
+	height: 45px;
+	width: 152px;
+	text-align: center;
+	padding-top: 10px;
+	display: inline-block;
+	color: #fff;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+}
+.buttons .medium_red{
+	background-image: url('../img/medium_red.png');
+}
+.buttons .medium_grey{
+	background-image: url('../img/medium_grey.png');
+}
+.buttons .medium_green{
+	background-image: url('../img/medium_green.png');
+}
+.buttons .large{
+	height: 55px;
+	width: 178px;
+	text-align: center;
+	padding-top: 12px;
+	display: inline-block;
+	color: #fff;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+}
+.buttons .large_red{
+	background-image: url('../img/large_red.png');
+}
+.buttons .large_grey{
+	background-image: url('../img/large_grey.png');
+}
+.buttons .large_green{
+	background-image: url('../img/large_green.png');
+}
+
+.alerts div{
+	height: 47px;
+	width: 100%;
+	color: #fff;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 13px;
+	font-weight: 600;
+	text-transform: uppercase;
+	padding-top: 13px;
+	padding-left: 20px;
+	padding-right: 25px;
+	margin-bottom: 10px;
+}
+.alerts div img{
+	float: right;
+
+}
+.alerts .alert_green{
+	background-color: #41a62a;
+}
+.alerts .alert_red{
+	background-color: #c31c20;
+}
+.alerts .alert_blue{
+	background-color: #3498db;
+}
+.alerts .alert_yellow{
+	background-color: #e67e22;
+}
+
+
+.buttons_page .nav-tabs > li.active > a,
+.buttons_page .nav-tabs > li.active > a:hover,
+.buttons_page .nav-tabs > li.active > a:focus {
+  color: #af0917;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-bottom-color: transparent;
+  cursor: default;
+  text-transform: uppercase;
+  font-family: 'Titillium Web', sans-serif;
+	font-size: 13px;
+	font-weight: 600;
+  padding-left: 30px;
+}
+.buttons_page .tab-content > .active {
+  background-color: #fff;
+  padding: 30px 20px 30px 20px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #363636;
+
+}
+.buttons_page .nav-tabs > li > a, .nav-tabs > li > a:hover{
+	color: #ffffff;
+  background-color: #af0917;
+  border-bottom-color: transparent;
+  cursor: default;
+  text-transform: uppercase;
+  font-family: 'Titillium Web', sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	margin:0px;
+	border-radius: 0px;
+	height: 45px;
+	padding-top: 13px;
+}
+
+.buttons_page .panel-default > .panel-heading{
+	background-color: #af0917;
+	border-radius: 0px;
+	height: 45px;
+	color: #fff;
+	text-transform: uppercase;
+
+}
+.buttons_page .panel-title, .buttons_page .panel-title a{
+	 font-family: 'Titillium Web', sans-serif;
+	font-size: 13px;
+	font-weight: 600;
+	padding-top: 5px;
+	text-decoration: none;
+}
+
+
+/*Shopping cart page*/
+.shopping{
+		
+
+}
+.shopping .table{
+	width: 1181px;
+}
+.shopping .table>tbody>tr>th{
+	background-color: #363636;
+	color: #fff;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	text-align: center;
+}
+.table>tbody>tr>td{
+	background-color: #fff;
+	border: solid #d7d7d7 1px; 
+}
+.shopping .table .photo img{
+	width: 100%;
+	height: 100%;
+
+}
+.shopping .table .photo{
+	width: 100px;
+	height: 100px;
+	padding-top: 15px;
+}
+.shopping .table .desc{
+	width: 245px;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	padding-top: 15px;
+	padding-left: 15px;
+}
+.shopping .table .id{
+	width: 60px;
+	text-align: center;
+	vertical-align:middle;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+	color: #af0917;
+}
+.shopping .table .price{
+	width: 195px;
+	text-align: center;
+	vertical-align:middle;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 24px;
+	font-weight: 600;
+	color: #af0917;
+}
+.shopping .table .quantity{
+	width: 240px;
+	text-align: center;
+	vertical-align:middle;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+}
+.shopping .table .quantity div{
+	width:40px;
+	height: 35px;
+	display: inline-block;
+	
+	margin: -2px;
+
+}
+.shopping .table .quantity .minus{
+	background-color: #888888;
+	color:#fff;
+	border-top: solid #888888 1px;
+	border-left: solid #888888 1px;
+	border-bottom: solid #888888 1px;
+	padding-top: 3px;
+}
+
+.shopping .table .quantity .minus:hover{
+	background-color: #41a62a;
+}
+
+.shopping .table .quantity .plus:hover{
+	background-color: #41a62a;
+}
+.shopping .table .quantity .count{
+	padding-top: 3px;
+	font-weight: 600;
+	border-top: solid #888888 1px;
+	border-bottom: solid #888888 1px;
+
+}
+.shopping .table .quantity .plus{
+	padding-top: 3px;
+	background-color: #888888;
+	color:#fff;
+	border-top: solid #888888 1px;
+	border-right: solid #888888 1px;
+	border-bottom: solid #888888 1px;
+}
+
+.shopping .table .total{
+	width: 235px;	
+	text-align: center;
+	vertical-align: middle;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 30px;
+	font-weight: 600;
+	color: #41a62a;
+}
+.shopping .table .remove{
+	width: 110px;
+	text-align: center;
+	vertical-align: middle;
+
+}
+.shopping .table .price .before, .shopping .table .price .saved{
+	display: inline-block;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+	color: #363636;
+	text-decoration: line-through;
+}
+.shopping .table .price .saved{
+	color: #41a62a;
+	text-decoration: none;
+}
+.shopping .remove_button{
+margin-left: 1078px;
+}
+.shopping .calculate {
+
+	width:540px;
+	float: left;
+	display: inline-block;
+	margin-right: 20px;
+
+}
+.shopping .calculate .wraper{
+	background-color: #fff;
+	border: 1px solid #cccccc;
+	width: 540px;
+	padding-top: 20px;
+	padding-left: 60px;
+	height: 220px;
+}
+.shopping .totals{
+	
+	display: inline-block;
+	float: left;
+
+
+}
+.shopping .totals .wraper{ 
+	background-color: #fff;
+	overflow: hidden;
+	padding-left: 50px;
+	padding-top: 25px; 
+	
+
+}
+.shopping .shopping_cart{
+	font-size: 22px;
+	font-weight: 600;
+	font-family: 'Titillium Web', sans-serif;
+	color: #af0917;
+	text-align: center;
+	text-transform: uppercase;
+	margin-bottom: 50px;
+}
+
+.shopping .fees{
+	margin-top: 50px;
+}
+
+.shopping .fees header{
+	font-size: 18px;
+	margin-bottom: 10px;
+	font-weight: 600;
+	font-family: 'Titillium Web', sans-serif;
+	color: #af0917;
+	text-align: center;
+	
+}
+
+
+select {
+    padding:0 0 0 30px;
+    margin: 0;
+  width:420px;
+  height:45px;
+  
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+   	border: 1px solid #cccccc;
+    background: #fff;
+    color:#363636;
+    font-size: 14px;
+    font-weight: 400;
+	font-family: 'Titillium Web', sans-serif;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+
+/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select {padding-right:18px}
+}
+
+.calculate label, .register .formu label {position:relative}
+.register .formu label:after {
+    content: url('../img/globe.png');
+    right:15px; top:15px;
+    padding:0 0 2px;
+   
+    position:absolute;
+    pointer-events:none;
+}
+.calculate label:before,.register .formu label:before {
+    content:;
+    right:6px; top:0px;
+    width:20px; height:20px;
+    background:#f8f8f8;
+    position:absolute;
+    pointer-events:none;
+    display:block;
+}
+
+ input[type='text'] {
+    background-image: url('../img/pencil.png');
+    background-position: 170px 15px;
+    background-repeat: no-repeat;
+    height: 45px;
+    border:1px solid #cccccc;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 400;
+	font-family: 'Titillium Web', sans-serif;
+	padding-left: 30px;
+	width: 200px;
+	margin-top: 20px;
+	margin-right: 20px;
+}
+input[type='password'] {
+    background-image: url('../img/pencil.png');
+    background-position: 170px 15px;
+    background-repeat: no-repeat;
+    height: 45px;
+    border:1px solid #cccccc;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 400;
+	font-family: 'Titillium Web', sans-serif;
+	padding-left: 30px;
+	width: 200px;
+	margin-top: 20px;
+	margin-right: 20px;
+	
+}
+input[type='email'] {
+    background-image: url('../img/pencil.png');
+    background-position: 170px 15px;
+    background-repeat: no-repeat;
+    height: 45px;
+    border:1px solid #cccccc;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 400;
+	font-family: 'Titillium Web', sans-serif;
+	padding-left: 30px;
+	width: 200px;
+	margin-top: 20px;
+	margin-right: 20px;
+}
+
+.shopping .update{
+	position: absolute;
+	left: 376px;
+	margin-top: 20px;
+}
+.shipping .totals table{
+	width: 520px;
+	border:1px;
+}
+
+.shopping .totals .subtotal{
+	font-size: 18px;
+    font-weight: 600;
+	font-family: 'Titillium Web', sans-serif;
+	color: #363636;
+
+}
+.shopping .totals  .price{
+	font-weight: 600;
+	font-family: 'Titillium Web', sans-serif;
+	color: #169a03;
+	text-align: right;
+	font-size: 24px;
+	top: -8px;
+	right: 50px;
+	
+}
+.shopping .totals  .ship{
+	font-weight: 400;
+	font-family: 'Titillium Web', sans-serif;
+	color: #363636;
+	text-align: right;
+	font-size: 18px;
+	right: 50px;
+	
+}
+.shopping .bar{
+	background-color: #d7d7d7;
+	height: 1px;
+	width: 120%;
+	margin-left: -50px;
+	margin-top: 22px;
+}
+.shopping .totals .order{
+	font-weight: 400;
+	font-family: 'Titillium Web', sans-serif;
+	color: #41a62a;
+	font-size: 18px;
+	margin-top: 10px;
+}
+.shopping .totals  .order_price{
+	font-weight: 600;
+	font-family: 'Titillium Web', sans-serif;
+	color: #41a62a;
+	text-align: right;
+	font-size: 30px;
+	right: 50px;
+
+}
+.shopping .totals .buttons {
+	padding-right: 50px;
+}
+.shopping .totals .buttons img{
+	float: right;
+	margin-left: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+
+}
+
+.login{
+	font-family: 'Titillium Web', sans-serif;
+
+}
+.login header{
+	color: #af0917;
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight: 600;
+	margin-left: 15px;
+}
+
+.login .login_choice{
+	background-color: #fff;
+	width: 540px;
+	padding-left: 60px;
+	padding-top: 15px;
+}
+.login .login_social {
+	margin-top: 17px;
+	text-align: center;
+}
+.login .login_button{
+	margin-top: 20px;
+}
+.login .check{
+	font-size: 14px;
+	font-weight: 400px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.login a{
+	color: #41a62a;
+	text-decoration: none;
+
+}
+.login .register {
+	margin-top: 80px;
+}
+.login .register header{
+	margin-bottom: 10px;
+	margin-left: 3px;
+}
+.login .register .col-sm-10{
+	margin-bottom: 20px;
+}
+.register .formu{
+}
+.register input{
+	margin-left: -2px;
+}
+.register .large{
+	width: 420px;
+	background-position: 390px 15px;
+	margin-left: 0px;
+}
+.register select{
+	margin-top: 20px;
+}
+.register .formu label:after{
+	top:35px;
+}
+.register{
+	font-family: 'Titillium Web', sans-serif;
+
+}
+.register .formu header{
+	color: #af0917;
+	margin-bottom: -5px;
+	font-size: 18px;
+	font-weight: 600;
+	margin-left: 15px;
+}
+.register .obligatory{
+	margin-top: 30px;
+	padding-right: 120px;
+	color: #c31c20;
+}
+.register .obligatory img{
+	float: right;
+	margin-top: -10px;
+
+}

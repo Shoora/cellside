@@ -1,0 +1,23 @@
+<modification>
+	<id>Bossthemes - catalog - controller - product - manufacturer</id>
+	<version>1.5.x</version>
+	<vqmver>2.1.7</vqmver>
+	<author>bossthemes</author>
+	<file name="catalog/controller/product/manufacturer.php">
+		<operation>
+			<search position="replace"><![CDATA[
+				$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+			]]></search>
+			<add><![CDATA[
+				$module_label = $this->config->get('boss_label_products_setting');
+				/*$this->load->model('bosslabelproducts/bossimage');
+				$checklabel = $this->model_bosslabelproducts_bossimage->checkLabel($result['product_id']);*/
+				if($module_label['manufacturer'] == 1 && $checklabel == 1){
+					$image = $this->model_bosslabelproducts_bossimage->label_resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'), $result['product_id']);					
+				}else{
+					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+				}
+			]]></add>
+		</operation>
+	</file>
+</modification>

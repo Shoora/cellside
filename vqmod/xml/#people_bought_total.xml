@@ -1,0 +1,36 @@
+<modification>
+	<id><![CDATA[number of product people has bought_default_theme]]></id>
+	<version><![CDATA[1.03]]></version>
+	<vqmver><![CDATA[]]></vqmver>
+	<author><![CDATA[LizardDesign]]></author>
+
+   <file name="catalog/model/catalog/product.php">
+		<operation>
+          <search position="before"><![CDATA[public function getTotalProductSpecials() {]]></search>
+			<add><![CDATA[public function getTotalOrderedProducts($product_id){
+	    $sql = "SELECT COUNT(op.product_id) AS total FROM " . DB_PREFIX . "order_product op";
+		$sql .= " WHERE op.product_id = '" . (int)$product_id . "'";
+		$query = $this->db->query($sql);	
+		return $query->row['total'];
+	}
+			]]></add>			
+       </operation>
+   </file> 
+   <file name="catalog/controller/product/product.php">
+		<operation>
+          <search position="after"><![CDATA[$this->load->model('catalog/product');]]></search>
+			<add><![CDATA[
+			$product_total = $this->model_catalog_product->getTotalOrderedProducts($product_id);
+		    $this->data['product_total'] = $product_total;
+			]]></add>			
+       </operation>
+   </file> 
+   <file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation>
+          <search position="before"><![CDATA[<span><?php echo $text_stock; ?></span> <?php echo $stock; ?></div>]]></search>
+			<add><![CDATA[<span style="font-weight:bold;color:red;"><?php echo $product_total; ?> People has bought this item!</span><br/>]]></add>			
+       </operation>
+   </file> 
+   
+   
+</modification>

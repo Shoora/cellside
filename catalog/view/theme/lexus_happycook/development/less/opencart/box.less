@@ -1,0 +1,197 @@
+/******************************************************
+ * @package Pav Opencart Theme Framework for Opencart 1.5.x
+ * @version 1.1
+ * @author http://www.pavothemes.com
+ * @copyright	Copyright (C) Augus 2013 PavoThemes.com <@emai:pavothemes@gmail.com>.All rights reserved.
+ * @license		GNU General Public License version 2
+*******************************************************/
+// Center-align a block level element
+ 
+/* box */
+.box {
+    margin-bottom: @box-module-margin-bottom;
+    padding: @box-module-padding;
+    .box-heading {
+        border-bottom: 1px solid @box-module-heading-border;
+        background: @box-module-heading-bg;
+        padding:@box-module-heading-padding;
+        font-family:@box-module-heading-font ;
+        font-size: @box-module-heading-fontsize;
+        line-height: 20px;
+        color: @box-module-heading-color;
+        text-transform: uppercase;
+        margin-bottom: @box-module-heading-margin;
+        span:before {
+            position: absolute;
+            bottom: -2px;
+            left: 0; 
+            content: "";
+            width: 20%;
+        }
+        span{
+            color: @gray-dark; 
+            span {
+                color: @box-module-text-light;
+                border-bottom:2px solid @theme-color-default;
+                padding-bottom: 6px;
+            }
+        }
+    }
+    .box-content {
+        background: @box-module-content-bg;
+        /* .border-exclude-top( 1px, solid , @box-module-border-color ); */
+        padding: @box-module-content-padding;
+    }
+    /* box styles */
+    &.highlighted,
+    &.orange,
+    &.dark,
+    &.green,
+    &.maroon,
+    &.blue,
+    &.gray,
+    &.pink,
+    &.red {
+        .box-heading {
+            border-bottom:1px dashed @white;
+            color:@white;
+        }
+        
+       
+    }
+
+    &.orange {
+        .box-heading{
+            background:lighten(@orange, 15%);
+        }
+        .box-content{ 
+            background:@orange;
+        } 
+        li{
+            border-top-color: lighten(@orange, 15%);
+        }
+        a{
+         color:#B66B00;
+             
+        &:hover{
+               color:#6F4100;
+               }
+        }
+    }
+    
+    &.dark {
+        background:@black;
+        a{
+         color:#777;
+             
+        &:hover{
+               color:#888;
+               }
+        }
+    }
+    &.green {
+        background:@green;
+        a{
+         color:#63E063;
+             
+        &:hover{
+               color:#43F043;
+               }
+        }
+    }
+    &.maroon {
+        background:#F35D34;
+        a{
+         color:#B4300D;
+             
+        &:hover{
+               color:#C93F19;
+               }
+        }
+    }
+    &.blue {
+        background:@blue;
+        a{
+         color:#47C9FF;
+             
+        &:hover{
+               color:#0073A3;
+               }
+        }
+    }
+    &.gray {
+        background:@gray;
+        a{
+         color:#999;
+             
+        &:hover{
+               color:#777;
+               }
+        }
+    }
+    &.pink {
+        background:@pink;
+        a{
+         color:#FF5C8F;
+             
+        &:hover{
+            color:#FA2E6E;
+           }
+        }
+    }
+    &.red {
+        background:@red;
+        a{
+         color:#EE4538;
+             
+        &:hover{
+               color:#DA3F33;
+               }
+        }
+    }
+
+    ul {
+        padding-left: 15px;
+        > li {
+            padding: 8px 0 8px;
+            > a {
+                font-size: @font-size-base + 2;
+                text-decoration: none;
+                &:hover {
+                    color: @theme-color-hover;
+                }
+            }
+            ul {
+                display: none;
+                & > li {
+                    padding-top: 10px;
+                    & > a {
+                        text-decoration: none;
+                        display: block;
+                        &:hover {
+                            color: @theme-color-hover;
+                        }
+                    }
+                }
+            }
+            a {
+                &:hover,&.active{
+                    .badge {
+                        background-color: transparent;
+                        color: @theme-color-hover;
+                        transition: color 0.4s ease 0s;
+                    }
+                }
+            }
+            a.active {
+                color: @theme-color-hover;
+                + {
+                    ul {
+                        display: block;
+                    }
+                }
+            }
+
+        }
+    }
+}

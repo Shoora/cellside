@@ -1,0 +1,1 @@
+a:1:{i:0;a:5:{s:8:"group_id";s:1:"4";s:9:"layout_id";s:1:"1";s:8:"position";s:9:"slideshow";s:6:"status";s:1:"1";s:10:"sort_order";i:1;}}

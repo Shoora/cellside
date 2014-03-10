@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id><![CDATA[Increase Page Speed - FirePHP Statistics Module]]></id>
+	<version><![CDATA[3.3]]></version>
+	<vqmver><![CDATA[2.1]]></vqmver>
+	<author><![CDATA[<a onclick="window.open('http://www.opencart.com/index.php?route=extension/extension&filter_username=Tcalp');" title="View all OpenCart Mods by Tcalp">Jeff Hunter aka Tcalp</a>]]></author>
+	<file name="system/startup.php">
+		<operation error="skip"> <!-- ADD NEW SYSTEM LIBRARIES -->
+			<search position="after"><![CDATA[require_once(DIR_SYSTEM . 'library/db.php');]]></search>
+			<add><![CDATA[require_once(DIR_SYSTEM . "library/fb.php");]]></add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/*/template/common/footer.tpl">
+		<operation>
+			<search position="before"><![CDATA[</body>]]></search>
+			<add><![CDATA[
+			<?php
+			$time = microtime();
+			$time = explode(' ', $time);
+			$time = $time[1] + $time[0];
+			$finish = $time;
+			$start = explode(' ', $GLOBALS['start']);
+			$start = $start[1] + $start[0];
+			$GLOBALS['total_time'] = round(($finish - $start), 4);
+			FB::log('INCREASE PAGE SPEED V3.2 BY HUNTER BUSINESS MANAGEMENT');
+			FB::info('Total Database Queries : ' . $this->db->total_queries);
+			FB::info('Time Spent Database Querying : ' . round($this->db->total_query_time,4) . ' seconds.');
+			if ($this->db->total_slow_queries) {
+				FB::error('Slow Database Queries : ' . round($this->db->total_slow_queries, 4));
+			}
+			FB::info('Page Generation Time : ' . $GLOBALS['total_time'] . ' seconds.');
+			//FB::log($this->db->query_data);
+			//FB::log('Plain Message') ::info('Info Message') ::warn('Warn Message') ::error('Error Message') ::group('Collapsed and Colored Group', array('Collapsed' => true, 'Color' => '#FF00FF'));
+			?>
+			]]></add>
+		</operation>
+	</file>
+	<file name="system/startup.php">
+		<operation>
+			<search position="after"><![CDATA[error_reporting(E_ALL);]]></search>
+			<add><![CDATA[
+			$time = microtime();
+			$GLOBALS['start'] = $time;
+			]]></add>
+		</operation>
+	</file>
+	<file name="system/library/db.php">
+		<operation>
+			<search position="after"><![CDATA[private $driver]]></search>
+			<add><![CDATA[
+			public $total_queries;
+			public $total_query_time;
+			public $total_slow_queries;
+			public $query_data;
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$this->driver = new $driver]]></search>
+			<add><![CDATA[$this->total_query_time = 0; $this->total_queries = 0; $this->total_slow_queries = 0; $this->query_data = array();]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[public function query]]></search>
+			<add><![CDATA[$this->total_queries++;]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[return $this->driver->query($sql);]]></search>
+			<add><![CDATA[
+			// Log Time
+			$trace = debug_backtrace();
+			$filename = (isset($trace[0]['file'])) ? $trace[0]['file'] : '---';
+			$query_time = (time() + microtime());
+			$result = $this->driver->query($sql);
+			$exec_time = (time() + microtime()) - $query_time;
+			$this->total_query_time = $this->total_query_time + $exec_time;
+			if ($exec_time > 0.1) {
+				$this->total_slow_queries = $this->total_slow_queries + 1;
+				$this->query_data[] = array('filename' => $filename, 'exec_time' => $exec_time, 'sql' => $sql);
+			}
+
+			return $result;
+			]]></add>
+		</operation>
+	</file>
+</modification>

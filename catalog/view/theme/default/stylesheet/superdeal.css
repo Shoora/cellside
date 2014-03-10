@@ -1,0 +1,464 @@
+div .dealbox-heading {
+	padding: 8px 10px 7px 0px;
+	font-family: 'Dosis', sans-serif, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	line-height: 142x;
+    color: #000;
+    font: 26px 'Dosis';
+    text-transform: uppercase;
+}
+div.superdealcontent {
+	margin-bottom:0;
+}
+.list div.superdealcontent{
+ margin-bottom:20px;
+}
+div.superdealcontent h1 {
+	margin-bottom:10px;
+}
+
+
+
+/* box */
+div.dealbox {
+
+	margin-bottom: 20px;
+}
+
+
+
+
+div.superdealcontent #nav {
+    bottom: 20px;
+	right: 20px;
+    position: absolute;
+    z-index: 100;
+}
+div.superdealcontent #nav a {
+    background:  #333333;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    height: 13px;
+    margin-left: 5px;
+    padding: 4px 8px;
+    text-align: left;
+    text-decoration: none;
+    width: 5px;
+	border:solid 1px #191919;
+	border-radius: 3px;	
+}
+div.superdealcontent #nav a.activeSlide {
+	background:#000;
+}
+div.superdeal {
+    width: 100%;
+    margin-bottom:20px;
+    position: relative;
+	float:left;
+}
+div.superdeal ul.panel {
+	margin:0;
+	padding:0px;
+	z-index:100;
+	float:right;
+	margin-right: 20px;
+}
+div.superdeal ul.panel li {
+	list-style: none;
+	padding: 0;
+}
+div.superdeal .boxlist {
+    padding: 10px;
+    border: solid 1px #d5d5d5;
+    background: #fff;
+    border-radius: 4px;
+	float:left;
+}
+div.superdeal .list .boxlist {
+	margin-bottom: 10px;
+	text-shadow: 1px 1px 4px#000;
+} 
+div.superdeal .boxlist .superdealcontent{
+    float:left;
+    text-shadow: 1px 1px 4px#000;
+}
+div.superdeal .boxlist .image {
+    padding: 10px;
+	float:left;
+	margin-right: 15px;
+	text-shadow: 1px 1px 4px#000;
+}
+div.superdeal .boxlist .name  a{
+     font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+div.superdeal .description{
+    width: 57%;
+    float:right;
+}
+div.superdeal .save {
+    /*width: 12em;*/
+    color: #fff;
+    font-weight: bold;
+    padding: 15px;
+	position:relative;
+    text-align: center;
+    text-shadow: 1px 1px 4px#000;
+}
+
+
+
+div.superdeal .fullprice {
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+	position:relative;
+	text-shadow: 1px 1px 4px#000;
+
+}
+
+div.superdeal .yousave {
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+	position:relative;
+	text-shadow: 1px 1px 4px#000;
+
+}
+div.superdeal .quantity {
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+	position:relative;
+	text-shadow: 1px 1px 4px#000;
+
+}
+.yousave .yousavetext {
+    font-size: 11px;
+    font-weight: bold;
+    position: absolute;
+    right: 5px;
+    text-transform: uppercase;
+    top: 0px; 
+    text-shadow: 1px 1px 4px#000;
+
+}
+.fullprice .price-old {
+    font-size: 11px;
+    text-decoration: line-through;
+    text-shadow: 1px 1px 4px#000;
+
+}
+
+.fullprice .textprice{
+    font-size: 11px;
+    font-weight: bold;
+    position: absolute;
+    right: 5px;
+    text-transform: uppercase;
+    top: 0px;
+    text-shadow: 1px 1px 4px#000;
+}
+.fullprice .price-old {
+    position: absolute;
+    right: 40px;
+    top: 0px;  
+    font-size: 11px;
+    text-shadow: 1px 1px 4px#000;
+}
+.pricenew{
+    padding-top: 5px;
+    text-shadow: 1px 1px 4px#000;
+}
+div.superdeal div.off {
+    font-size: 11px;
+    font-weight: bold;
+    position: absolute;
+    right: 5px;
+    text-transform: uppercase;
+    top: 0px;
+    text-shadow: 1px 1px 4px#000;
+}
+div.superdeal div.cart {
+ 	float: left;
+    margin-left: -495px;
+    padding-top: 91px;
+ 
+}
+div.buynowcontent {
+	padding-top:15px;
+	text-shadow: 1px 1px 4px#000;
+
+}
+/* jQuery Countdown styles 1.5.11. */
+.hasCountdown {
+	border: 1px solid #ccc; 
+	background-color: #000	;
+	padding: 7px;
+	text-shadow: 1px 1px 1px#000;
+}
+.countdown_rtl {
+	direction: rtl;
+}
+.countdown_holding span {
+	background-color: blue;
+	text-shadow: 1px 1px 4px#000;
+}
+.countdown_row {
+	clear: both;
+	width: 100%;
+	padding: 0px 2px;
+	text-align: center;
+	text-shadow: 1px 1px 4px#000;
+	color:white;
+	font-size:15px;
+}
+.countdown_show1 .countdown_section {
+	width: 98%;
+}
+.countdown_show2 .countdown_section {
+	width: 48%;
+}
+.countdown_show3 .countdown_section {
+	width: 32.5%;
+}
+.countdown_show4 .countdown_section {
+	width: 24.5%;
+}
+.countdown_show5 .countdown_section {
+	width: 19.5%;
+}
+.countdown_show6 .countdown_section {
+	width: 16.25%;
+}
+.countdown_show7 .countdown_section {
+	width: 14%;
+}
+.countdown_section {
+	display: block;
+	float: left;
+	font-size: 80%;
+	text-align: center;
+}
+.countdown_amount {
+	font-size: 200%;
+	color: white;
+}
+.countdown_descr {
+	display: block;
+	width: 100%;
+}
+.countdown_dashboard {
+    text-align: center;
+    width: 225px;
+	text-shadow: 0 1px #fff;
+	float:left;
+	margin:0 10px 10px 0;
+}
+
+.dash {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-left: 10px;
+    position: relative;
+	padding: 5px;
+	background: #eeeeee;
+	border-radius:5px;
+	border-bottom:solid 2px #d5d5d5;
+}
+
+.dash .digit {
+    font-size: 30px;
+    font-weight: bold;
+    float: left;
+    width: 20px;
+    text-align: center;
+    position: relative;
+}
+.dash .digit .bottom{
+	margin-left: 5px;
+}
+
+.dash_title {
+    display: block;
+    bottom: 0px;
+    right: 10px;
+    text-transform: lowercase;
+    font-weight: bold;
+    font-size: 11px;
+    color:white;
+}
+.buynow.small  {
+    font-size:15px;
+    font-weight: bold;
+	min-width: 70px;
+	text-shadow: 1px 1px 4px#000;
+}
+.buynow.medium  {
+    font-size:22px;
+    font-weight: bold;
+	min-width: 40px;
+	text-shadow: 1px 1px 4px#000;
+}
+.buynow.large  {
+    font-size:26px;
+    font-weight: bold;
+	min-width: 90px;
+	text-shadow: 1px 1px 4px#000;
+}
+.buynow, .buynow span {
+    display: inline-block;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow {
+    white-space: nowrap;
+    line-height:1em;
+    outline: none;
+    overflow: visible; /* removes extra side padding in IE */
+    border: 1px solid #999;/* IE */
+    border: rgba(0, 0, 0, .2) 1px solid;/* Saf4+, Chrome, FF3.6 */
+    border-bottom:rgba(0, 0, 0, .4) 1px solid;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    text-shadow: 1px 1px 4px#000;
+background: -moz-linear-gradient(
+        center top,
+        rgba(255, 255, 255, .1) 0%,
+        rgba(0, 0, 0, .1) 100%
+    );/* FF3.6 */
+background: -webkit-gradient(
+        linear,
+        center bottom,
+        center top,
+        from(rgba(0, 0, 0, .1)),
+        to(rgba(255, 255, 255, .1))
+    );/* Saf4+, Chrome */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#19FFFFFF', EndColorStr='#19000000'); /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#19FFFFFF', EndColorStr='#19000000')"; /* IE8 */
+    -moz-user-select: none;
+    -webkit-user-select:none;
+    -khtml-user-select: none;
+    user-select: none;
+    margin-bottom:10px;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.full, .buynow.full span {
+    display: block;
+}
+.buynow:hover, .buynow.hover {
+    background: -moz-linear-gradient(
+        center top,
+        rgba(255, 255, 255, .2) 0%,
+        rgba(255, 255, 255, .1) 100%
+    );/* FF3.6 */
+    background: -webkit-gradient(
+        linear,
+        center bottom,
+        center top,
+        from(rgba(255, 255, 255, .1)),
+        to(rgba(255, 255, 255, .2))
+    );/* Saf4+, Chrome */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#33FFFFFF', EndColorStr='#19FFFFFF'); /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#33FFFFFF', EndColorStr='#19FFFFFF')"; /* IE8 */
+}
+.buynow:active, .buynow.active {
+    top:1px;
+}
+.buynow span {
+    position: relative;
+    color:#fff;
+text-shadow: 1px 1px 4px#000;
+    border-top: rgba(255, 255, 255, .2) 1px solid;
+    padding:15px 30px;
+    line-height:1em;
+    text-decoration:none;
+    text-align:center;
+    white-space: nowrap;
+    
+}
+.buynow.black {
+    background-color: #333333;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.gray {
+    background-color: #666666;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.white {
+    background-color: #FFFFFF;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.white span{
+    color: #666666;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.red {
+    background-color: #e62727;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.orange {
+    background-color: #ff5c00;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.magenta {
+    background-color: #A9014B;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.yellow {
+    background-color: #ffb515;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.blue {
+    background-color: #00ADEE;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.pink {
+    background-color: #e22092;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.green {
+    background-color: #91bd09;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.rosy {
+    background-color: #F16C7C;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.brown {
+    background-color: #804000;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.purple {
+    background-color: #800080;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.cyan {
+    background-color: #46C7C7;
+    text-shadow: 1px 1px 4px#000;
+}
+.buynow.gold {
+    background-color: #D4A017;
+    text-shadow: 1px 1px 4px#000;
+}
+
+#loading {
+    text-align: center;
+    margin: 10px;
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 60px;
+    text-shadow: 1px 1px 4px#000;
+}

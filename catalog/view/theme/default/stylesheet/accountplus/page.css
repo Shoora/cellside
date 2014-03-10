@@ -1,0 +1,176 @@
+#shorticons {
+    clear:both;
+    overflow:hidden;
+    font-family: Tahoma, sans-serif;
+}
+
+.shorticons-box {
+    
+    display:inline-block;
+    width:100px;
+    height:100px;
+    
+    background:#e6e2df;
+    color:#707070;
+    -webkit-transition:all 0.2s ease;
+    -moz-transition:all 0.3s ease;
+    background-position:center 45%;
+    background-repeat:no-repeat;
+    text-decoration: none;
+    float:left;
+	margin:5px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.6);
+    -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.6);
+    box-shadow: 0px 0px 5px rgba(0,0,0,.6);
+}
+
+.shorticons-box h5 {
+    font: bold 11px Tahoma,Sans-Serif !important;
+    text-transform:uppercase;
+    padding-top:55px;
+	text-align:center;
+    width: 100px;
+}
+
+.shorticons-box:hover h5 {
+    text-shadow:0 0 4px rgba(0,0,0,0.4);
+    color:white;
+}
+
+.shorticons-box:hover p {
+    color:white;
+}
+.shorticons-box p {
+    font-size:10px;
+    width:100px;
+	line-height:1.25;
+	margin-bottom:0;
+	
+}
+
+.shorticons-box:hover {
+    background-position:center 35%;
+}
+
+.shorticons-box a{
+	top: 50px;
+	display:block;
+	overflow:hidden;
+	background:#f8e4e5;
+	text-align:center;
+	height:100%;
+	width:100%;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+#s-account {
+    background-image:url(image/data/account/account.png);
+    
+}
+#s-account:hover {
+    background-color:#37597a;
+     
+}
+
+#s-password {
+    background-image:url(image/data/account/password.png);
+    
+}
+#s-password:hover {
+    background-color:#ff395e;
+     
+}
+
+#s-address {
+    background-image:url(image/data/account/address.png);
+     
+}
+#s-address:hover {
+    background-color:#ff8400;
+     
+}
+
+#s-wishlist {
+    background-image:url(image/data/account/wishlist.png);
+     
+}
+#s-wishlist:hover {
+    background-color:#7fcaad;
+     
+}
+
+#s-logout {
+    background-image:url(image/data/account/logout.png);
+     
+}
+#s-logout:hover {
+    background-color:#B161BA;
+     
+}
+
+#s-orders {
+    background-image:url(image/data/account/orders.png);
+     
+}
+#s-orders:hover {
+    background-color:#DEF73B;
+     
+}
+
+#s-downloads {
+    background-image:url(image/data/account/downloads.png);
+     
+}
+#s-downloads:hover {
+    background-color:#84F3C8;
+     
+}
+
+#s-rewards {
+    background-image:url(image/data/account/rewards.png);
+     
+}
+#s-rewards:hover {
+    background-color:#6FD9F4;
+     
+}
+
+
+#s-returns {
+    background-image:url(image/data/account/returns.png);
+     
+}
+#s-returns:hover {
+    background-color:#E34848;
+     
+}
+
+#s-returns:hover {
+    background-color:#E34848;
+     
+}
+
+#s-transaction {
+    background-image:url(image/data/account/transaction.png);
+     
+}
+#s-transaction:hover {
+    background-color:#17E1DE;
+     
+}
+
+#s-newsletter {
+    background-image:url(image/data/account/newsletter.png);
+     
+}
+#s-newsletter:hover {
+    background-color:#57B0EC;
+     
+}
+                
+                

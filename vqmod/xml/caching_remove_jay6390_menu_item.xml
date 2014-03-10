@@ -1,0 +1,12 @@
+<modification>
+	<id>Increase Page Speed For Open Cart - Removes Extra Caching Menu Item From Page Cache by JAY6390</id>
+	<version>2.0</version>
+	<vqmver>2.1</vqmver>
+	<author>Jeff Hunter aka Tcalp</author>
+	<file name="admin/view/template/common/header.tpl">
+		<operation error="skip">
+			<search position="replace"><![CDATA[<li><a href="<?php echo $clear_cache; ?>" class="top"><?php echo $text_clear_cache; ?></a></li>]]></search>
+			<add><![CDATA[]]></add>
+		</operation>
+	</file>
+</modification>

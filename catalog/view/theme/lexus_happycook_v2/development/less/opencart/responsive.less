@@ -1,0 +1,150 @@
+/******************************************************
+ * @package Pav Opencart Theme Framework for Opencart 1.5.x
+ * @version 1.1
+ * @author http://www.pavothemes.com
+ * @copyright   Copyright (C) Augus 2013 PavoThemes.com <@emai:pavothemes@gmail.com>.All rights reserved.
+ * @license     GNU General Public License version 2
+*******************************************************/
+
+
+@media only screen and (min-width: 990px){
+     .pavcol-sm-5 {
+         float: left;
+         min-height: 1px;
+         position: relative;
+         width: 20%;
+     }
+     .pavcol-sm-1 {
+        width: 100%;
+     }
+}
+@media only screen and (max-width: 768px) {
+    #logo {
+        text-align: center; 
+    }
+    .navbar-default .navbar-toggle{
+        display: block;
+        float: none;
+        margin-left: 0;
+    }
+    .navbar-collapse {
+        display:  none !important;
+    }
+    .box-media .media {
+        margin-bottom: 5px;
+        min-height: 120px;
+        img {
+            min-height: 120px;
+            max-height: 160px;
+        }
+    }
+    .wishlist-info td,
+    .wishlist-info th,      
+    table.compare-info td, 
+    table.compare-info th,
+    table.pav-checkout-product td,
+    table.pav-checkout-product th,
+    table.pav-shop-cart td,
+    table.pav-shop-cart th{
+        border-right: 0 none;
+        display: block !important;
+        float: none !important;
+        text-align: left !important;
+        width: auto !important;
+    }
+    .wishlist-info tr td:before,
+    table.pav-shop-cart tr td:before{
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-align: left;
+        white-space: nowrap;
+        width: 50%;
+    }
+    .wishlist-info tr td,
+    table.pav-shop-cart tr td {
+        text-align:right;
+        display: block;
+        min-height: 20px;
+        border-left: none;
+        background: none;
+    }
+    .wishlist-info thead,
+    table.pav-shop-cart thead {
+         display:  none;
+    }
+    #breadcrumb {
+        min-height: 35px;
+    }
+    #breadcrumb .breadcrumb {
+        padding: 10px 0;
+    }
+    #columns #group-content {
+            margin-top: 15px;
+    }
+    .navbar {
+        min-height: 7px !important;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+    #logo {
+        text-align: center; 
+    }
+    .navbar-default .navbar-toggle{
+        display: none;
+    }
+    #pav-mainnav .navbar {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .box-media .media {
+        margin-bottom: 5px;
+        max-height: 200px;
+        min-height: 160px;
+        img {
+            max-height: 200px;
+        }
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+    #pav-mainnav .navbar ul.nav > li > a {
+        padding: 40px 10px 5px;
+    }
+    .box-media .media {
+        min-height: 160px;
+        img {
+            min-height: 160px;
+        }
+    }
+}
+
+@media only screen and (max-width: 360px){
+    .welcome {
+        border: 0;
+    }
+    #search {
+        width: 155px;
+        input {
+                &:focus, &:active {
+                width: 155px;
+            }
+        }
+    }
+    .newest .product-block:hover {
+        .compare-wishlish .wishlist > a {
+            left: 50%;
+        }
+        .compare-wishlish .compare > a {
+            right: 50%;
+        }
+    }
+    .discount .product-block .compare-wishlish {
+        top: 205%;
+    }
+}
+@media only screen and (max-width: 320px){
+    .discount .product-block .compare-wishlish {
+        top: 221%;
+    }
+}

@@ -1,0 +1,74 @@
+<modification>
+
+	<id>seopack</id>
+	<version>1.0.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>ovife21</author>
+	
+		
+	<file name="admin/language/*/common/header.php">
+		<operation>
+			<search position="before"><![CDATA[$_['text_product']]]></search>
+			<add><![CDATA[
+			$_['text_seopack']                       = 'SEO Pack';
+			$_['text_seoimages']                     = 'SEO Images';
+			$_['text_autolinks']                     = 'Auto Links';
+			$_['text_seoeditor']                     = 'Advanced SEO Editor';
+			$_['text_seoreport']                     = 'SEO Report';
+			]]></add>
+		</operation>		
+	</file>	
+	
+	<file name="admin/view/template/common/header.tpl">
+		<operation>
+			<search position="after"><![CDATA[<li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>]]></search>
+			<add><![CDATA[<li><a class="parent">SEO</a>
+			<ul>			
+			<li><a href="<?php echo $seopack; ?>"><?php echo $text_seopack; ?></a></li>
+			<li><a href="<?php echo $seoimages; ?>"><?php echo $text_seoimages; ?></a></li>
+			<li>
+				<?php if (file_exists(DIR_APPLICATION.'controller/catalog/autolinks.php')) { ?>
+				<a href="<?php echo $autolinks; ?>"><?php echo $text_autolinks; ?></a>
+				<?php } else { ?>
+				<a onclick="alert('Auto Internal Links is not installed!\nYou can purchase Auto Internal Links from\n http://www.opencart.com/index.php?route=extension/extension/info&extension_id=5650\nor you can purchase the whole Opencart SEO Pack PRO:\n http://www.opencart.com/index.php?route=extension/extension/info&extension_id=6182');" class="button"><?php echo $text_autolinks; ?></a>
+				<?php } ?>
+			</li>
+			<li>
+				<?php if (file_exists(DIR_APPLICATION.'controller/catalog/seoeditor.php')) { ?>
+				<a href="<?php echo $seoeditor; ?>"><?php echo $text_seoeditor; ?></a>
+				<?php } else { ?>
+				<a onclick="alert('Advanced SEO Editor is not installed!\nYou can purchase Advanced SEO Editor from\n http://www.opencart.com/index.php?route=extension/extension/info&extension_id=6183\nor you can purchase the whole Opencart SEO Pack PRO:\n http://www.opencart.com/index.php?route=extension/extension/info&extension_id=6182');" class="button"><?php echo $text_seoeditor; ?></a>
+				<?php } ?>
+			</li>
+			<li><a href="<?php echo $seoreport; ?>"><?php echo $text_seoreport; ?></a></li>
+			</ul>
+			</li>]]></add>
+		</operation>		
+	</file>	
+	
+	<file name="admin/controller/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[$this->data['text_product'] = $this->language->get('text_product');]]></search>
+			<add><![CDATA[
+			$this->data['text_seopack'] = $this->language->get('text_seopack');
+			$this->data['text_seoimages'] = $this->language->get('text_seoimages');
+			$this->data['text_seoeditor'] = $this->language->get('text_seoeditor');
+			$this->data['text_seoreport'] = $this->language->get('text_seoreport');
+			$this->data['text_autolinks'] = $this->language->get('text_autolinks');
+			]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$this->data['product'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'], 'SSL');]]></search>
+			<add><![CDATA[
+			$this->data['seopack'] = $this->url->link('catalog/seopack', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['seoimages'] = $this->url->link('catalog/seoimages', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['seoeditor'] = $this->url->link('catalog/seoeditor', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['seoreport'] = $this->url->link('catalog/seoreport', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['autolinks'] = $this->url->link('catalog/autolinks', 'token=' . $this->session->data['token'], 'SSL');
+			]]></add>
+		</operation>		
+	</file>	
+
+	
+</modification>
+

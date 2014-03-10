@@ -1,0 +1,14 @@
+<modification>
+
+	<id>Product SEO Plus Product Title + Category</id>
+	<version>1.0.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>ovife21</author>
+	
+	<file name="catalog/controller/product/product.php">
+		<operation>
+			<search position="replace"><![CDATA[setTitle($product_info['name'])]]></search>
+			<add><![CDATA[setTitle(((isset($category_info['name']))?($category_info['name'].' : '):'').$product_info['name'])]]></add>
+		</operation>		
+	</file>
+</modification>

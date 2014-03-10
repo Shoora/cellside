@@ -1,0 +1,13 @@
+.countTable {
+        border:0px solid #ccc;
+        border-collapse:collapse;
+    	}
+th {   
+        font-family: Ariel;
+		color:#FFFFFF;
+		font:20px Lucida Grabde;
+		background-color: #000;
+    	background-repeat: repeat-x;
+		padding:5px;
+	}
+	br{}

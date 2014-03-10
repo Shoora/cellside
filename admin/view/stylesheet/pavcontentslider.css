@@ -1,0 +1,95 @@
+.caption-layer{
+	margin: 10px 0;
+	padding: 20px 0
+}
+.caption-layer label{
+	display: block;
+	margin-top:10px;
+	margin-bottom: 6px;
+	font-size: 11px;
+	font-weight: bold;
+}
+.caption-layer .slide-changer{
+	margin-top: 10px;
+}
+.caption-layer tr:hover{
+	background: #f3f3f3;
+	box-shadow: 0px 0px 2px #888
+}
+.clone-caption-layer{
+	font-size: 12px;
+	font-weight: bold;
+	background: url(../image/add.png) no-repeat left center;
+	padding-left: 20px;
+	cursor: pointer;
+	cursor: hand;
+}
+a.insert-typo{
+	text-decoration:none;
+ 	font-size: 11px;
+ 	font-weight: bold;
+	background: #888;
+	padding: 3px 6px;
+	color: #FFF
+}
+.caption-layer .layer-setting .unit{
+	 float: right;
+    font-size: 11px;
+    margin-top: -10px;
+}
+
+.caption-layer .layer-setting{	 
+	width: 350px;
+	
+    position: absolute;
+    top: -220px;
+    width: 380px;
+    display: none;
+   
+}
+
+ 
+  .caret {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #888888;
+    bottom: 26px;
+    content: "";
+    display: inline-block;
+    height: 0;
+    left: 20px;
+    position: absolute;
+    vertical-align: top;
+    width: 0;
+}
+ 
+ 
+
+.caption-layer .layer-setting > div{
+	position: relative;
+	 box-shadow: 0px 0px 2px #888;
+	 background: #f3f3f3;  padding: 12px;
+	 margin-bottom: 30px;
+}
+.caption-layers{
+	position: relative;
+}
+.caption-layer tr:hover .layer-setting{
+	display: block;
+}
+.remove-caption-layer{
+	background: url(../image/delete.png) no-repeat left center;
+	padding-left: 20px;
+	font-size: 11px;
+	font-weight: bold;
+}
+#content .ui-slider-horizontal{
+	height: 5px;
+	width: 250px
+}
+
+
+#content .ui-slider-horizontal .ui-slider-handle{
+	margin-top: -3px;
+	width: 6px;
+}

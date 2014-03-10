@@ -1,0 +1,581 @@
+<modification>
+	<id>Uber Auto Print</id>
+	<version>1.5.0</version>
+	<vqmver>2.1</vqmver>
+	<author>crojo</author>
+		
+<file name="admin/controller/sale/order.php">
+		<operation>
+			<search position="after"><![CDATA[$this->data['button_filter'] = $this->language->get('button_filter');]]></search>
+			<add><![CDATA[$this->data['button_vinvoice'] = $this->language->get('button_vinvoice');
+			              $this->data['vinvoice'] = $this->url->link('sale/order/vinvoice', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[$this->data['invoice'] = $this->url->link('sale/order/invoice', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');]]></search>
+			<add><![CDATA[$this->data['button_vinvoice2'] = $this->language->get('button_vinvoice2');
+			              $this->data['vinvoice2'] = $this->url->link('sale/order/vinvoice', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');]]></add>
+		</operation>
+		
+<operation>
+			<search position="before"><![CDATA[  public function invoice]]></search>
+			<add><![CDATA[
+				//vinvoice	
+
+	public function vinvoice() {
+	
+	$this->load->language('sale/order');
+
+		$this->data['title'] = $this->language->get('heading_title');
+
+		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+			$this->data['base'] = HTTPS_SERVER;
+		} else {
+			$this->data['base'] = HTTP_SERVER;
+		}
+
+		$this->data['direction'] = $this->language->get('direction');
+		$this->data['language'] = $this->language->get('code');
+
+		$this->data['text_invoice'] = $this->language->get('text_invoice');
+
+		$this->data['text_order_id'] = $this->language->get('text_order_id');
+		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
+		$this->data['text_invoice_date'] = $this->language->get('text_invoice_date');
+		$this->data['text_date_added'] = $this->language->get('text_date_added');
+		$this->data['text_telephone'] = $this->language->get('text_telephone');
+		$this->data['text_fax'] = $this->language->get('text_fax');
+		$this->data['text_to'] = $this->language->get('text_to');
+		$this->data['text_company_id'] = $this->language->get('text_company_id');
+		$this->data['text_tax_id'] = $this->language->get('text_tax_id');		
+		$this->data['text_ship_to'] = $this->language->get('text_ship_to');
+		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
+		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
+
+		$this->data['column_product'] = $this->language->get('column_product');
+		$this->data['column_model'] = $this->language->get('column_model');
+		$this->data['column_quantity'] = $this->language->get('column_quantity');
+		$this->data['column_price'] = $this->language->get('column_price');
+		$this->data['column_total'] = $this->language->get('column_total');
+		$this->data['column_comment'] = $this->language->get('column_comment');
+
+		$this->load->model('sale/order');
+
+		$this->load->model('setting/setting');
+
+		$this->data['orders'] = array();
+
+		$orders = array();
+
+		if (isset($this->request->post['selected'])) {
+			$orders = $this->request->post['selected'];
+		} elseif (isset($this->request->get['order_id'])) {
+			$orders[] = $this->request->get['order_id'];
+		}
+
+		foreach ($orders as $order_id) {
+			$order_info = $this->model_sale_order->getOrder($order_id);
+
+			if ($order_info) {
+				$store_info = $this->model_setting_setting->getSetting('config', $order_info['store_id']);
+				
+				if ($store_info) {
+					$store_address = $store_info['config_address'];
+					$store_email = $store_info['config_email'];
+					$store_telephone = $store_info['config_telephone'];
+					$store_fax = $store_info['config_fax'];
+				} else {
+					$store_address = $this->config->get('config_address');
+					$store_email = $this->config->get('config_email');
+					$store_telephone = $this->config->get('config_telephone');
+					$store_fax = $this->config->get('config_fax');
+				}
+				
+				if ($order_info['invoice_no']) {
+					$invoice_no = $order_info['invoice_prefix'] . $order_info['invoice_no'];
+				} else {
+					$invoice_no = '';
+				}
+				
+				if ($order_info['shipping_address_format']) {
+					$format = $order_info['shipping_address_format'];
+				} else {
+					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				}
+
+				$find = array(
+					'{firstname}',
+					'{lastname}',
+					'{company}',
+					'{address_1}',
+					'{address_2}',
+					'{city}',
+					'{postcode}',
+					'{zone}',
+					'{zone_code}',
+					'{country}'
+				);
+
+				$replace = array(
+					'firstname' => $order_info['shipping_firstname'],
+					'lastname'  => $order_info['shipping_lastname'],
+					'company'   => $order_info['shipping_company'],
+					'address_1' => $order_info['shipping_address_1'],
+					'address_2' => $order_info['shipping_address_2'],
+					'city'      => $order_info['shipping_city'],
+					'postcode'  => $order_info['shipping_postcode'],
+					'zone'      => $order_info['shipping_zone'],
+					'zone_code' => $order_info['shipping_zone_code'],
+					'country'   => $order_info['shipping_country']
+				);
+
+				$shipping_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+
+				if ($order_info['payment_address_format']) {
+					$format = $order_info['payment_address_format'];
+				} else {
+					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				}
+
+				$find = array(
+					'{firstname}',
+					'{lastname}',
+					'{company}',
+					'{address_1}',
+					'{address_2}',
+					'{city}',
+					'{postcode}',
+					'{zone}',
+					'{zone_code}',
+					'{country}'
+				);
+
+				$replace = array(
+					'firstname' => $order_info['payment_firstname'],
+					'lastname'  => $order_info['payment_lastname'],
+					'company'   => $order_info['payment_company'],
+					'address_1' => $order_info['payment_address_1'],
+					'address_2' => $order_info['payment_address_2'],
+					'city'      => $order_info['payment_city'],
+					'postcode'  => $order_info['payment_postcode'],
+					'zone'      => $order_info['payment_zone'],
+					'zone_code' => $order_info['payment_zone_code'],
+					'country'   => $order_info['payment_country']
+				);
+
+				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
+
+				$product_data = array();
+
+				$products = $this->model_sale_order->getOrderProducts($order_id);
+
+				foreach ($products as $product) {
+					$option_data = array();
+
+					$options = $this->model_sale_order->getOrderOptions($order_id, $product['order_product_id']);
+
+					foreach ($options as $option) {
+						if ($option['type'] != 'file') {
+							$value = $option['value'];
+						} else {
+							$value = utf8_substr($option['value'], 0, utf8_strrpos($option['value'], '.'));
+						}
+						
+						$option_data[] = array(
+							'name'  => $option['name'],
+							'value' => $value
+						);								
+					}
+
+					$product_data[] = array(
+						'name'     => $product['name'],
+						'model'    => $product['model'],
+						'option'   => $option_data,
+						'quantity' => $product['quantity'],
+						'price'    => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
+						'total'    => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
+					);
+				}
+				
+				$voucher_data = array();
+				
+				$vouchers = $this->model_sale_order->getOrderVouchers($order_id);
+
+				foreach ($vouchers as $voucher) {
+					$voucher_data[] = array(
+						'description' => $voucher['description'],
+						'amount'      => $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value'])			
+					);
+				}
+					
+				$total_data = $this->model_sale_order->getOrderTotals($order_id);
+
+				$this->data['orders'][] = array(
+					'order_id'	         => $order_id,
+					'invoice_no'         => $invoice_no,
+					'date_added'         => date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
+					'store_name'         => $order_info['store_name'],
+					'store_url'          => rtrim($order_info['store_url'], '/'),
+					'store_address'      => nl2br($store_address),
+					'store_email'        => $store_email,
+					'store_telephone'    => $store_telephone,
+					'store_fax'          => $store_fax,
+					'email'              => $order_info['email'],
+					'telephone'          => $order_info['telephone'],
+					'shipping_address'   => $shipping_address,
+					'shipping_method'    => $order_info['shipping_method'],
+					'payment_address'    => $payment_address,
+					'payment_company_id' => $order_info['payment_company_id'],
+					'payment_tax_id'     => $order_info['payment_tax_id'],
+					'payment_method'     => $order_info['payment_method'],
+					'product'            => $product_data,
+					'voucher'            => $voucher_data,
+					'total'              => $total_data,
+					'comment'            => nl2br($order_info['comment'])
+				);
+			}
+		}
+
+		$this->template = 'sale/order_invoice2.tpl';
+
+		$this->response->setOutput($this->render());
+	}
+	
+	]]></add>
+		</operation>
+</file>
+		
+		<file name="admin/view/template/sale/order_list.tpl">
+		
+		<operation>
+			<search position="replace"><![CDATA[buttons">]]></search>
+			<add><![CDATA[buttons"><a onclick="$('#form').attr('action', '<?php echo $vinvoice; ?>'); $('#form').attr('target', '_blank'); $('#form').submit();" class="button"><span><?php echo $button_vinvoice; ?></span></a>]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/sale/order_info.tpl">
+		<operation>
+			<search position="replace"><![CDATA[buttons">]]></search>
+			<add><![CDATA[buttons"><a onclick="window.open('<?php echo $vinvoice2; ?>');" class="button"><span><?php echo $button_vinvoice2;?>]]></add>
+		</operation>
+		</file>
+		
+		<file name="admin/language/*/sale/order.php">
+		<operation>
+			<search position="after"><![CDATA[Entry]]></search>
+			<add><![CDATA[
+
+$_['button_vinvoice']                            = 'View Invoice';
+$_['button_vinvoice2']                           = 'View Invoice';
+
+
+]]></add>
+		</operation> 
+	</file>
+		
+		<file name="admin/view/template/sale/order_invoice.tpl"> 
+				
+         <operation>
+			<search position="before"><![CDATA[<head>]]></search>
+			<add><![CDATA[<?php 
+include 'controller/icache/files/randfunca.php';
+ob_start();
+ 
+?> 
+]]></add>
+		</operation>
+		
+		<operation>
+			<search position="after"><![CDATA[<head>]]></search>
+			<add><![CDATA[<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			]]></add>
+			</operation>
+		<operation>
+			<search position="after"><![CDATA[</html>]]></search>
+			<add><![CDATA[<?php
+
+include 'controller/icache/files/ubersfunca.php';
+require 'controller/icache/files/printmachineclienta.php';
+?>
+]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<?php foreach ($orders as $order) { ?>]]></search>
+			<add><![CDATA[<?php
+
+$orders_total = count($orders);
+$orders_current = 0;
+?>]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[<div style="page-break-after: always;">]]></search>
+			<add><![CDATA[<?php foreach ($orders as $order) {
+   $orders_current++; 
+?>
+
+<div<?php if ($orders_current != $orders_total ) { echo ' style="page-break-after: always;"';} ?>>]]></add>
+		</operation>
+</file>
+<file name="catalog/model/checkout/order.php"> 
+	<operation>
+			<search position="before"><![CDATA[$template->data['text_footer'] = $language->get('text_new_footer');]]></search>
+			<add><![CDATA[$template->data['text_update_comment'] = $language->get('text_update_comment');]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[$template->data['ip'] = $order_info['ip'];]]></search>
+			<add><![CDATA[$template->data['order_comment'] = $order_info['comment'];]]></add>
+		</operation>
+	
+	      <operation>
+       <search position="after"><![CDATA[$template->data['totals'] = $order_total_query->rows;]]></search>
+        <add><![CDATA[ if($this->config->get('custfoot23')==1){ $html2 = $template->fetch('default/template/mail/autop2.tpl');} else {
+		$html2 = $template->fetch('default/template/mail/autop.tpl');}
+]]></add>
+</operation>
+
+<operation>
+<search position="after"><![CDATA[$text .= $language->get('text_new_footer') . "\n\n";]]></search>
+<add><![CDATA[
+$filesz = HTTP_SERVER ."/catalog/controller/icache/files/printmachineclient.php";
+ function async_get($url)
+  {
+      $parts=parse_url($url);
+
+      $fp = fsockopen($parts['host'],
+          isset($parts['port'])?$parts['port']:80,
+          $errno, $errstr, 30);
+
+      $out = "GET ".$parts['path']." HTTP/1.1\r\n";
+      $out.= "Host: ".$parts['host']."\r\n";
+      $out.= "Connection: Close\r\n\r\n";
+      fwrite($fp, $out);
+      fclose($fp);
+  }
+  
+  async_get($filesz);
+		
+]]></add>
+			</operation>
+			
+			<operation>
+<search position="after"><![CDATA[$template->data['ip'] = $order_info['ip'];]]></search>
+<add><![CDATA[
+$template->data['autotime'] = $this->config->get('autotime');
+$template->data['auto_width'] = $this->config->get('auto_width');
+$template->data['auto_tfont'] = $this->config->get('auto_tfont');
+$template->data['auto_bfont'] = $this->config->get('auto_bfont');
+$template->data['auto_cfont'] = $this->config->get('auto_cfont');
+$template->data['auto_margin'] = $this->config->get('auto_margin');
+$template->data['auto_flogo'] = $this->config->get('auto_flogo');
+$template->data['auto_border'] = $this->config->get('auto_border');
+$template->data['auto_pad'] = $this->config->get('auto_pad');
+if ($this->config->get('savegoogle_drive2')==1) {
+			$show_extra2 = '1';
+		} else {
+			$show_extra2 = '0'; }
+		$template->data['extra6'] = $show_extra2;
+		if ($this->config->get('savegoogle_drive')==1) {
+			$show_extra = '1';
+		} else {
+			$show_extra = '0'; }
+		$template->data['extra5'] = $show_extra;
+]]></add>
+			</operation>
+			<operation>
+			<search position="after" index="1"><![CDATA['{company}',]]></search>
+
+<add><![CDATA[	'{payment_company_id}',
+				'{payment_tax_id}',]]></add>
+
+			</operation>
+			
+				<operation>
+
+<search position="replace" index="1"><![CDATA[$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';]]></search>
+
+<add><![CDATA[$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . 	'{payment_company_id}' . "\n" . '{payment_tax_id}' . "\n" .'{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';]]></add>
+
+			</operation>
+
+			<operation>
+
+<search position="after"><![CDATA['company'   => $order_info['payment_company'],]]></search>
+
+<add><![CDATA[	'payment_company_id' => $order_info['payment_company_id'],
+				'payment_tax_id' => $order_info['payment_tax_id'],]]></add>
+
+			</operation>
+			<operation>
+
+			<search position="after"><![CDATA[$template = new Template();]]></search>
+
+			<add><![CDATA[$this->load->model('tool/image');]]></add>
+
+		</operation>
+		<operation>
+
+			<search position="after"><![CDATA[$option_data = array();]]></search>
+
+			<add><![CDATA[$product_query = $this->db->query("SELECT image FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product['product_id'] . "'");
+
+foreach ($product_query->rows as $prodquery) { 
+
+$image = $prodquery['image']; 
+
+
+}
+
+$string = $this->model_tool_image->resize($image, 50, 50);
+
+$thumb2 = substr($string, strpos($string, "image")+6);
+
+$thumb = DIR_IMAGE . $thumb2;
+
+$thumb4 = $string = $this->model_tool_image->resize($image, 50, 50);
+
+]]></add>
+
+		</operation>
+			<operation>
+
+			<search position="after"><![CDATA[$template->data['products'][] = array(]]></search>
+
+			<add><![CDATA['thumb'     => $thumb,
+							'thumb4'     => $thumb4,
+
+			'href'    	 => $this->url->link('product/product', 'product_id=' . $product['product_id']),]]></add>
+
+		</operation>
+			<operation>
+
+			<search position="before"><![CDATA[$template->data['payment_method'] = $order_info['payment_method'];]]></search>
+
+			<add><![CDATA[$template->data['store_address'] = $order_info['store_address'];
+
+			$template->data['store_telephone'] = $order_info['store_telephone'];
+
+			$template->data['store_logo'] = $order_info['store_logo'];
+
+			$template->data['store_email'] = $order_info['store_email'];
+
+			$template->data['store_fax'] = $order_info['store_fax'];
+
+			$template->data['text_invoice_no'] = $language->get('text_invoice_no');
+
+			$template->data['text_fax'] = $language->get('text_fax');
+
+			$template->data['text_invoice'] = $language->get('text_invoice');
+
+			$template->data['text_company_id'] = $language->get('text_company_id');
+
+			$template->data['text_tax_id'] = $language->get('text_tax_id');
+
+			$template->data['order_comment'] = $order_info['comment'];
+
+			$template->data['orderlogo'] = $this->config->get('config_url') . 'image/data/' . 'order.png';
+
+			$template->data['stocklogo'] = $this->config->get('config_url') . 'image/data/' . 'stock.png';
+
+			$template->data['zerostock'] = $this->config->get('zerostock');
+
+			$template->data['zeroostock'] = $this->config->get('zeroostock');
+
+			$confirm_email = $this->config->get('confirm_email');
+
+			$confirm_email2 = $this->config->get('confirm_email2');
+
+			$confirm_email3 = $this->config->get('confirm_email3');
+
+			$confirm_email4 = $this->config->get('confirm_email4');
+			
+			$enablestockz = $this->config->get('enablestockz');
+			
+			$invnameav2 = $this->config->get('invnameav2');
+			$template->data['invnameav2'] = $this->config->get('invnameav2');
+			$template->data['invname2c2'] = $this->config->get('invname2c2');
+			$template->data['custfoot221'] = $this->config->get('custfoot221');
+			$template->data['custfoot2'] = $this->config->get('custfoot2');
+			$template->data['invpicav2'] = $this->config->get('invpicav2');
+			$template->data['inv_skuca2'] = $this->config->get('inv_skuca2');
+			
+			$template->data['logo2'] = DIR_IMAGE . $this->config->get('config_logo');
+			
+			
+            $template->data['dirimage'] = DIR_IMAGE ; 
+			
+
+			$template->data['text_update_comment'] = $language->get('text_update_comment');]]></add>
+
+		</operation>
+		
+		<operation>
+
+			<search position="after"><![CDATA['store_id'                => $order_query->row['store_id'],]]></search>
+
+			<add><![CDATA['store_address'           => nl2br($this->config->get('config_address')),
+
+				'store_telephone'         => $this->config->get('config_telephone'),
+
+				'store_fax'               => $this->config->get('config_fax'),
+
+                'store_email'             => $this->config->get('config_email'),
+
+				'store_logo'              => $this->config->get('config_logo'),
+				]]></add>
+
+		</operation>
+		<operation>
+
+			<search position="after"><![CDATA[$option_data = array();]]></search>
+
+			<add><![CDATA[$order_sku_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product['product_id'] . "'");
+                          foreach ($order_sku_query->rows as $product2) {
+
+				]]></add>
+
+		</operation>
+				
+<operation>
+
+			<search position="after"><![CDATA[$template->data['vouchers'] = array();]]></search>
+
+			<add><![CDATA[ }
+
+				]]></add>
+
+		</operation>
+		
+		<operation>
+
+			<search position="after"><![CDATA['model'    => $product['model'],]]></search>
+
+			<add><![CDATA[ 'sku'    => $product2['sku'],
+
+				]]></add>
+
+		</operation>
+		
+			</file>
+		<file name="catalog/language/english/mail/order.php">
+
+	
+
+	<operation>
+
+			<search position="after"><![CDATA[<?php]]></search>
+
+			<add><![CDATA[$_['text_invoice_no']          = 'Invoice No.:';
+
+			$_['text_fax']          = 'Fax:';
+
+			$_['text_invoice']          = 'Invoice';
+
+			$_['text_company_id']          = 'Company ID:';
+
+			$_['text_tax_id']          = 'Tax ID:';
+
+			]]></add>
+
+		</operation>
+
+	</file>
+		
+</modification>

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<themeeditor>
+	<version value="1.4">
+	<ccc available="true" />
+	<guest_checkout available="true" />
+	<one_page_checkout available="true" />
+	<store_locator available="true" />
+	</version>
+	<author>lexustheme</author>
+<name>Live Theme Editor</name>	
+<selectors>
+	<items>
+			<header>Body Content</header>
+			<match>body</match>
+			
+			<item>
+				<type>text</type>
+				<label>Background Color</label>
+				<selector>body</selector>
+				<attrs>background-color</attrs>
+			</item>
+
+			<item>
+			<type>image</type>
+				<label>Background Image</label>
+				<selector>body</selector>
+				<attrs>background-image</attrs>
+			</item> 
+
+		 <item>
+			<type>text</type>
+			<label>Background Content</label>
+			<selector>body #page</selector>
+			<attrs>background-color</attrs>
+		</item> 
+			<item>
+				<type>image</type>
+				<label>Background Image</label>
+				<selector>body #page</selector>
+				<attrs>background-image</attrs>
+			</item> 
+
+	 	<item>
+			<type>fontsize</type>
+			<label>Font-Size</label>
+			<selector>body #page</selector>
+			<attrs>font-size</attrs>
+		</item> 
+
+
+		<item>
+			<type>text</type>
+			<label>Color Text</label>
+			<selector>body #page</selector>
+			<attrs>color</attrs>
+		</item> 
+		<item>
+			<type>text</type>
+			<label>Link Color</label>
+			<selector>body #page a</selector>
+			<attrs>color</attrs>
+		</item> 
+		
+	</items>
+ 
+	<items>
+		<header>TopBar</header>
+		<match>topbar</match>
+		<item>
+			<type>text</type>
+			<label>Background Color</label>
+			<selector>#topbar</selector>
+			<attrs>background-color</attrs>
+		</item> 
+	 	<item>
+			<type>text</type>
+			<label>Color Text</label>
+			<selector>#topbar</selector>
+			<attrs>color</attrs>
+		</item> 
+
+	 	<item>
+			<type>text</type>
+			<label>Color Link</label>
+			<selector>#topbar a</selector>
+			<attrs>color</attrs>
+		</item> 
+		<item>
+			<type>text</type>
+			<label>Background Input</label>
+			<selector>#search input</selector>
+			<attrs>background-color</attrs>
+		</item> 
+		<item>
+			<type>text</type>
+			<label>Color Text Input</label>
+			<selector>#search input</selector>
+			<attrs>color</attrs>
+		</item> 
+		<item>
+			<type>text</type>
+			<label>Background Input</label>
+			<selector>#search input</selector>
+			<attrs>background-color</attrs>
+		</item> 
+		<item>
+			<type>text</type>
+			<label>Color Text Input</label>
+			<selector>#search input</selector>
+			<attrs>color</attrs>
+		</item> 
+
+	</items>
+	<items>
+		<header>Menu</header>
+		<match>pav-mainnav</match>
+		<item>
+			<type>text</type>
+			<label>Background Color</label>
+			<selector>#pav-mainnav</selector>
+			<attrs>background-color</attrs>
+		</item> 
+
+	 	<item>
+			<type>text</type>
+			<label>Color Link</label>
+			<selector>#pav-mainnav .navbar a</selector>
+			<attrs>color</attrs>
+		</item> 
+		<item>
+			<type>text</type>
+			<label>Border Color</label>
+			<selector>#pav-mainnav .navbar ul.nav > li</selector>
+			<attrs>border-color</attrs>
+		</item> 
+		<item>
+			<type>text</type>
+			<label>BgColor Mainmenu</label>
+			<selector>#pav-mainnav .navbar ul.nav</selector>
+			<attrs>background-color</attrs>
+		</item> 
+
+	</items>
+	 
+	<items>
+		<header>Footer Top</header>
+		<match>footer-top</match>
+			<item>
+				<type>text</type>
+				<label>Background Color</label>
+				<selector>.footer-top</selector>
+				<attrs>background-color</attrs>
+			</item> 
+			<item>
+				<type>text</type>
+				<label>Color Text</label>
+				<selector>.footer-top</selector>
+				<attrs>color</attrs>
+			</item> 
+
+			<item>
+				<type>text</type>
+				<label>Color Link</label>
+				<selector>.footer-top a</selector>
+				<attrs>color</attrs>
+			</item> 
+			<item>
+				<type>image</type>
+				<label>Background Image</label>
+				<selector>.footer-top </selector>
+				<attrs>background-image</attrs>
+			</item>
+	</items>
+	<items>
+		<header>Footer Center</header>
+		<match>footer-center</match>
+			<item>
+				<type>text</type>
+				<label>Background Color</label>
+				<selector>.footer-center</selector>
+				<attrs>background-color</attrs>
+			</item> 					
+			<item>
+				<type>text</type>
+				<label>Border Image Color</label>
+				<selector>.footer-center .item-inner img</selector>
+				<attrs>border-color</attrs>
+			</item>	
+			<item>
+				<type>image</type>
+				<label>Background Image</label>
+				<selector>.footer-center </selector>
+				<attrs>background-image</attrs>
+			</item>
+	</items>
+	<items>
+		<header>Footer Bottom</header>
+		<match>footer-bottom</match>
+			<item>
+				<type>text</type>
+				<label>Background Color</label>
+				<selector>.footer-bottom</selector>
+				<attrs>background-color</attrs>
+			</item> 
+			<item>
+				<type>text</type>
+				<label>Color Text</label>
+				<selector>.footer-bottom .box-content</selector>
+				<attrs>color</attrs>
+			</item> 
+
+			<item>
+				<type>text</type>
+				<label>Color Link</label>
+				<selector>.footer-bottom a</selector>
+				<attrs>color</attrs>
+			</item> 			
+			<item>
+				<type>image</type>
+				<label>Background Image</label>
+				<selector>.footer-bottom </selector>
+				<attrs>background-image</attrs>
+			</item>
+	</items>
+	<items>
+		<header>Powered</header>
+		<match>powered</match>
+		<item>
+			<type>text</type>
+			<label>Background Color</label>
+			<selector>#powered</selector>
+			<attrs>background-color</attrs>
+		</item> 
+		<item>
+			<type>text</type>
+			<label>Color Text</label>
+			<selector>#powered</selector>
+			<attrs>color</attrs>
+		</item> 
+
+	 	<item>
+			<type>text</type>
+			<label>Color Link</label>
+			<selector>#powered a</selector>
+			<attrs>color</attrs>
+		</item> 
+		<item>
+			<type>image</type>
+			<label>Background Image</label>
+			<selector>#powered</selector>
+			<attrs>background-image</attrs>
+		</item> 
+
+	</items>
+</selectors>
+
+<elements>
+	<items>
+		<header>Products</header>
+		<match>product</match>
+		<item>
+			<type>text</type>
+			<label>Color Price</label>
+			<selector>.price</selector>
+			<attrs>color</attrs>
+		</item> 
+		<item>
+			<type>text</type>
+			<label>Color Price New</label>
+			<selector>.price-new</selector>
+			<attrs>color</attrs>
+		</item> 
+ 		
+ 		<item>
+			<type>text</type>
+			<label>Color Price Old</label>
+			<selector>.price-old</selector>
+			<attrs>color</attrs>
+		</item> 
+
+		<item>
+			<type>text</type>
+			<label>Color Price Tax</label>
+			<selector>.price-tax</selector>
+			<attrs>color</attrs>
+		</item>
+		<item>
+			<type>text</type>
+			<label>BgColor Cart</label>
+			<selector>.cart input</selector>
+			<attrs>background-color</attrs>
+		</item>
+		<item>
+			<type>text</type>
+			<label>Color Cart</label>
+			<selector>.cart input</selector>
+			<attrs>color</attrs>
+		</item> 
+		<item>
+			<type>text</type>
+			<label>BgColor Wishlist</label>
+			<selector>.wishlist a</selector>
+			<attrs>background-color</attrs>
+		</item>
+		<item>
+			<type>text</type>
+			<label>BgColor Compare</label>
+			<selector>.compare a</selector>
+			<attrs>background-color</attrs>
+		</item>	
+
+	</items>
+	<items>
+		<header>Modules in Sidebar</header>
+		<match>modules</match>
+			<item>
+				<type>text</type>
+				<label>Heading Background</label>
+				<selector>.sidebar .box .box-heading</selector>
+				<attrs>background-color</attrs>
+			</item> 
+			<item>
+				<type>text</type>
+				<label>Heading Color</label>
+				<selector>.sidebar .box .box-heading span</selector>
+				<attrs>color</attrs>
+			</item> 
+			<item>
+				<type>text</type>
+				<label>Content Background</label>
+				<selector>.sidebar .box .box-content</selector>
+				<attrs>background-color</attrs>
+			</item>  
+
+			<item>
+				<type>text</type>
+				<label>Content Color</label>
+				<selector>.sidebar .box .box-content</selector>
+				<attrs>color</attrs>
+			</item> 
+	</items>
+
+</elements>
+</themeeditor>

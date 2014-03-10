@@ -1,0 +1,805 @@
+<?xml version="1.0" ?>
+<!DOCTYPE modification [
+<!ENTITY adminFolder "admin">
+<!ENTITY themeFolder "cellside">
+]>
+<modification>
+	<id>Digital Multiseller Marketplace</id>
+	<version>2.0</version>
+	<author>http://ffct.cc</author>
+	
+	<!-- ************************ -->
+	<!-- ************************ -->
+	<!--         SYSTEM           -->
+	<!-- ************************ -->	
+	<!-- ************************ -->
+		
+	<file name="system/library/customer.php">
+		<operation>
+			<search position="after"><![CDATA[
+				public function logout() {
+			]]></search>
+			<add><![CDATA[
+				unset($this->session->data['multiseller']);
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="&adminFolder;/controller/extension/module.php">
+		<operation>
+			<search position="replace"><![CDATA[
+				$this->model_setting_extension->uninstall('module', $value);
+			]]></search>
+			<add><![CDATA[
+				if (!in_array($value,array('ms_carousel'))) {
+					$this->model_setting_extension->uninstall('module', $value);
+				}
+			]]></add>
+		</operation>
+	</file>
+
+	
+	<!-- ************************ -->
+	<!-- ************************ -->
+	<!--       FRONT OFFICE       -->
+	<!-- ************************ -->	
+	<!-- ************************ -->	
+	
+	<!-- ie console fix -->
+	<file name="catalog/view/theme/&themeFolder;/template/common/header.tpl">
+			<operation>
+			<search position="before"><![CDATA[
+				<?php foreach ($scripts as $script) { ?>
+			]]></search>
+			<add><![CDATA[
+				<script type="text/javascript"> if (!window.console) console = {log: function() {}}; </script>
+			]]></add>
+		</operation>	
+	</file>
+	
+	<!-- number of sellers/products line -->
+	<file name="catalog/view/theme/&themeFolder;/template/common/header.tpl">
+		<operation error="log">
+			<search position="after"><![CDATA[
+				<div class="links"><a href="<?php echo $home; ?>"><?php echo $text_home; ?></a><a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a><a href="<?php echo $shopping_cart; ?>"><?php echo $text_shopping_cart; ?></a><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></div>
+			]]></search>
+			<add><![CDATA[
+				<div style="position: absolute; bottom: 3px; left: 0; font-weight: bold; color: #38B0E3"><?php echo sprintf($ms_totals_line, $ms_total_sellers, $ms_total_products); ?></div>
+			]]></add>
+		</operation>	
+	</file>
+
+	<file name="catalog/controller/common/header.php">
+		<operation error="log">
+			<search position="after"><![CDATA[
+				protected function index() {
+			]]></search>
+			<add><![CDATA[
+				$this->data = array_merge($this->data, $this->load->language('multiseller/multiseller'));
+				$this->data['ms_total_products'] = $this->MsLoader->MsProduct->getTotalProducts(array(
+					'enabled' => 1,
+					//'product_status' => array(MsProduct::STATUS_ACTIVE),
+				));
+				
+				$this->data['ms_total_sellers'] = $this->MsLoader->MsSeller->getTotalSellers(array(
+					'seller_status' => array(MsSeller::STATUS_ACTIVE) 
+				));
+			]]></add>
+		</operation>
+	</file>
+	<!-- seller account area links -->
+	<file name="catalog/view/theme/&themeFolder;/template/account/account.tpl">
+		<operation>
+			<search position="before"><![CDATA[
+				<h2><?php echo $text_my_newsletter; ?></h2>
+			]]></search>
+			<add><![CDATA[
+			  <h2><?php echo $ms_account_seller_account; ?></h2>
+			  <div class="content">
+			    <ul>
+				  <?php if ($ms_seller_created) { ?>
+				      <li><a href="<?php echo $ms_link_sellerinfo; ?>"><?php echo $ms_account_sellerinfo; ?></a></li>
+				      <li><a href="<?php echo $ms_link_newproduct; ?>"><?php echo $ms_account_newproduct; ?></a></li>
+				      <li><a href="<?php echo $ms_link_products; ?>"><?php echo $ms_account_products; ?></a></li>
+				      <li><a href="<?php echo $ms_link_transactions; ?>"><?php echo $ms_account_transactions; ?></a></li>
+				      <?php if ($this->config->get('msconf_allow_withdrawal_requests')) { ?>
+				      	<li><a href="<?php echo $ms_link_withdraw; ?>"><?php echo $ms_account_withdraw; ?></a></li>
+				      <?php } ?>
+				  <?php } else { ?>
+				  	  <li><a href="<?php echo $ms_link_sellerinfo; ?>"><?php echo $ms_account_create; ?></a></li>
+				  <?php } ?>
+			    </ul>
+			  </div>
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/controller/account/account.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$this->response->setOutput($this->render());
+			]]></search>
+			<add><![CDATA[
+				$this->data['ms_seller_created'] = $this->MsLoader->MsSeller->isCustomerSeller($this->customer->getId());
+				$this->data = array_merge($this->data, $this->load->language('multiseller/multiseller'));			
+				$this->data['ms_link_sellerinfo'] = $this->url->link('seller/account-profile', '', 'SSL');
+				$this->data['ms_link_newproduct'] = $this->url->link('seller/account-product/create', '', 'SSL');
+				$this->data['ms_link_products'] = $this->url->link('seller/account-product', '', 'SSL');
+				$this->data['ms_link_transactions'] = $this->url->link('seller/account-transaction', '', 'SSL');
+				$this->data['ms_link_withdraw'] = $this->url->link('seller/account-withdrawal', '', 'SSL');
+			]]></add>
+		</operation>
+	</file>
+
+	<!-- seller account SIDEBAR area links -->
+	<file name="catalog/view/theme/&themeFolder;/template/module/account.tpl">
+		<operation>
+			<search position="before"><![CDATA[
+			</ul>
+			]]></search>
+			<add><![CDATA[
+				<br />
+			  <li style="list-style-type: none"><b><?php echo $ms_account_seller_account; ?></b></li>
+			  <?php if ($ms_seller_created) { ?>
+			      <li><a href="<?php echo $ms_link_sellerinfo; ?>"><?php echo $ms_account_sellerinfo; ?></a></li>
+			      <li><a href="<?php echo $ms_link_newproduct; ?>"><?php echo $ms_account_newproduct; ?></a></li>
+			      <li><a href="<?php echo $ms_link_products; ?>"><?php echo $ms_account_products; ?></a></li>
+			      <li><a href="<?php echo $ms_link_transactions; ?>"><?php echo $ms_account_transactions; ?></a></li>
+			      <?php if ($this->config->get('msconf_allow_withdrawal_requests')) { ?>
+			      <li><a href="<?php echo $ms_link_withdraw; ?>"><?php echo $ms_account_withdraw; ?></a></li>
+			      <?php } ?>
+			  <?php } else { ?>
+			  	  <li><a href="<?php echo $ms_link_sellerinfo; ?>"><?php echo $ms_account_create; ?></a></li>
+			  <?php } ?>
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/controller/common/footer.php">
+		<operation>
+			<search position="after"><![CDATA[
+				protected function index() {
+			]]></search>
+			<add><![CDATA[
+				$this->data = array_merge($this->data, $this->load->language('multiseller/multiseller'));
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/view/theme/&themeFolder;/template/common/footer.tpl">
+		<operation error="skip">
+			<search position="replace"><![CDATA[
+			<div id="powered"><?php echo $powered; ?></div>
+			]]></search>
+			<add><![CDATA[
+			<div id="powered"><?php echo $powered; ?><?php echo $ms_footer; ?></div>
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/controller/module/account.php">
+		<operation>
+			<search position="before"><![CDATA[
+				$this->render();
+			]]></search>
+			<add><![CDATA[
+				$this->data['ms_seller_created'] = $this->MsLoader->MsSeller->isCustomerSeller($this->customer->getId());			
+				$this->data = array_merge($this->data, $this->load->language('multiseller/multiseller'));			
+				$this->data['ms_link_sellerinfo'] = $this->url->link('seller/account-profile', '', 'SSL');
+				$this->data['ms_link_newproduct'] = $this->url->link('seller/account-product/create', '', 'SSL');
+				$this->data['ms_link_products'] = $this->url->link('seller/account-product', '', 'SSL');
+				$this->data['ms_link_transactions'] = $this->url->link('seller/account-transaction', '', 'SSL');
+				$this->data['ms_link_withdraw'] = $this->url->link('seller/account-withdrawal', '', 'SSL');
+			]]></add>
+		</operation>
+	</file>
+
+
+	<!-- transactions for order -->
+	<file name="catalog/model/checkout/order.php">
+		<operation>
+			<search position="after"><![CDATA[
+				$this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$order_status_id . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
+			]]></search>
+			<add><![CDATA[
+				$order_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+			]]></add>
+		</operation>
+			
+		<operation>
+			<search position="after"><![CDATA[
+				$order_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+			]]></search>
+			<add><![CDATA[
+				$this->language->load('multiseller/multiseller');
+				if (in_array($order_status_id, $this->config->get('msconf_credit_order_statuses'))) {
+					foreach ($order_product_query->rows as $order_product) {
+						$balance_entry = $this->MsLoader->MsBalance->getBalanceEntry(
+							array(
+								'seller_id' => $this->MsLoader->MsProduct->getSellerId($order_product['product_id']),
+								'product_id' => $order_product['product_id'],
+								'order_id' => $order_id,
+								'balance_type' => MsBalance::MS_BALANCE_TYPE_SALE
+							)
+						);
+						
+						if (!$balance_entry) {
+							$seller_id = $this->MsLoader->MsProduct->getSellerId($order_product['product_id']);
+							$commissions = $this->MsLoader->MsCommission->calculateCommission($seller_id);
+							$store_commission_flat = $commissions[MsCommission::RATE_SALE]['flat'];
+							$store_commission_pct = $order_product['total'] * $commissions[MsCommission::RATE_SALE]['percent'] / 100;
+							$seller_net_amt = $order_product['total'] - ($store_commission_flat + $store_commission_pct);
+							$this->MsLoader->MsOrderData->addOrderProductData(
+								$order_product['order_id'],
+								$order_product['product_id'],								
+								array(
+									'seller_id' => $seller_id,
+				             		'store_commission_flat' => $store_commission_flat,
+				             		'store_commission_pct' => $store_commission_pct,
+				             		'seller_net_amt' => $seller_net_amt									
+								)
+							);
+							
+							$this->MsLoader->MsBalance->addBalanceEntry(
+								$seller_id,
+								array(
+									'order_id' => $order_product['order_id'],
+									'product_id' => $order_product['product_id'],
+									'balance_type' => MsBalance::MS_BALANCE_TYPE_SALE,
+									'amount' => $seller_net_amt,
+									'description' => sprintf($this->language->get('ms_transaction_sale'),  ($order_product['quantity'] > 1 ? $order_product['quantity'] . ' x ' : '')  . $order_product['name'], $this->currency->format($store_commission_flat + $store_commission_pct, $this->config->get('config_currency')))
+								)
+							);
+							
+							$this->MsLoader->MsMail->sendOrderMails($order_id);
+						} else {
+							// send order status change mails
+						}
+					}
+				} else if (in_array($order_status_id, $this->config->get('msconf_debit_order_statuses'))) {
+					$refund_balance_entry = $this->MsLoader->MsBalance->getBalanceEntry(
+						array(
+							'seller_id' => $this->MsLoader->MsProduct->getSellerId($order_product['product_id']),
+							'product_id' => $order_product['product_id'],
+							'order_id' => $order_id,
+							'balance_type' => MsBalance::MS_BALANCE_TYPE_REFUND
+						)
+					);
+					
+					if (!$refund_balance_entry) {
+						$balance_entry = $this->MsLoader->MsBalance->getBalanceEntry(
+							array(
+								'seller_id' => $this->MsLoader->MsProduct->getSellerId($order_product['product_id']),
+								'product_id' => $order_product['product_id'],
+								'order_id' => $order_id,
+								'balance_type' => MsBalance::MS_BALANCE_TYPE_SALE
+							)
+						);
+				
+						if ($balance_entry) {
+							$this->MsLoader->MsBalance->addBalanceEntry(
+								$balance_entry['seller_id'],
+								array(
+									'order_id' => $balance_entry['order_id'],
+									'product_id' => $balance_entry['product_id'],
+									'balance_type' => MsBalance::MS_BALANCE_TYPE_REFUND,
+									'amount' => -1 * $balance_entry['amount'],
+									'description' => sprintf($this->language->get('ms_transaction_refund'),  ($order_product['quantity'] > 1 ? $order_product['quantity'] . ' x ' : '')  . $order_product['name'])
+								)
+							);
+							
+							// todo send refund mails
+							// $this->MsLoader->MsMail->sendOrderMails($order_id);
+						} else {
+							// send order status change mails
+						}
+						
+					}
+				}
+			]]></add>
+		</operation>
+			
+		<!-- increment sold counter -->		
+		<operation>
+			<search position="after"><![CDATA[
+				$this->db->query("UPDATE " . DB_PREFIX . "product SET quantity = (quantity - " . (int)$order_product['quantity'] . ") WHERE product_id = '" . (int)$order_product['product_id'] . "' AND subtract = '1'");
+			]]></search>
+			<add><![CDATA[
+				
+				$this->db->query("UPDATE " . DB_PREFIX . "ms_product SET number_sold  = (number_sold + " . (int)$order_product['quantity'] . ") WHERE product_id = '" . (int)$order_product['product_id'] . "'");
+			]]></add>
+		</operation>		
+	</file>
+	
+	<file name="catalog/view/theme/&themeFolder;/template/product/product.tpl">
+		<!-- seller information on product page -->
+		<operation>
+			<search position="before"><![CDATA[
+			<div class="description">
+			]]></search>
+			<add><![CDATA[
+			<?php if (isset($seller) && !empty($seller)) { ?>
+		    <div class="ms-sellerprofile description">
+				<span><?php echo $ms_catalog_product_sellerinfo; ?></span>		    
+		    	<div class="seller-data">
+		    		<div class="avatar-box">
+		    			<a style="text-decoration: none" href="<?php echo $seller['href']; ?>"><h2><?php echo $seller['nickname']; ?></h2></a>
+		    			<a href="<?php echo $seller['href']; ?>"><img src="<?php echo $seller['thumb']; ?>" /></a>
+		    		</div>
+		    		<div class="info-box">
+		    			<?php if ($seller['country']) { ?>
+			    			<p><b><?php echo $ms_catalog_seller_profile_country; ?></b> <?php echo $seller['country']; ?></p>
+			    		<?php } ?>
+		
+			    		<?php if ($seller['company']) { ?>
+			    			<p><b><?php echo $ms_catalog_seller_profile_company; ?></b> <?php echo $seller['company']; ?></p>
+			    		<?php } ?>
+			    		
+			    		<?php if ($seller['website']) { ?>
+			    			<p><b><?php echo $ms_catalog_seller_profile_website; ?></b> <?php echo $seller['website']; ?></p>
+			    		<?php } ?>
+			    		
+			    		<p><b><?php echo $ms_catalog_seller_profile_totalsales; ?></b> <?php echo $seller['total_sales']; ?></p>
+			    		<p><b><?php echo $ms_catalog_seller_profile_totalproducts; ?></b> <?php echo $seller['total_products']; ?></p>
+						<p><a href="index.php?route=seller/catalog-seller/jxRenderContactDialog&product_id=<?php echo $product_id; ?>" class="ms-sellercontact" title="<?php echo $ms_sellercontact_title; ?>"><?php echo $ms_catalog_product_contact; ?></a></p>
+		    		</div>
+		    	</div>
+		    </div>
+			<?php } ?>
+			]]></add>
+		</operation>
+		
+		<!-- product comments -->
+		<operation>
+			<search position="before" offset="1"><![CDATA[
+				<div id="tab-description" class="tab-content"><?php echo $description; ?></div>
+			]]></search>
+			<add><![CDATA[
+  				<a href="#tab-comments"><?php echo $tab_comments ?></a>
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="before"><![CDATA[
+				<?php if ($tags) { ?>
+			]]></search>
+			<add><![CDATA[
+  				<div id="tab-comments" class="tab-content"></div>
+			]]></add>
+		</operation>
+	
+		<operation>
+			<search position="replace"><![CDATA[
+				<span><?php echo $text_stock; ?></span> <?php echo $stock; ?></div>
+			]]></search>
+			<add><![CDATA[
+  				<span><?php echo $text_stock; ?></span> <?php echo $stock; ?><br />
+  				<?php foreach ($ms_product_attributes as $attribute) { ?>
+	  				<span><?php echo $attribute['name']; ?></span> <?php echo implode(',',$attribute['values']); ?> <br />
+  				<?php } ?>
+  				</div>
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="before"><![CDATA[
+				$('#button-review').bind('click', function() {
+			]]></search>
+			<add><![CDATA[
+  				$('#tab-comments').load('index.php?route=module/ms-comments/getComments&product_id=<?php echo $product_id; ?>');
+			]]></add>
+		</operation>		
+	</file>
+
+	<file name="catalog/controller/product/product.php">
+		<!-- seller information on product page -->	
+		<operation>
+			<search position="after"><![CDATA[
+			if ($product_info) {
+			]]></search>
+			<add><![CDATA[
+			$this->document->addScript('catalog/view/javascript/dialog-sellercontact.js');
+			$this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/multiseller.css');
+			$this->data = array_merge($this->data, $this->load->language('multiseller/multiseller'));
+			$this->load->model('localisation/country');
+			
+			$seller_id = $this->MsLoader->MsProduct->getSellerId($this->request->get['product_id']);
+			$seller = $this->MsLoader->MsSeller->getSeller($seller_id);
+			
+			if (!$seller) {
+				$this->data['seller'] = NULL;
+			} else {
+
+				if (!empty($seller['ms.avatar'])) {
+					$this->data['seller']['thumb'] = $this->MsLoader->MsFile->resizeImage($seller['ms.avatar'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
+				} else {
+					$this->data['seller']['thumb'] = $this->MsLoader->MsFile->resizeImage('ms_no_image.jpg', $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
+				}
+					
+				$country = $this->model_localisation_country->getCountry($seller['ms.country_id']);
+				
+				if (!empty($country)) {			
+					$this->data['seller']['country'] = $country['name'];
+				} else {
+					$this->data['seller']['country'] = NULL;
+				}
+				
+				if (!empty($seller['ms.company'])) {
+					$this->data['seller']['company'] = $seller['ms.company'];
+				} else {
+					$this->data['seller']['company'] = NULL;
+				}
+				
+				if (!empty($seller['ms.website'])) {
+					$this->data['seller']['website'] = $seller['ms.website'];
+				} else {
+					$this->data['seller']['website'] = NULL;
+				}
+				
+				$this->data['seller']['nickname'] = $seller['ms.nickname'];
+				
+				$this->data['seller']['href'] = $this->url->link('seller/catalog-seller/profile', 'seller_id=' . $seller['seller_id']);
+				
+				$this->data['seller']['total_sales'] = $this->MsLoader->MsSeller->getSalesForSeller($seller['seller_id']);
+				$this->data['seller']['total_products'] = $this->MsLoader->MsProduct->getTotalProducts(array(
+					'seller_id' => $seller['seller_id'],
+					'product_status' => array(MsProduct::STATUS_ACTIVE)
+				));
+			}
+
+			$this->data['ms_product_attributes'] = $this->MsLoader->MsProduct->getProductAttributes($this->request->get['product_id']);
+
+			]]></add>
+		</operation>
+		
+		<!--  product comments  -->
+		<operation>
+			<search position="before"><![CDATA[
+			    $this->data['tab_related'] = $this->language->get('tab_related');
+			]]></search>
+			<add><![CDATA[
+				$this->load->model('module/multiseller/comments');
+				$this->language->load('multiseller/multiseller');
+				$this->data['tab_comments'] = sprintf($this->language->get('ms_comments_tab_comments'), $this->model_module_multiseller_comments->getCommentsCount($this->request->get['product_id']));
+			]]></add>
+		</operation>
+	</file>
+	
+	<!--  seller SEO URLs  -->
+	
+	<file name="catalog/controller/common/seo_url.php">
+
+		<operation>
+			<search position="before"><![CDATA[
+				if ($url[0] == 'information_id') {
+			]]></search>
+			<add><![CDATA[
+					if ($url[0] == 'seller_id') {
+						$this->request->get['seller_id'] = $url[1];
+					}
+			]]></add>
+		</operation>
+	
+		<operation>
+			<search position="before"><![CDATA[
+				} elseif (isset($this->request->get['information_id'])) {
+			]]></search>
+			<add><![CDATA[
+				} elseif (isset($this->request->get['seller_id'])) {
+					if (strpos($this->request->get['_route_'], "products") !== FALSE) {
+						$this->request->get['route'] = 'seller/catalog-seller/products';
+					}
+					else {
+						$this->request->get['route'] = 'seller/catalog-seller/profile';
+					}
+			]]></add>
+		</operation>
+	
+		<operation>
+			<search position="replace"><![CDATA[
+				if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
+			]]></search>
+			<add><![CDATA[
+				if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'seller/catalog-seller/profile' && $key == 'seller_id') || ($data['route'] == 'seller/catalog-seller/products' && $key == 'seller_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="replace"><![CDATA[
+				$url .= '/' . $query->row['keyword'];
+			]]></search>
+			<add><![CDATA[
+				if ($data['route'] == 'seller/catalog-seller/profile') {
+					$url .= '/sellers/' . $query->row['keyword'];
+				}
+				else if ($data['route'] == 'seller/catalog-seller/products') {
+					$url .= '/sellers/' . $query->row['keyword'] . '/products/';
+				}
+				else {
+					$url .= '/' . $query->row['keyword'];
+				}
+			]]></add>
+		</operation>
+	</file>
+
+	<!-- ************************ -->
+	<!-- ************************ -->
+	<!--       BACK OFFICE        -->
+	<!-- ************************ -->	
+	<!-- ************************ -->
+
+	<file name="&adminFolder;/model/sale/order.php">
+		<operation>
+			<search position="after"><![CDATA[
+				$this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$data['order_status_id'] . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
+			]]></search>
+			<add><![CDATA[
+				// todo order balance entries
+				$ms_order_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[
+				$ms_order_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+			]]></search>
+			<add><![CDATA[
+			// todo order balance entries
+			$this->language->load('multiseller/multiseller');
+			if (in_array($data['order_status_id'], $this->config->get('msconf_credit_order_statuses'))) {
+				foreach ($ms_order_product_query->rows as $order_product) {
+					$balance_entry = $this->MsLoader->MsBalance->getBalanceEntry(
+						array(
+							'seller_id' => $this->MsLoader->MsProduct->getSellerId($order_product['product_id']),
+							'product_id' => $order_product['product_id'],
+							'order_id' => $order_id,
+							'balance_type' => MsBalance::MS_BALANCE_TYPE_SALE
+						)
+					);
+					
+					if (!$balance_entry) {
+						$seller_id = $this->MsLoader->MsProduct->getSellerId($order_product['product_id']);
+						$commissions = $this->MsLoader->MsCommission->calculateCommission($seller_id);
+						$store_commission_flat = $commissions[MsCommission::RATE_SALE]['flat'];
+						$store_commission_pct = $order_product['total'] * $commissions[MsCommission::RATE_SALE]['percent'] / 100;
+						$seller_net_amt = $order_product['total'] - ($store_commission_flat + $store_commission_pct);
+						$this->MsLoader->MsOrderData->addOrderProductData(
+							$order_product['order_id'],
+							$order_product['product_id'],								
+							array(
+								'seller_id' => $seller_id,
+			             		'store_commission_flat' => $store_commission_flat,
+			             		'store_commission_pct' => $store_commission_pct,
+			             		'seller_net_amt' => $seller_net_amt									
+							)
+						);
+						
+						$this->MsLoader->MsBalance->addBalanceEntry(
+							$seller_id,
+							array(
+								'order_id' => $order_product['order_id'],
+								'product_id' => $order_product['product_id'],
+								'balance_type' => MsBalance::MS_BALANCE_TYPE_SALE,
+								'amount' => $seller_net_amt,
+								'description' => sprintf($this->language->get('ms_transaction_sale'),  ($order_product['quantity'] > 1 ? $order_product['quantity'] . ' x ' : '')  . $order_product['name'], $this->currency->format($store_commission_flat + $store_commission_pct, $this->config->get('config_currency')))
+							)
+						);
+						
+						$this->MsLoader->MsMail->sendOrderMails($order_id);
+					} else {
+						// send order status change mails
+					}
+				}
+			} else if (in_array($data['order_status_id'], $this->config->get('msconf_debit_order_statuses'))) {
+				$refund_balance_entry = $this->MsLoader->MsBalance->getBalanceEntry(
+					array(
+						'seller_id' => $this->MsLoader->MsProduct->getSellerId($order_product['product_id']),
+						'product_id' => $order_product['product_id'],
+						'order_id' => $order_id,
+						'balance_type' => MsBalance::MS_BALANCE_TYPE_REFUND
+					)
+				);
+				
+				if (!$refund_balance_entry) {
+					$balance_entry = $this->MsLoader->MsBalance->getBalanceEntry(
+						array(
+							'seller_id' => $this->MsLoader->MsProduct->getSellerId($order_product['product_id']),
+							'product_id' => $order_product['product_id'],
+							'order_id' => $order_id,
+							'balance_type' => MsBalance::MS_BALANCE_TYPE_SALE
+						)
+					);
+			
+					if ($balance_entry) {
+						$this->MsLoader->MsBalance->addBalanceEntry(
+							$balance_entry['seller_id'],
+							array(
+								'order_id' => $balance_entry['order_id'],
+								'product_id' => $balance_entry['product_id'],
+								'balance_type' => MsBalance::MS_BALANCE_TYPE_REFUND,
+								'amount' => -1 * $balance_entry['amount'],
+								'description' => sprintf($this->language->get('ms_transaction_refund'),  ($order_product['quantity'] > 1 ? $order_product['quantity'] . ' x ' : '')  . $order_product['name'])
+							)
+						);
+						
+						// send refund mails
+						// $this->MsLoader->MsMail->sendOrderMails($order_id);
+					} else {
+						// send order status change mails
+					}
+					
+				}
+			}
+			]]></add>
+		</operation>
+	</file>	
+
+	<!-- navigation menu -->
+	<file name="&adminFolder;/view/template/common/header.tpl">
+			<operation>
+			<search position="before"><![CDATA[
+				<?php foreach ($scripts as $script) { ?>
+			]]></search>
+			<add><![CDATA[
+				<script type="text/javascript"> if (!window.console) console = {log: function() {}}; </script>
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="before" offset="1"><![CDATA[
+			<ul class="right">
+			]]></search>
+			<add><![CDATA[
+		      <li id="multiseller"><a class="top"><?php echo $ms_menu_multiseller; ?></a>
+		        <ul>
+		           	  <li><a href="<?php echo $ms_link_sellers; ?>"><?php echo $ms_menu_sellers; ?></a></li>
+					  <li><a href="<?php echo $ms_link_seller_groups; ?>"><?php echo $ms_menu_seller_groups; ?></a></li>
+		           	  <li><a href="<?php echo $ms_link_products; ?>"><?php echo $ms_menu_products; ?></a></li>
+		              <li><a href="<?php echo $ms_link_transactions; ?>"><?php echo $ms_menu_transactions; ?></a></li>
+		              <li><a href="<?php echo $ms_link_requests; ?>"><?php echo $ms_menu_requests; ?></a></li>
+			          <li><a href="<?php echo $ms_link_settings; ?>"><?php echo $ms_menu_settings; ?></a></li>
+		        </ul>
+		      </li>
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="&adminFolder;/controller/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[
+			protected function index() {
+			]]></search>
+			<add><![CDATA[
+			$this->data = array_merge($this->data, $this->load->language('multiseller/multiseller'));
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="before"><![CDATA[
+			$this->data['stores'] = array();
+			]]></search>
+			<add><![CDATA[
+			$this->data['ms_link_sellers'] = $this->url->link('multiseller/seller', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['ms_link_seller_groups'] = $this->url->link('multiseller/seller-group', 'token=' . $this->session->data['token'], 'SSL');			
+			$this->data['ms_link_products'] = $this->url->link('multiseller/product', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['ms_link_requests'] = $this->url->link('multiseller/request-withdrawal', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['ms_link_transactions'] = $this->url->link('multiseller/transaction', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['ms_link_settings'] = $this->url->link('module/multiseller', 'token=' . $this->session->data['token'], 'SSL'); 
+			]]></add>
+		</operation>		
+	</file>
+	
+	<file name="&adminFolder;/controller/sale/order.php">
+		<operation>
+			<search position="before"><![CDATA[
+			$this->data['products'][] = array(
+			]]></search>
+			<add><![CDATA[
+			$this->language->load('multiseller/multiseller');
+			$this->data['column_seller'] = $this->language->get('ms_seller');
+			// todo check
+			$seller = $this->MsLoader->MsSeller->getSeller(
+				$this->MsLoader->MsProduct->getSellerId($product['product_id']),
+				array(
+					'product_id' => $product['product_id']
+				)
+			);
+			]]></add>
+		</operation>	
+	
+		<operation>
+			<search position="after"><![CDATA[
+			$this->data['products'][] = array(
+			]]></search>
+			<add><![CDATA[
+			'seller' => array(
+				'seller_id' => isset($seller['seller_id']) ? $seller['seller_id'] : '',
+				'nickname' => isset($seller['ms.nickname']) ? $seller['ms.nickname'] : ''
+			),
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="&adminFolder;/view/template/sale/order_info.tpl">
+		<operation>
+			<search position="before"><![CDATA[
+			<td class="left"><?php echo $column_product; ?></td>
+			]]></search>
+			<add><![CDATA[
+			<td class="left"><?php echo $column_seller; ?></td>
+			]]></add>
+		</operation>	
+	
+		<operation>
+			<search position="before"><![CDATA[
+			<td class="left"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+			]]></search>
+			<add><![CDATA[
+			<td class="left"><?php if (!empty($product['seller']['seller_id'])) { ?><a href="<?php echo $this->url->link('multiseller/seller/update', 'token=' . $this->session->data['token'] . '&seller_id=' . $product['seller']['seller_id'], 'SSL');?>"><?php echo $product['seller']['nickname']; ?></a> <?php } ?></td>
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="replace"><![CDATA[
+			<td colspan="4" class="right"><?php echo $totals['title']; ?>:</td>
+			]]></search>
+			<add><![CDATA[
+			<td colspan="5" class="right"><?php echo $totals['title']; ?>:</td>
+			]]></add>
+		</operation>		
+	</file>
+	
+<!-- Contact All Sellers in the Backend -->
+
+<file name="&adminFolder;/view/template/sale/contact.tpl">
+	<operation>
+		<search position="after"><![CDATA[
+			<option value="affiliate"><?php echo $text_affiliate; ?></option>
+		]]></search>
+		<add><![CDATA[
+			<option value="seller_all"><?php echo $text_seller_all; ?></option>
+		]]></add>
+	</operation>
+</file>
+			
+<file name="&adminFolder;/controller/sale/contact.php">
+	<operation>
+		<search position="after"><![CDATA[
+			$this->data['cancel'] = $this->url->link('sale/contact', 'token=' . $this->session->data['token'], 'SSL');
+		]]></search>
+		<add><![CDATA[
+			$this->language->load('multiseller/multiseller');
+			$this->data['text_seller_all'] = $this->language->get('ms_all_sellers');
+		]]></add>
+	</operation>
+
+	<operation>
+		<search position="before"><![CDATA[
+			case 'product':
+		]]></search>
+		<add><![CDATA[
+			case 'seller_all':
+				$email_total = $this->MsLoader->MsSeller->getTotalSellers(array(
+					'seller_status' => array(MsSeller::STATUS_ACTIVE)
+				));
+				
+				$results = $this->MsLoader->MsSeller->getSellers(
+					array(
+						'seller_status' => array(MsSeller::STATUS_ACTIVE)
+					),
+					array(
+						'order_by'	=> 'ms.nickname',
+						'order_way'	=> 'ASC',
+						'offset'		=> ($page - 1) * 10,
+						'limit'		=> 10,
+					)
+				);
+				
+				foreach ($results as $result) {
+					$emails[] = $result['c.email'];
+				}
+				break;
+		]]></add>
+	</operation>
+</file>
+</modification>

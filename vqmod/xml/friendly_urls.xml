@@ -1,0 +1,45 @@
+<modification>
+
+	<id>Friendly URLs</id>
+	<version>1.0.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>ovife21</author>
+	
+	<file name="catalog/controller/common/seo_url.php">
+		<operation>
+			<search position="before"><![CDATA[elseif (isset($this->request->get['path']))]]></search>
+			<add><![CDATA[
+
+			} elseif ($this->request->get['_route_'] ==  'wishlist') { $this->request->get['route'] =  'account/wishlist';
+			} elseif ($this->request->get['_route_'] ==  'contact') { $this->request->get['route'] =  'information/contact';
+			} elseif ($this->request->get['_route_'] ==  'account') { $this->request->get['route'] =  'account/account';
+			} elseif ($this->request->get['_route_'] ==  'sitemap') { $this->request->get['route'] =  'information/sitemap';
+			} elseif ($this->request->get['_route_'] ==  'manufacturer') { $this->request->get['route'] =  'product/manufacturer';
+			} elseif ($this->request->get['_route_'] ==  'affiliates') { $this->request->get['route'] =  'affiliate/account';
+			} elseif ($this->request->get['_route_'] ==  'special') { $this->request->get['route'] =  'product/special';
+			} elseif ($this->request->get['_route_'] ==  'login') { $this->request->get['route'] =  'account/login';
+			} elseif ($this->request->get['_route_'] ==  'logout') { $this->request->get['route'] =  'account/logout';
+			} elseif ($this->request->get['_route_'] ==  'register') { $this->request->get['route'] =  'account/register';
+			
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[$key == 'path']]></search>
+			<add><![CDATA[
+			} elseif (isset($data['route']) && $data['route'] ==   'common/home') { $url .=  '/';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/wishlist' && $key != 'remove') { $url .=  '/wishlist';
+			} elseif (isset($data['route']) && $data['route'] ==   'information/contact') { $url .=  '/contact';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/account') { $url .=  '/account';
+			} elseif (isset($data['route']) && $data['route'] ==   'information/sitemap') { $url .=  '/sitemap';
+			} elseif (isset($data['route']) && $data['route'] ==   'product/manufacturer') { $url .=  '/manufacturer';
+			} elseif (isset($data['route']) && $data['route'] ==   'affiliate/account') { $url .=  '/affiliates';
+			} elseif (isset($data['route']) && $data['route'] ==   'product/special' && $key != 'page' && $key != 'sort' && $key != 'limit' && $key != 'order') { $url .=  '/special';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/login') { $url .=  '/login';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/logout') { $url .=  '/logout';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/register') { $url .=  '/register';
+			]]></add>
+		</operation>
+	</file>
+	
+</modification>
+

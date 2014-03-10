@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id><![CDATA[Increase Page Speed - SEO Caching]]></id>
+	<version><![CDATA[3.3]]></version>
+	<vqmver><![CDATA[2.1]]></vqmver>
+	<author><![CDATA[<a onclick="window.open('http://www.opencart.com/index.php?route=extension/extension&filter_username=Tcalp');" title="View all OpenCart Mods by Tcalp">Jeff Hunter aka Tcalp</a>]]></author>
+	<file name="catalog/controller/common/seo_url.php">
+		<operation> <!-- READ CACHE INSTEAD OF QUERY -->
+			<search position="replace" offset="4"><![CDATA[foreach ($parts as $part) {]]></search>
+			<add><![CDATA[
+			foreach ($parts as $part) {
+				if (isset($this->cache_data['keywords'][$part])) {
+					$query = $this->cache_data['keywords'][$part];
+					$url = explode('=', $query);
+			
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias]]></search>
+			<add><![CDATA[//$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias]]></add>
+		</operation>
+		<operation>
+			<search position="replace" offset="1"><![CDATA[if ($query->num_rows) {]]></search>
+			<add><![CDATA[
+			if (isset($this->cache_data['queries'][$key . '=' . (int)$value])) {
+				$keyword = $this->cache_data['queries'][$key . '=' . (int)$value];
+				$url .= '/' . $keyword;			
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace" offset="6"><![CDATA[foreach ($categories as $category) {]]></search>
+			<add><![CDATA[
+						foreach ($categories as $category) {
+							if (isset($this->cache_data['queries']['category_id=' . (int)$category])) {
+								$keyword = $this->cache_data['queries']['category_id=' . (int)$category];
+								$url .= '/' . $keyword;			
+			]]></add>
+		</operation>
+		<operation> <!-- ADD CACHE CONSTRUCT -->
+			<search position="after"><![CDATA[class ControllerCommonSeoUrl]]></search>
+			<add><![CDATA[
+			private $cache_data = null;
+
+			public function __construct($registry) {
+				parent::__construct($registry);
+				$this->cache_data = $this->cache->get('seo_url');
+				if (!$this->cache_data) {
+					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias");
+					$this->cache_data = array();
+					foreach ($query->rows as $row) {
+						$this->cache_data['keywords'][$row['keyword']] = $row['query'];
+						$this->cache_data['queries'][$row['query']] = $row['keyword'];
+					}
+					$this->cache->set('seo_url', $this->cache_data);
+				}
+			}
+			]]></add>
+		</operation>
+	</file>
+</modification>

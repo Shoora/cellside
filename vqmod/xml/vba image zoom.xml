@@ -1,0 +1,30 @@
+<modification>
+        <id>VbA Image Zoom Mod</id>
+        <version>1.0</version>
+        <vqmver>2.1.5</vqmver>
+        <author>VbA - http://TheHoster.net</author>
+
+        <file name="catalog/view/theme/*/template/product/product.tpl">
+                <operation>
+                        <search position="replace"><![CDATA[
+                         class="colorbox"
+                        ]]></search>
+                        <add><![CDATA[
+                       class="colorbox cloud-zoom" id='zoom1' rel="adjustX: 20, adjustY:-4,softFocus:true"
+                        ]]></add>
+                </operation>
+        </file>
+		
+		<file name="catalog/view/theme/*/template/common/header.tpl">
+                <operation>
+                        <search position="after"><![CDATA[
+                        <script type="text/javascript" src="catalog/view/javascript/common.js"></script>
+                        ]]></search>
+                        <add><![CDATA[
+                        <link href="catalog/view/theme/default/stylesheet/cloud-zoom.css" rel="stylesheet" type="text/css" />
+						<script type="text/JavaScript" src="catalog/view/javascript/cloud-zoom.1.0.2.min.js"></script>
+                        ]]></add>
+                </operation>
+        </file>
+
+</modification>

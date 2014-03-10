@@ -1,0 +1,22 @@
+.form-item input{
+	padding-right: 0px;
+	min-height: 20px !important;
+}
+.header{
+	height: 49px;
+}
+.header .admin-info{
+	width: 250px;
+}
+.header .secondary-menu > ul > li#store{
+	background: url("../../../image/admin_theme/base5builder_circloid/css-sprite.png") no-repeat scroll -94px -793px;
+}
+ul.mainnav > li > ul > li a.parent{
+	background: url("../../../image/admin_theme/base5builder_circloid/css-sprite.png") no-repeat scroll -4px -708px;
+}
+.heading h1{
+	width: 200px;
+}
+.modal-body label{
+	width: 90px;
+}

@@ -1,0 +1,104 @@
+<modification>
+	<id>VQMod Pavo Blogs Shortcut</id>
+	<version>1.0.0</version>
+	<vqmver>2.3.0</vqmver>
+	<author>pavothemes.com</author>
+	<file name="admin/controller/common/header.php">
+		<operation error="abort">
+			<search position="before"><![CDATA[$this->data['text_zone']]]></search>
+			<add><![CDATA[
+				$this->load->model('setting/extension');
+				$extensions = $this->model_setting_extension->getInstalled('module');
+				$this->data['pavblog_installed'] = false;
+				if(in_array("pavblog", $extensions)){
+					$this->data['pavblog_installed'] = true;
+				}
+
+				$this->data['text_pavblog_manage_cate'] = $this->language->get('text_pavblog_manage_cate');
+				$this->data['text_pavblog_manage_blog'] = $this->language->get('text_pavblog_manage_blog');
+				$this->data['text_pavblog_add_blog'] = $this->language->get('text_pavblog_add_blog');
+				$this->data['text_pavblog_manage_comment'] = $this->language->get('text_pavblog_manage_comment');
+				$this->data['text_pavblog_general_setting'] = $this->language->get('text_pavblog_general_setting');
+				$this->data['text_pavblog_front_mods'] = $this->language->get('text_pavblog_front_mods');
+				$this->data['text_pavblog_blog'] = $this->language->get('text_pavblog_blog');
+				$this->data['text_pavblog_category'] = $this->language->get('text_pavblog_category');
+				$this->data['text_pavblog_comment'] = $this->language->get('text_pavblog_comment');
+				$this->data['text_pavblog_latest'] = $this->language->get('text_pavblog_latest');]]></add>
+		</operation>
+		<operation error="abort">
+			<search position="before"><![CDATA[$this->data['zone']]]></search>
+			<add><![CDATA[			$this->data['pavblogs_category_mod'] = $this->url->link('module/pavblog/frontmodules', 'mod=pavblogcategory&token=' . $this->session->data['token'], 'SSL');
+				$this->data['pavblogs_latest_comment_mod'] = $this->url->link('module/pavblog/frontmodules', 'mod=pavblogcomment&token=' . $this->session->data['token'], 'SSL');
+				$this->data['pavblogs_latest_mod'] = $this->url->link('module/pavblog/frontmodules', 'mod=pavbloglatest&token=' . $this->session->data['token'], 'SSL');
+				$this->data['pavblogs_category'] = $this->url->link('module/pavblog/category', 'token=' . $this->session->data['token'], 'SSL');
+				$this->data['pavblogs_blogs'] = $this->url->link('module/pavblog/blogs', 'token=' . $this->session->data['token'], 'SSL');
+				$this->data['pavblogs_add_blog'] = $this->url->link('module/pavblog/blog', 'token=' . $this->session->data['token'], 'SSL');
+				$this->data['pavblogs_comments'] = $this->url->link('module/pavblog/comments', 'token=' . $this->session->data['token'], 'SSL');
+				$this->data['pavblogs_general'] = $this->url->link('module/pavblog/modules', 'token=' . $this->session->data['token'], 'SSL');
+				]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/*/common/header.php">
+		<operation error="abort">
+			<search position="before"><![CDATA[$_['text_zone']]]></search>
+			<add><![CDATA[$_['text_pavblog_blog']               = 'Pav Blogs';
+				$_['text_pavblog_category']               = 'Pav Category';
+				$_['text_pavblog_manage_comment']               = 'Comments';
+				$_['text_pavblog_manage_cate']               = 'Categories';
+				$_['text_pavblog_manage_blog']               = 'Blogs';
+				$_['text_pavblog_add_blog']			= 'Add Blog';
+				$_['text_pavblog_general_setting']               = 'General Settings';
+				$_['text_pavblog_front_mods']               = 'Frontend Modules';
+				$_['text_pavblog_comment']               = 'Pav Latest Comment';
+				$_['text_pavblog_latest']               = 'Pav Latest';]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/common/header.tpl">
+		<operation error="abort">
+			<search position="before"><![CDATA[<li id="help"><a class="top"><?php echo $text_help; ?></a>]]></search>
+			<add><![CDATA[
+				<?php if($pavblog_installed): ?>
+				<li id="pavblogs"><a class="top"><?php echo $text_pavblog_blog; ?></a>
+					<ul>
+			          <li><a href="<?php echo $pavblogs_category; ?>"><?php echo $text_pavblog_manage_cate; ?></a></li>
+			          <li><a href="<?php echo $pavblogs_blogs; ?>"><?php echo $text_pavblog_manage_blog; ?></a></li>
+			          <li><a href="<?php echo $pavblogs_add_blog; ?>"><?php echo $text_pavblog_add_blog; ?></a></li>
+			          <li><a href="<?php echo $pavblogs_comments; ?>"><?php echo $text_pavblog_manage_comment; ?></a></li>
+			          <li><a href="<?php echo $pavblogs_general; ?>"><?php echo $text_pavblog_general_setting; ?></a></li>
+			          <li><a class="parent"><?php echo $text_pavblog_front_mods; ?></a>
+					      <ul>
+			                  <li><a href="<?php echo $pavblogs_category_mod; ?>"><?php echo $text_pavblog_category; ?></a></li>
+			                  <li><a href="<?php echo $pavblogs_latest_comment_mod; ?>"><?php echo $text_pavblog_comment; ?></a></li>
+			                  <li><a href="<?php echo $pavblogs_latest_mod; ?>"><?php echo $text_pavblog_latest; ?></a></li>
+		                  </ul>
+		              </li>
+			        </ul>
+			    </li>
+			    <?php endif; ?>
+				]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/common/header.php">
+		<operation error="abort">
+			<search position="before"><![CDATA[$this->render();]]></search>
+			<add><![CDATA[
+				if(isset($this->data['categories'])){
+					$this->data['categories'][] = array(
+						'name'     => $this->language->get("text_blogs"),
+						'children' => array(),
+						'column'   => 1,
+						'href'     => $this->url->link('pavblog/blogs', '')
+					);
+				}
+				]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/*/common/header.php">
+		<operation error="abort">
+			<search position="before"><![CDATA[$_['text_home']           = 'Home';]]></search>
+			<add><![CDATA[
+				$_['text_blogs']           = 'Blogs';
+				]]></add>
+		</operation>
+	</file>
+</modification>

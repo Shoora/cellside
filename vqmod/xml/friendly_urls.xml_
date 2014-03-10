@@ -1,0 +1,110 @@
+<modification>
+
+	<id>Friendly URLs</id>
+	<version>1.0.0</version>
+	<vqmver>2.1.5</vqmver>
+	<author>ovife21</author>
+	
+	<file name="catalog/controller/common/seo_url.php">
+		<operation>
+			<search position="before"><![CDATA[elseif (isset($this->request->get['path']))]]></search>
+			<add><![CDATA[
+
+			} elseif ($this->request->get['_route_'] ==  'wishlist') { $this->request->get['route'] =  'account/wishlist';
+			} elseif ($this->request->get['_route_'] ==  'contact') { $this->request->get['route'] =  'information/contact';
+			} elseif ($this->request->get['_route_'] ==  'account') { $this->request->get['route'] =  'account/account';
+			} elseif ($this->request->get['_route_'] ==  'sitemap') { $this->request->get['route'] =  'information/sitemap';
+			} elseif ($this->request->get['_route_'] ==  'manufacturer') { $this->request->get['route'] =  'product/manufacturer';
+			} elseif ($this->request->get['_route_'] ==  'affiliates') { $this->request->get['route'] =  'affiliate/account';
+			} elseif ($this->request->get['_route_'] ==  'special') { $this->request->get['route'] =  'product/special';
+			} elseif ($this->request->get['_route_'] ==  'login') { $this->request->get['route'] =  'checkout/checkout_one';
+			} elseif ($this->request->get['_route_'] ==  'logout') { $this->request->get['route'] =  'account/logout';
+			} elseif ($this->request->get['_route_'] ==  'register') { $this->request->get['route'] =  'account/register';
+			} elseif ($this->request->get['_route_'] ==  'iphone-customization-and-conversion') { $this->request->get['route'] =  'product/customize';
+			} elseif ($this->request->get['_route_'] ==  'DIY-custom-case-designer') { $this->request->get['route'] =  'common/flash';
+			} elseif ($this->request->get['_route_'] ==  'cart') { $this->request->get['route'] =  'checkout/cart';
+			} elseif ($this->request->get['_route_'] ==  'checkout') { $this->request->get['route'] =  'checkout/checkout_two';
+			} elseif ($this->request->get['_route_'] ==  'success') { $this->request->get['route'] =  'checkout/success';
+			} elseif ($this->request->get['_route_'] ==  'account-edit') { $this->request->get['route'] =  'account/edit';
+			} elseif ($this->request->get['_route_'] ==  'account-password') { $this->request->get['route'] =  'account/password';
+			} elseif ($this->request->get['_route_'] ==  'account-address') { $this->request->get['route'] =  'account/address';
+			} elseif ($this->request->get['_route_'] ==  'account-address-update') { $this->request->get['route'] =  'account/address/update';
+			} elseif ($this->request->get['_route_'] ==  'account-address-delete') { $this->request->get['route'] =  'account/address/delete';
+			} elseif ($this->request->get['_route_'] ==  'account-address-insert') { $this->request->get['route'] =  'account/address/insert';
+			} elseif ($this->request->get['_route_'] ==  'account-order') { $this->request->get['route'] =  'account/order';
+			} elseif ($this->request->get['_route_'] ==  'account-order-info') { $this->request->get['route'] =  'account/order/info';
+			} elseif ($this->request->get['_route_'] ==  'account-return-insert') { $this->request->get['route'] =  'account/return/insert';
+			} elseif ($this->request->get['_route_'] ==  'account-download') { $this->request->get['route'] =  'account/download';
+			} elseif ($this->request->get['_route_'] ==  'account-reward') { $this->request->get['route'] =  'account/reward';
+			} elseif ($this->request->get['_route_'] ==  'account-return') { $this->request->get['route'] =  'account/return';
+			} elseif ($this->request->get['_route_'] ==  'account-return-info') { $this->request->get['route'] =  'account/return/info';
+			} elseif ($this->request->get['_route_'] ==  'account-transaction') { $this->request->get['route'] =  'account/transaction';
+			} elseif ($this->request->get['_route_'] ==  'account-newsletter') { $this->request->get['route'] =  'account/newsletter';
+			} elseif ($this->request->get['_route_'] ==  'artist-product') { $this->request->get['route'] =  'seller/account-product';
+			} elseif ($this->request->get['_route_'] ==  'artist-transaction') { $this->request->get['route'] =  'seller/account-transaction';
+			} elseif ($this->request->get['_route_'] ==  'artist-withdrawal') { $this->request->get['route'] =  'seller/account-withdrawal';
+			} elseif ($this->request->get['_route_'] ==  'artist-create-product') { $this->request->get['route'] =  'seller/account-product/create';
+			} elseif ($this->request->get['_route_'] ==  'artist-update-product') { $this->request->get['route'] =  'seller/account-product/update';
+			} elseif ($this->request->get['_route_'] ==  'artist-delete-product') { $this->request->get['route'] =  'seller/account-product/delete';
+			} elseif ($this->request->get['_route_'] ==  'artist-publish-product') { $this->request->get['route'] =  'seller/account-product/publish';
+			} elseif ($this->request->get['_route_'] ==  'artist-unpublish-product') { $this->request->get['route'] =  'seller/account-product/unpublish';
+			} elseif ($this->request->get['_route_'] ==  'search') { $this->request->get['route'] =  'product/search';
+			} elseif ($this->request->get['_route_'] ==  'preview') { $this->request->get['route'] =  'product/product';
+			} elseif ($this->request->get['_route_'] ==  'profile') { $this->request->get['route'] =  'seller/catalog-seller/profile';
+			} elseif ($this->request->get['_route_'] ==  'mail') { $this->request->get['route'] =  'information/mail';
+			]]></add>
+		</operation>
+		<!--} elseif ($this->request->get['_route_'] ==  'artist-profile') { $this->request->get['route'] =  'seller/account-profile';-->
+		<operation>
+			<search position="before"><![CDATA[$key == 'path']]></search>
+			<add><![CDATA[
+			} elseif (isset($data['route']) && $data['route'] ==   'common/home') { $url .=  '/';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/wishlist' && $key != 'remove') { $url .=  '/wishlist';
+			} elseif (isset($data['route']) && $data['route'] ==   'information/contact') { $url .=  '/contact';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/account') { $url .=  '/account';
+			} elseif (isset($data['route']) && $data['route'] ==   'information/sitemap') { $url .=  '/sitemap';
+			} elseif (isset($data['route']) && $data['route'] ==   'product/manufacturer') { $url .=  '/manufacturer';
+			} elseif (isset($data['route']) && $data['route'] ==   'affiliate/account') { $url .=  '/affiliates';
+			} elseif (isset($data['route']) && $data['route'] ==   'product/special' && $key != 'page' && $key != 'sort' && $key != 'limit' && $key != 'order') { $url .=  '/special';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/login') { $url .=  '/login';
+			} elseif (isset($data['route']) && $data['route'] ==   'checkout/checkout_one') { $url .=  '/login';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/logout') { $url .=  '/logout';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/register') { $url .=  '/register';
+			} elseif (isset($data['route']) && $data['route'] ==   'product/customize') { $url .=  '/iphone-customization-and-conversion';
+			} elseif (isset($data['route']) && $data['route'] ==   'common/flash') { $url .=  '/DIY-custom-case-designer';
+			} elseif (isset($data['route']) && $data['route'] ==   'checkout/cart') { $url .=  '/cart';
+			} elseif (isset($data['route']) && $data['route'] ==   'checkout/checkout') { $url .=  '/checkout';
+			} elseif (isset($data['route']) && $data['route'] ==   'checkout/checkout_two') { $url .=  '/checkout';
+			} elseif (isset($data['route']) && $data['route'] ==   'checkout/success') { $url .=  '/success';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/edit') { $url .=  '/account-edit';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/password') { $url .=  '/account-password';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/address') { $url .=  '/account-address';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/address/update') { unset($data[$key]); $url .=  '/account-address-update';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/address/delete') { unset($data[$key]); $url .=  '/account-address-delete';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/address/insert') { unset($data[$key]); $url .=  '/account-address-insert';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/order') { unset($data[$key]); $url .=  '/account-order';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/order/info') { unset($data[$key]); $url .=  '/account-order-info';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/return/insert') { unset($data[$key]); $url .=  '/account-return-insert';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/download') { unset($data[$key]); $url .=  '/account-download';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/reward') { unset($data[$key]); $url .=  '/account-reward';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/return') { unset($data[$key]); $url .=  '/account-return';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/transaction') { $url .=  '/account-transaction';
+			} elseif (isset($data['route']) && $data['route'] ==   'account/newsletter') { $url .=  '/account-newsletter';
+			} elseif (isset($data['route']) && $data['route'] ==   'seller/account-product') { unset($data[$key]); $url .=  '/artist-product';
+			} elseif (isset($data['route']) && $data['route'] ==   'seller/account-transaction') { unset($data[$key]); $url .=  '/artist-transaction';
+			} elseif (isset($data['route']) && $data['route'] ==   'seller/account-withdrawal') { unset($data[$key]); $url .=  '/artist-withdrawal';
+			} elseif (isset($data['route']) && $data['route'] ==   'seller/account-product/create') { unset($data[$key]); $url .=  '/artist-create-product';
+			} elseif (isset($data['route']) && $data['route'] ==   'seller/account-product/update') { unset($data[$key]); $url .=  '/artist-update-product';
+			} elseif (isset($data['route']) && $data['route'] ==   'seller/account-product/delete') { unset($data[$key]); $url .=  '/artist-delete-product';
+			} elseif (isset($data['route']) && $data['route'] ==   'seller/account-product/publish') { unset($data[$key]); $url .=  '/artist-publish-product';
+			} elseif (isset($data['route']) && $data['route'] ==   'seller/account-product/unpublish') { unset($data[$key]); $url .=  '/artist-unpublish-product';
+			} elseif (isset($data['route']) && $data['route'] ==   'product/search') { $url .=  '/search';
+			} elseif (isset($data['route']) && $data['route'] ==   'product/product') { $url .=  '/preview';
+			} elseif (isset($data['route']) && $data['route'] ==   'seller/catalog-seller/profile') { unset($data[$key]);$url .=  '/profile';
+			} elseif (isset($data['route']) && $data['route'] ==   'information/mail') { unset($data[$key]);$url .=  '/mail';
+			]]></add>
+		</operation>
+	</file>
+	<!--} elseif (isset($data['route']) && $data['route'] ==   'seller/account-profile') { $url .=  '/artist-profile';-->
+</modification>
+

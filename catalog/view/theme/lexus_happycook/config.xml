@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<theme>
+	<version value="1.4">
+		<ccc available="true" />
+		<guest_checkout available="true" />
+		<one_page_checkout available="true" />
+		<store_locator available="true" />
+	</version>
+	<name>Lexus Happycook Theme</name>
+	<author>LexusThemes</author>
+	<positions>
+		<position>userTop1</position>
+		<position>userTop2</position>			  
+		<position>leftColumn</position>
+		<position>leftBottom</position>
+		<position>leftMiddle1</position>
+		<position>leftMiddle2</position>
+		<position>rightColumn</position>
+		<position>rightBottom</position>
+		<position>rightMiddle1</position>
+		<position>rightMiddle2</position>
+		<position>userBottom1</position>
+		<position>userBottom2</position>
+		<position>userBottom2</position>
+		<position>contentTop</position>
+		<position>contentLeft</position>
+		<position>contentRight</position>		
+		<position>contentBottom</position>
+	</positions>
+	<modules>
+		<module>pavmegamenu</module>
+		<module>pavslideshow</module>
+		<module>pavproductcarousel</module>
+	</modules>
+	<skins>
+		<skin>default</skin>		
+		<skin>blue</skin>
+		<skin>orange</skin>
+		<skin>orchid</skin>	
+		<skin>red</skin>
+		<skin>yellow-green</skin>
+	</skins>
+	<columns>
+		<column name="promotion">3</colum>
+	</columns>
+</theme>

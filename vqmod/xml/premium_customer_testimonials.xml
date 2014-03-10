@@ -1,0 +1,127 @@
+<modification>
+	<id>Premium Customer Testimonials</id>
+	<version>1.5.x</version>
+	<vqmver>2.0</vqmver>
+	<author>Jeff Hunter aka Tcalp</author>
+	<file name="catalog/controller/account/account.php">
+		<operation>
+			<search position="after"><![CDATA[$this->data['text_reward']]]></search>
+			<add><![CDATA[$this->data['text_testimonial'] = $this->language->get('text_testimonial');
+			$this->data['url_testimonial'] = $this->url->link('product/testimonial');]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/english/account/account.php">
+		<operation>
+			<search position="replace"><![CDATA[?>]]></search>
+			<add><![CDATA[$_['text_testimonial'] = 'Submit Your Testimonial';?>]]></add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/*/template/account/account.tpl">
+		<operation>
+			<search position="after"><![CDATA[<?php echo $wishlist; ?>]]></search>
+			<add><![CDATA[      <li><a href="<?php echo $url_testimonial; ?>"><?php echo $text_testimonial; ?></a></li>]]></add>
+		</operation>
+	</file>
+	<file name="admin/controller/common/header.php">
+		<operation>
+			<search position="after"><![CDATA[$this->data['text_information']]]></search>
+			<add><![CDATA[$this->data['text_testimonial'] = $this->language->get('text_testimonial');]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[$this->data['information']]]></search>
+			<add><![CDATA[$this->data['testimonial'] = $this->url->link('catalog/testimonial', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/*/common/header.php">
+		<operation>
+			<search position="before"><![CDATA[$_['text_information']]]></search>
+			<add><![CDATA[$_['text_testimonial']       = 'Testimonials';]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/common/header.tpl">
+		<operation>
+			<search position="after"><![CDATA[<li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>]]></search>
+			<add><![CDATA[<li><a href="<?php echo $testimonial; ?>"><?php echo $text_testimonial; ?></a></li>]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/common/home.php">
+		<operation>
+			<search position="after"><![CDATA[$this->data['heading_title']]]></search>
+			<add><![CDATA[
+			$this->load->model('catalog/testimonial');
+			//READ COMPANY DATA / SEO SETTINGS
+			$this->data['website']['company']     = $this->config->get('testimonial_company');
+			$this->data['website']['address']     = $this->config->get('testimonial_address1');
+			$this->data['website']['city']        = $this->config->get('testimonial_city');
+			$this->data['website']['state']       = $this->config->get('testimonial_state');
+			$this->data['website']['postal_code'] = $this->config->get('testimonial_postal_code');
+			$this->data['website']['country']     = $this->config->get('testimonial_country');
+			$this->data['website']['website']     = $this->config->get('testimonial_website');
+			$this->data['website']['telephone']   = $this->config->get('testimonial_telephone');
+			$summary                              = $this->model_catalog_testimonial->getSummaryData();
+			$this->data['website']['total']       = $summary['total'];
+			$this->data['website']['rating']      = $summary['rating'];
+			
+			$this->data['website']['display_price'] = $this->config->get('testimonial_display_price');
+			if ($this->config->get('testimonial_price_from')) {
+				$this->data['website']['price_from'] = $this->config->get('testimonial_price_from');
+			} else {
+				$this->data['website']['price_from'] = false;
+			}
+			if ($this->config->get('testimonial_price_to')) {
+				$this->data['website']['price_to'] = $this->config->get('testimonial_price_to');
+			} else {
+				$this->data['website']['price_to'] = false;
+			}
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/*/template/common/home.tpl">
+		<operation>
+			<search position="before"><![CDATA[<?php echo $footer; ?>]]></search>
+			<add><![CDATA[
+		<?php if ($website['total']) { ?>
+			<div style="position:absolute; top: -100000px;">
+				<div itemscope itemtype="http://schema.org/LocalBusiness">
+					<span itemprop="name"><?php echo $website['company']; ?></span></h1>
+					<span itemprop="description"></span>
+					<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+						<span itemprop="streetAddress"><?php echo $website['address']; ?></span>
+						<span itemprop="addressLocality"><?php echo $website['city']; ?></span>
+						<span itemprop="addressRegion"><?php echo $website['state']; ?></span>
+						<span itemprop="postalCode"><?php echo $website['postal_code']; ?></span>
+					</div>
+					<span itemprop="telephone"><?php echo $website['telephone']; ?></span>
+					<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+						<meta itemprop="worstRating" content="1">
+						<meta itemprop="bestRating" content="5">
+						<meta itemprop="ratingValue" content="<?php echo $website['rating']; ?>">
+						<meta itemprop="reviewCount" content="<?php echo $website['total']; ?>">
+					</div>
+				</div>
+				<a itemprop="url" href="<?php echo $website['website']; ?>"></a>
+				<?php if ($this->config->get('testimonial_display_price')) { ?>
+				<span itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer-aggregate">
+					<span itemprop="lowPrice"><?php echo $website['price_from']; ?></span>
+					<span itemprop="highPrice"><?php echo $website['price_to']; ?></span>
+					<meta itemprop="currency" content="<?php echo $this->currency->getCode(); ?>" />
+				</span>
+				<?php } ?>
+			</div>
+		<?php } ?>			
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/english/common/footer.php">
+		<operation>
+			<search position="before"><![CDATA[$_['text_information']]]></search>
+			<add><![CDATA[$_['text_testimonial'] = 'Customer Testimonials';]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/common/footer.php">
+		<operation>
+			<search position="before"><![CDATA[$this->data['contact']]]></search>
+			<add><![CDATA[array_unshift($this->data['informations'], array('title' => $this->language->get('text_testimonial'), 'href' => $this->url->link('product/testimonial')));]]></add>
+		</operation>
+	</file>
+</modification>
