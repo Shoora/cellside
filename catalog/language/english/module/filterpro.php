@@ -7,7 +7,7 @@ $_['text_manufacturers'] = 'Manufacturers:';
 $_['text_tags'] 		 = 'Tags:';
 $_['text_categories']    = 'Categories:';
 
-$_['text_all'] 			 = 'All';
+$_['text_all'] 			 = 'Shop by Brand';
 $_['clear_filter']       = 'Clear';
 
 $_['pds_model']      = 'Model:';

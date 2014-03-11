@@ -3,13 +3,13 @@ class Pagination {
 	public $total = 0;
 	public $page = 1;
 	public $limit = 20;
-	public $num_links = 10;
+	public $num_links = 5;
 	public $url = '';
 	public $text = 'Showing {start} to {end} of {total} ({pages} Pages)';
-	public $text_first = '|&lt;';
-	public $text_last = '&gt;|';
-	public $text_next = '&gt;';
-	public $text_prev = '&lt;';
+	public $text_first = '';
+	public $text_last = '';
+	public $text_next = 'Next';
+	public $text_prev = 'Prev';
 	public $style_links = 'links';
 	public $style_results = 'results';
 	 
@@ -59,7 +59,7 @@ class Pagination {
 			}
 
 			if ($start > 1) {
-				
+				//
 			$output .= ' <li class="disabled"><span>....</span></li> ';
 			
 			}
@@ -77,7 +77,7 @@ class Pagination {
 			}
 							
 			if ($end < $num_pages) {
-				
+				//
 			$output .= ' <li class="disabled"><span>....</span></li> ';
 			
 			}

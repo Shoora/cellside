@@ -1,9 +1,9 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://cellside.loc/');
+define('HTTP_SERVER', 'http://dev2.cellside.loc/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://cellside.loc/');
+define('HTTPS_SERVER', 'http://dev2.cellside.loc/');
 
 // DIR
 define('DIR_APPLICATION', $_SERVER['DOCUMENT_ROOT'].'/catalog/');
@@ -21,10 +21,9 @@ define('DIR_LOGS', $_SERVER['DOCUMENT_ROOT'].'/system/logs/');
 define('DB_DRIVER', 'mysql');
 define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '123');
-define('DB_DATABASE', 'cellside');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'cellside_dev2');
 define('DB_PREFIX', '');
 
-error_reporting(0);
-@ini_set('display_errors', 0);
+
 ?>

@@ -221,10 +221,12 @@ table.radio tr.highlight:hover td {
 }
 .pagination .links {
 	/*float: left;*/
-	border-top:1px solid #ededed;
-	border-bottom:1px solid #ededed;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
 	padding:5px;
+	text-align: center;
 }
+.pagination .results {display: none;}
 .pagination .links a,
 .pagination .links b {
 	/*border: 1px solid #ccc;*/
@@ -237,14 +239,21 @@ table.radio tr.highlight:hover td {
 	-ms-border-radius: 0px;
 	-o-border-radius: 0px;
 	border-radius: 0px;
-	padding: 3px 9px;
+	/*padding: 3px 9px;*/
 	text-decoration: none;
 	color: #21272c;
+	font-weight: 700;
 }
 .pagination .links a:hover {
-	background-color: #D91718;
+/*	background-color: #D91718;
 	color: #fff;
-	transition: all 0.1s ease 0s;
+	transition: all 0.1s ease 0s;*/
+	color: #21272c;
+}
+.pagination li.active {
+	color: #af0917;
+	font-weight: 700;
+	font-size: 17px;
 }
 .pagination .links b {
 	display: inline-block;
@@ -418,7 +427,7 @@ ul.links li:first-child:before {
 	margin-left: 0;
 }
 ul.links li:before {
-	content: "|";
+	/*content: "|";*/
 	font-size: 12px;
 	margin-right: 6px;
 }
@@ -757,7 +766,7 @@ body.layout-boxed-lg #page #breadcrumb {
 #pav-mainnav {
 	margin-bottom: 0px;
 	/*//background: transparent;*/
-	background: #DBDBDB;
+	background: #f7f7f7;
 	position: relative;
 }
 #pav-mainnav .mainnav-wrap {
@@ -1478,10 +1487,12 @@ body.layout-boxed-lg #page #breadcrumb {
 	color: #D91718;
 }
 .product-block .description {
-	line-height: 20px;
+	line-height: 14px;
+	font-size: 14px;
+	min-height: 42px;
 	margin-bottom: 10px;
 	color: #6e6e6e;
-	display: none;
+	/*display: none;*/
 }
 .product-block .compare-wishlish {
 	left: 0;
@@ -1597,8 +1608,21 @@ body.layout-boxed-lg #page #breadcrumb {
 	transition: all 0.5s ease 0s;
 }
 .product-block .price-new {
-	font-size: 18px;
-	font-family: "proximanova-extrabold", serif;
+	font-size: 24px;
+	/*font-family: "proximanova-extrabold", serif;*/
+}
+.prod-list .price-new {
+	color: #41a62a;
+	font-weight: 600;
+	font-size: 30px;
+}
+.prod-list .price-old {
+	color: #af0917;
+	font-weight: 700;
+	font-size: 15px;
+	position: relative;
+	top: -4px;
+	left: 6px;
 }
 .product-block .name {
 	margin-top: 0px;
@@ -1617,8 +1641,9 @@ body.layout-boxed-lg #page #breadcrumb {
 .product-list .name a,
 .newest .product-block .name a,
 .sameCategory .product-block .name a{
-	font-size: 14px;
-	min-height: 70px;
+	font-size: 13px;
+	font-weight: 600;
+	min-height: 45px;
 }
 .product-block .image {
 	display: block;
@@ -1834,7 +1859,7 @@ ul.box-filter span {
 	font-family: "proximanova-extrabold", serif;*/
 }
 .category-list {
-	display: none;
+	/*display: none;*/
 	margin-bottom: 20px;
 }
 .category-list ul {
@@ -1978,7 +2003,7 @@ ul.box-filter span {
 	position: relative;
 }
 .product-grid .description {
-	display: none;
+	/*display: none;*/
 }
 .product-info {
 	margin-top: 15px;
@@ -3435,16 +3460,24 @@ body,
 .call-action-bottom ul li{ float:left; display:inline; }
 .salebg{ position:absolute; top:-8px; left:35%; }
 .featured-btt{ 
-	background: url(../image/featured-btt.png) no-repeat 0 0;
-	width: 93px;
-	height: 29px;
+	background: url(../image/featured-btt2.png) no-repeat right 10px center;
+	/* width: 93px; */
+	/* height: 29px; */
 	line-height: 26px;
 	display: inline-block;
-	color: #fff;
+	color: #fff !important;
 	font-size: 14px;
 	padding-left: 10px;
 	text-decoration: none;
 	text-align: left;
+
+	background-color: #3ea228;
+	border-color: #3ea228;
+	padding: 1px 8px;
+	padding-right: 33px;
+	box-shadow: 0px 3px 0px 0px #0E4D11;
+	border-radius: 4px;
+}
 }
 .featured-btt:hover{ opacity:0.9; color:#FFF !important; }
 .testi-bg{ border:4px solid #c0c0c0; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; width:140px; height:140px; background:#fff; -webkit-box-shadow: inset 5px 5px 5px 0px rgba(0,0,0,0.5); -moz-box-shadow: inset 5px 5px 5px 0px rgba(0,0,0,0.5); box-shadow: inset 5px 5px 5px 0px rgba(0,0,0,0.5); position:relative; overflow:hidden; float:left;  }
@@ -4688,4 +4721,11 @@ ul.select-device > li:last-child{
 
 .submit-action{
 	text-align:right
+}
+.refine {
+	border-bottom: 1px solid #c0c0c0;
+	color: #af0917;
+	font-weight: 600;
+	padding-bottom: 10px;
+	font-size: 20px; 
 }

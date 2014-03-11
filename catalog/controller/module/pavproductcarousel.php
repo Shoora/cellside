@@ -37,10 +37,15 @@ class ControllerModulePavproductcarousel extends Controller {
 		$this->data['show_button'] = isset($setting['btn_view_more'])?$setting['btn_view_more']:0;
 		
 		$this->data['byBrand'] = $this->model_catalog_category->getCategories(59); // subcategories of SHOP NOW
-		if (strpos($_GET['path'], '_') !== FALSE) {
-			$cat_model_id = explode('_', $_GET['path']);
-			$this->data['byModel'] = $this->model_catalog_category->getCategories($cat_model_id[1]); // subcategories of Current brand
-		}
+		// foreach ($this->data['byBrand'] as $key => $value) {
+		// 	$this->data['byModel'][$value['category_id']] = $this->model_catalog_category->getCategories($value['category_id']);
+		// }
+
+		
+		// if (strpos($_GET['path'], '_') !== FALSE) {
+		// 	$cat_model_id = explode('_', $_GET['path']);
+		// 	$this->data['refineSearch'] = $this->model_catalog_category->getCategories($cat_model_id[1]); // subcategories of Current brand
+		// }
 		
 		$currenttab = reset($setting['tabs']);
 		$button_link = '';
@@ -99,6 +104,7 @@ class ControllerModulePavproductcarousel extends Controller {
 		if( isset($setting['tabs']['bestseller']) ){
 			$products = $this->getProducts( $this->model_catalog_product->getBestSellerProducts( $data['limit'] ), $setting );
 			$this->data['heading_title'] = $this->language->get('text_bestseller');
+			//print_r($setting); die();
 	 	}
 		if( isset($setting['tabs']['special']) ){
 			$products = $this->getProducts( $this->model_catalog_product->getProductSpecials( $data ), $setting );
@@ -164,6 +170,7 @@ class ControllerModulePavproductcarousel extends Controller {
 				'product_id' => $result['product_id'],
 				'thumb'   	 => $image,
 				'name'    	 => $result['name'],
+				'quantity'   => $result['quantity'],
 				'price'   	 => $price,
 				'special' 	 => $special,
 				'rating'     => $rating,

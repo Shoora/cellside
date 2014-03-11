@@ -2066,3 +2066,104 @@ select[name="address_id"] {
 	padding: 20px;
 	border-bottom: 1px solid #c1c1c1;
 }
+.category-list ul {
+	padding-right: 26px;
+}
+
+.category-list ul li {
+	list-style: none;
+}
+.category-list ul li a {
+	background: url("../image/refine_arrow.png") no-repeat scroll 0 -19px transparent;
+	padding-left: 12px;
+	color: #363636;
+	font-size: 14px;
+	transition: all 0.4s ease 0s;
+}
+.category-list ul li a:hover {
+	background-position: 0 5px;
+	color: #000;
+}
+.select_decor {
+	position: relative;
+	margin-bottom: 10px;
+}
+.select_decor .step-item-decor {
+	bottom: -2px;
+}
+.select_decor .sel { 
+	margin: 0 !important;
+	box-shadow: none !important;
+}
+.loadmask {
+	/*display: none !important;*/
+}
+.option_box .cont { padding: 0 20px; }
+#filterpro .btn.btn-success {
+	width: 100%;
+	margin-top: 10px;
+}
+
+#freeShipping {
+	background: url(../image/shipping_bg.png);
+}
+#freeShipping a {
+	text-transform: uppercase;
+	color: #fff !important;
+	background: rgba(0,0,0,.7);
+	padding: 5px 20px 40px;
+	display: block;
+	height: 100%;
+	position: relative;
+}
+#freeShipping a p {
+	position: absolute;
+	bottom: 5px;
+	text-align: center;
+}
+#dollarDeals {
+	background: url(../image/dollar_deals_bg.png);
+}
+#dollarDeals a {
+	text-transform: uppercase;
+	color: #fff !important;
+	background: rgba(84, 175, 64, 0.9);
+	padding: 20px;
+	display: block;
+	height: 100%;
+	position: relative;
+}
+#dollarDeals a h2 {
+	font-size: 21px;
+}
+#shopCabble {
+	background: url(../image/our_cabble_bg.png);
+}
+#shopCabble a {
+	text-transform: uppercase;
+	color: #fff !important;
+	background: rgba(0,0,0,.3);
+	padding: 20px;
+	display: block;
+	height: 100%;
+	position: relative;
+}
+#shopCabble a h2 {
+	font-size: 26px;
+}
+.best_seller_category a {
+	line-height: 24px !important;
+	font-size: 24px !important;
+	font-weight: 600;
+	color: #af0917 !important;
+}
+.priceCarousel {font-weight: 500 !important;}
+.priceCarousel .price-new {
+	font-size: 26px;
+}
+.priceCarousel .price-old {
+	font-size: 18px;
+	position: relative;
+	top: -4px;
+	left: 15px;
+}

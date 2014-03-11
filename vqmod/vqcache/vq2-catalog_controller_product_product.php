@@ -680,71 +680,6 @@ $this->data['date_end'] = $this->model_catalog_special_price_countdown->getProdu
 				}
 			}
 							
-
-			if ($this->config->get('config_product_reviews_status')) {
-				$this->document->addScript('catalog/view/javascript/jRating-master/jquery/jRating.jquery.js');
-				$this->document->addStyle('catalog/view/javascript/jRating-master/jquery/jRating.jquery.css');
-
-				$this->data['entry_add_pros'] = $this->language->get('entry_add_pros');
-				$this->data['entry_add_cons'] = $this->language->get('entry_add_cons');
-				$this->data['entry_review_image'] = $this->language->get('entry_review_image');
-				$this->data['text_please_wait'] = $this->language->get('text_please_wait');
-				$this->data['text_report_abuse'] = $this->language->get('text_report_abuse');
-				$this->data['text_other_reason'] = $this->language->get('text_other_reason');
-				$this->data['text_sort'] = $this->language->get('text_sort');
-				$this->data['error_logged_helpfull'] = $this->language->get('error_logged_helpfull');
-				$this->data['error_logged_report_abuse'] = $this->language->get('error_logged_report_abuse');
-
-				$this->data['href_report_abuse'] = $this->url->link('product/product/reportabuse', '', 'SSL');
-
-				$reasons = $this->model_catalog_review->getReasonsTitle();
-
-				if ($reasons) {
-					$this->data['reasons'] = $reasons;
-				} else {
-					$this->data['reasons'] = array();
-				}
-
-				$this->data['ratings'] = $this->model_catalog_review->getRatings();
-
-				$this->data['product_review_sorts'] = array();
-
-				$this->data['product_review_sorts'][] = array(
-					'text'  => $this->language->get('text_default'),
-					'value' => 'r.date_added-DESC'
-				);
-
-				$this->data['product_review_sorts'][] = array(
-					'text'  => $this->language->get('text_rating_desc'),
-					'value' => 'rating-DESC'
-				);
-
-				$this->data['product_review_sorts'][] = array(
-					'text'  => $this->language->get('text_rating_asc'),
-					'value' => 'rating-ASC'
-				);
-
-				$this->data['product_review_sorts'][] = array(
-					'text'  => $this->language->get('text_helpfull_desc'),
-					'value' => 'vote-DESC'
-				);
-
-				$this->data['product_review_sorts'][] = array(
-					'text'  => $this->language->get('text_helpfull_asc'),
-					'value' => 'vote-ASC'
-				);
-
-				$this->data['product_review_sorts'][] = array(
-					'text'  => $this->language->get('text_date_added_desc'),
-					'value' => 'r.date_added-DESC'
-				);
-
-				$this->data['product_review_sorts'][] = array(
-					'text'  => $this->language->get('text_date_added_asc'),
-					'value' => 'r.date_added-ASC'
-				);
-			}
-			
 			if ($product_info['minimum']) {
 				$this->data['minimum'] = $product_info['minimum'];
 			} else {
@@ -949,63 +884,16 @@ $this->data['date_end'] = $this->model_catalog_special_price_countdown->getProdu
 			$page = 1;
 		}  
 		
-
-			if (isset($this->request->get['sort'])) {
-				$sort_data = explode('-', $this->request->get['sort']);
-
-				if (isset($sort_data[1]) && preg_match('/asc|desc/i', $sort_data[1])) {
-					$sort = $this->request->get['sort'];
-				} else {
-					$sort = 'r.date_added-DESC';
-				}
-			} else {
-				$sort = 'r.date_added-DESC';
-			}
-
-			$this->data['text_pros'] = $this->language->get('text_pros');
-			$this->data['text_cons'] = $this->language->get('text_cons');
-			$this->data['text_average_review'] = $this->language->get('text_average_review');
-			$this->data['text_report_it'] = $this->language->get('text_report_it');
-
-			$this->load->model('tool/image');
-			
 		$this->data['reviews'] = array();
 		
 		$review_total = $this->model_catalog_review->getTotalReviewsByProductId($this->request->get['product_id']);
 			
-		$results = $this->model_catalog_review->getReviewsByProductId($this->request->get['product_id'], ($page - 1) * 5, 5, $sort);
+		$results = $this->model_catalog_review->getReviewsByProductId($this->request->get['product_id'], ($page - 1) * 5, 5);
       		
 		foreach ($results as $result) {
-
-			$pros = $this->model_catalog_review->getProsByReviewId($result['review_id']);
-			$cons = $this->model_catalog_review->getConsByReviewId($result['review_id']);
-
-			if ($result['vote_yes']) {
-				$helpfull = round($result['vote_yes'] / ($result['vote_yes'] + $result['vote_no']) * 100);
-			} else {
-				$helpfull = '0';
-			}
-
-			if ($this->config->get('config_product_reviews_image_status') && $result['review_image']) {
-				$thumb = $this->model_tool_image->resize('product_review/review/' . $result['review_image'], $this->config->get('config_product_reviews_image_thumb_width'), $this->config->get('config_product_reviews_image_thumb_height'));
-				$popup = $this->model_tool_image->resize('product_review/review/' . $result['review_image'], $this->config->get('config_product_reviews_image_popup_width'), $this->config->get('config_product_reviews_image_popup_height'));
-			} else {
-				$thumb = '';
-				$popup = '';
-			}
-			
         	$this->data['reviews'][] = array(
-
-			'review_id'        => $result['review_id'],
-			'product_pros'     => ($pros) ? $pros : array(),
-			'product_cons'     => ($cons) ? $cons : array(),
-			'ratings'          => $this->model_catalog_review->getRatingsByReviewId($result['review_id']),
-			'helpfulness'      => sprintf($this->language->get('text_helpfull'), $result['review_id'], $result['review_id'], $helpfull . '%'),
-			
         		'author'     => $result['author'],
-				
-			'text'       => (($thumb) ? '<a href="' . $popup . '" class="product_review_image_popup"><img src="' . $thumb . '" alt="' . $result['author'] . '" title="' . $result['author'] . '" align="top" /></a> ' : '') . $result['text'],
-			
+				'text'       => $result['text'],
 				'rating'     => (int)$result['rating'],
         		'reviews'    => sprintf($this->language->get('text_reviews'), (int)$review_total),
         		'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
@@ -1017,7 +905,7 @@ $this->data['date_end'] = $this->model_catalog_special_price_countdown->getProdu
 		$pagination->page = $page;
 		$pagination->limit = 5; 
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('product/product/review', 'product_id=' . $this->request->get['product_id'] . '&page={page}&sort=' . $sort);
+		$pagination->url = $this->url->link('product/product/review', 'product_id=' . $this->request->get['product_id'] . '&page={page}');
 			
 		$this->data['pagination'] = $pagination->render();
 		
@@ -1094,127 +982,6 @@ $this->data['date_end'] = $this->model_catalog_special_price_countdown->getProdu
         $this->response->setOutput(json_encode($json));	
     }
 
-
-			public function reportabuse() {
-				$this->language->load('product/product');
-
-				$this->load->model('catalog/review');
-
-				if (isset($this->request->get['review_id'])) {
-					$review_id = (int)$this->request->get['review_id'];
-				} else {
-					$review_id = 0;
-				}
-
-				$review_info = $this->model_catalog_review->getReviewByReviewId($review_id);
-
-				if ($review_info) {
-					if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->config->get('config_product_reviews_report_abuse_status')) {
-						$json = array();
-
-						if (!isset($this->request->post['reason_id']) || !preg_match('/^[0-9]+$/i', $this->request->post['reason_id'])) {
-							$json['error'] = $this->language->get('error_report_abuse');
-						}
-
-						if ((isset($this->request->post['reason_id']) && $this->request->post['reason_id'] == '0') && !preg_match('/\w+/i', $this->request->post['def'])) {
-							$json['error'] = $this->language->get('error_def_report_abuse');
-						}
-
-						if ($this->config->get('config_product_reviews_report_abuse_guest') && !$this->customer->isLogged()) {
-							$json['error'] = $this->language->get('error_logged_report_abuse');
-						}
-
-						if (!isset($json['error'])) {
-							$this->model_catalog_review->addReportAbuse($review_id, $this->request->post);
-
-							$json['success'] = $this->language->get('text_report_abuse_success');
-						}
-
-						$this->response->setOutput(json_encode($json));
-					}
-				}
-			}
-
-			public function vote() {
-				$this->language->load('product/product');
-
-				$this->load->model('catalog/review');
-
-				$json = array();
-
-				if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->config->get('config_product_reviews_helpfulness_status') && (isset($this->request->get['product_id']) && preg_match('/^[0-9]+$/i', $this->request->get['product_id']))) {
-					if (!isset($this->request->post['vote']) || !preg_match('/^0|1$/i', $this->request->post['vote'])) {
-						$json['error'] = $this->language->get('error_helpfull');
-					}
-
-					if (!isset($this->request->post['review_id']) || !preg_match('/^[0-9]+$/i', $this->request->post['review_id'])) {
-						$json['error'] = $this->language->get('error_helpfull');
-					}
-
-					if ($this->config->get('config_product_reviews_helpfulness_guest') && !$this->customer->isLogged()) {
-						$json['error'] = $this->language->get('error_logged_helpfull');
-					}
-
-					if (!isset($json['error'])) {
-						$this->model_catalog_review->addVoteReview($this->request->get['product_id'], $this->request->post);
-
-						$review_info = $this->model_catalog_review->getReviewByReviewId($this->request->post['review_id']);
-
-						if ($this->request->post['vote'] == '1') {
-							$json['success'] = sprintf($this->language->get('text_success_helpfull_yes'), round($review_info['vote_yes'] / ($review_info['vote_yes'] + $review_info['vote_no']) * 100) . '%');
-						} else {
-							$json['success'] = sprintf($this->language->get('text_success_helpfull_no'), round($review_info['vote_yes'] / ($review_info['vote_yes'] + $review_info['vote_no']) * 100) . '%');
-						}
-					}
-				}
-
-				$this->response->setOutput(json_encode($json));
-			}
-
-			public function reviewimageupload() {
-				$this->language->load('product/product');
-
-				$json = array();
-
-				if (!empty($this->request->files['file']['name'])) {
-					$filename = basename(preg_replace('/[^a-zA-Z0-9\.\-\s+]/', '', html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8')));
-
-					if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 64)) {
-						$json['error'] = $this->language->get('error_filename');
-					}
-
-					$allowed = array('jpeg', 'jpg', 'jpe', 'gif', 'png', 'bmp');
-
-					if (!in_array(substr(strrchr($filename, '.'), 1), $allowed)) {
-						$json['error'] = $this->language->get('error_filetype');
-					}
-
-					$allowed = array('image/jpeg', 'image/gif', 'image/png', 'image/bmp');
-
-					if (!in_array($this->request->files['file']['type'], $allowed)) {
-						$json['error'] = $this->language->get('error_filetype');
-					}
-
-					if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
-						$json['error'] = $this->language->get('error_upload_' . $this->request->files['file']['error']);
-					}
-				} else {
-					$json['error'] = $this->language->get('error_upload');
-				}
-
-				if (!$json && is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
-					$file = basename(md5($filename . time())) . basename($filename);
-
-					$json['file'] = $file;
-
-					move_uploaded_file($this->request->files['file']['tmp_name'], DIR_IMAGE . 'product_review/review/' . $file);
-
-					$json['success'] = $this->language->get('text_upload');
-				}
-
-				$this->response->setOutput(json_encode($json));
-			}
-			
     public function write() {
 		$this->language->load('product/product');
 		
@@ -1231,23 +998,6 @@ $this->data['date_end'] = $this->model_catalog_special_price_countdown->getProdu
 				$json['error'] = $this->language->get('error_text');
 			}
 	
-
-			if ($this->config->get('config_product_reviews_status')) {
-				if ($this->config->get('config_product_reviews_rating_guest') && !$this->customer->isLogged()) {
-					$json['error'] = $this->language->get('error_logged_guest_rate');
-
-					$this->response->setOutput(json_encode($json));
-
-					return;
-				}
-
-				$empty = array_filter($this->request->post['rating']);
-
-				if (empty($this->request->post['rating']) || (count($empty) != count($this->request->post['rating']))) {
-					$json['error'] = $this->language->get('error_rating');
-				}
-			}
-			
 			if (empty($this->request->post['rating'])) {
 				$json['error'] = $this->language->get('error_rating');
 			}

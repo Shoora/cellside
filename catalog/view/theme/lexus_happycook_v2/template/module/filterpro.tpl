@@ -63,8 +63,82 @@
 
 
 <div class="option_box hidden-sm hidden-xs" <?php if(!$price_slider) { echo 'style="display:none"';}?>>
-<div class="sidebar_prod_view_line"></div>
-<div class="sidebar_arrow"></div>
+<!-- <div class="sidebar_prod_view_line"></div>
+<div class="sidebar_arrow"></div> -->
+<?php if($manufacturers) { ?>
+		<div class="cont">
+			<?php if($byModel) : ?>
+				<div class="select_decor">
+					<select name="cat[]" id="findphone" class="findphone sel">
+						<option value="">Find your phone</option>
+						<?php foreach ($byModel as $model) : ?>
+							<?php foreach ($model as $value) : ?>
+								<option id="category_<?php echo $value['category_id']?>" value="<?php echo $value['category_id'];?>"><?php echo $value['name']; ?></option>
+							<?php endforeach; ?>
+						<?php endforeach; ?>
+					</select>
+					<div class="step-item-decor"><div class="step-item-decor-inner"></div></div>
+				</div>
+			<?php endif; ?>
+			<div class="select_decor">
+				<select name="manufacturer[]" class="filtered sel">
+					<option value=""><?php echo $text_all?></option>
+					<?php foreach($manufacturers as $manufacturer) { ?>
+					<option id="manufacturer_<?php echo $manufacturer['manufacturer_id']?>" class="manufacturer_value"
+							value="<?php echo $manufacturer['manufacturer_id']?>"><?php echo $manufacturer['name']?></option>
+					<?php } ?>
+				</select>
+				<div class="step-item-decor"><div class="step-item-decor-inner"></div></div>
+			</div>
+
+			<!-- <div class="collapsible" <?php if(!$expanded_manufacturer){echo 'style="display:none"';} else { echo 'style="margin:10px 0 0 45px;"';} ?>>
+				<?php if($display_manufacturer == 'select') { ?>
+					<div>
+						<label>
+							<select name="manufacturer[]" class="filtered sel">
+								<option value=""><?php echo $text_all?></option>
+								<?php foreach($manufacturers as $manufacturer) { ?>
+								<option id="manufacturer_<?php echo $manufacturer['manufacturer_id']?>" class="manufacturer_value"
+										value="<?php echo $manufacturer['manufacturer_id']?>"><?php echo $manufacturer['name']?></option>
+								<?php } ?>
+							</select>
+					</label>
+					</div>
+				<?php } elseif($display_manufacturer == 'checkbox') { ?>
+					<table>
+						<?php foreach($manufacturers as $manufacturer) { ?>
+						<tr>
+							<td>
+								<input id="manufacturer_<?php echo $manufacturer['manufacturer_id']?>" class="manufacturer_value filtered"
+									   type="checkbox" name="manufacturer[]"
+									   value="<?php echo $manufacturer['manufacturer_id']?>">
+							</td>
+							<td>
+								<label for="manufacturer_<?php echo $manufacturer['manufacturer_id']?>"><?php echo $manufacturer['name']?></label>
+							</td>
+						</tr>
+						<?php } ?>
+					</table>
+				<?php } elseif($display_manufacturer == 'radio') { ?>
+					<table>
+						<?php foreach($manufacturers as $manufacturer) { ?>
+						<tr>
+							<td>
+								<input id="manufacturer_<?php echo $manufacturer['manufacturer_id']?>" class="manufacturer_value filtered"
+									   type="radio" name="manufacturer[]"
+									   value="<?php echo $manufacturer['manufacturer_id']?>">
+							</td>
+							<td>
+								<label for="manufacturer_<?php echo $manufacturer['manufacturer_id']?>"><?php echo $manufacturer['name']?></label>
+							</td>
+						</tr>
+						<?php } ?>
+					</table>
+				<?php }?>
+			</div> -->
+		</div>
+	<?php } ?>
+
 <div class="price_slider">
 	<div style="display: none;">
 		<?php if($symbol_left){ echo "<label>". $symbol_left  . "</label>";}?>
@@ -83,101 +157,52 @@
 		<input type="reset" class="sidebar_filter_button filter_button_two button" value="Clear">
 	</div> -->
 </div>
+<div class="cont">
+	<div class="btn btn-success" id="filterpro_search">Search</div>
+</div>
 </div>
 	<?php if($categories) { ?>
-<div class="option_box">
-	<div class="option_name <?php if(!$expanded_categories){echo "hided";}?>"><?php echo $text_categories; ?></div>
-	<div class="collapsible" <?php if(!$expanded_categories){echo 'style="display:none"';}?>>
-		<table id="filter_categories">
-			<?php foreach($categories as $category) { ?>
-			<tr>
-				<td>
-					<input id="cat_<?php echo $category['category_id']; ?>" class="filtered"
-						   type="checkbox" name="categories[]"
-						   value="<?php echo $category['category_id']; ?>">
-				</td>
-				<td>
-					<label for="cat_<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></label>
-				</td>
-			</tr>
-			<?php } ?>
-		</table>
+	<div class="option_box">
+		<div class="option_name <?php if(!$expanded_categories){echo "hided";}?>"><?php echo $text_categories; ?></div>
+		<div class="collapsible" <?php if(!$expanded_categories){echo 'style="display:none"';}?>>
+			<table id="filter_categories">
+				<?php foreach($categories as $category) { ?>
+				<tr>
+					<td>
+						<input id="cat_<?php echo $category['category_id']; ?>" class="filtered"
+							   type="checkbox" name="categories[]"
+							   value="<?php echo $category['category_id']; ?>">
+					</td>
+					<td>
+						<label for="cat_<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></label>
+					</td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
 	</div>
-</div>
 	<?php } ?>
 
 	<?php if($tags) { ?>
-<div class="option_box">
-	<div class="option_name <?php if(!$expanded_tags){echo "hided";}?>"><?php echo $text_tags; ?></div>
-	<div class="collapsible" <?php if(!$expanded_tags){echo 'style="display:none"';}?>>
-		<table id="filter_tags">
-			<?php foreach($tags as $tag) { ?>
-			<tr>
-				<td>
-					<input id="tag_<?php echo $tag['tag']; ?>" class="filtered"
-						   type="checkbox" name="tags[]"
-						   value="<?php echo $tag['tag']; ?>">
-				</td>
-				<td>
-					<label for="tag_<?php echo $tag['tag']; ?>"><?php echo $tag['name']; ?></label>
-				</td>
-			</tr>
-			<?php } ?>
-		</table>
-	</div>
-</div>
-	<?php } ?>
-
-
-	<?php if($manufacturers) { ?>
-<div class="option_box">
-    <div class="sidebar_prod_view_line"></div>
-<div class="sidebar_arrow"></div>
-<span class="sidebar_filter_text"><?php echo $text_manufacturers; ?></span>
-	<div class="collapsible" <?php if(!$expanded_manufacturer){echo 'style="display:none"';} else { echo 'style="margin:10px 0 0 45px;"';} ?>>
-		<?php if($display_manufacturer == 'select') { ?>
-		<div>
-			<label><select name="manufacturer[]" class="filtered sel">
-				<option value=""><?php echo $text_all?></option>
-				<?php foreach($manufacturers as $manufacturer) { ?>
-				<option id="manufacturer_<?php echo $manufacturer['manufacturer_id']?>" class="manufacturer_value"
-						value="<?php echo $manufacturer['manufacturer_id']?>"><?php echo $manufacturer['name']?></option>
+	<div class="option_box">
+		<div class="option_name <?php if(!$expanded_tags){echo "hided";}?>"><?php echo $text_tags; ?></div>
+		<div class="collapsible" <?php if(!$expanded_tags){echo 'style="display:none"';}?>>
+			<table id="filter_tags">
+				<?php foreach($tags as $tag) { ?>
+				<tr>
+					<td>
+						<input id="tag_<?php echo $tag['tag']; ?>" class="filtered"
+							   type="checkbox" name="tags[]"
+							   value="<?php echo $tag['tag']; ?>">
+					</td>
+					<td>
+						<label for="tag_<?php echo $tag['tag']; ?>"><?php echo $tag['name']; ?></label>
+					</td>
+				</tr>
 				<?php } ?>
-			</select></label>
+			</table>
 		</div>
-		<?php } elseif($display_manufacturer == 'checkbox') { ?>
-		<table>
-			<?php foreach($manufacturers as $manufacturer) { ?>
-			<tr>
-				<td>
-					<input id="manufacturer_<?php echo $manufacturer['manufacturer_id']?>" class="manufacturer_value filtered"
-						   type="checkbox" name="manufacturer[]"
-						   value="<?php echo $manufacturer['manufacturer_id']?>">
-				</td>
-				<td>
-					<label for="manufacturer_<?php echo $manufacturer['manufacturer_id']?>"><?php echo $manufacturer['name']?></label>
-				</td>
-			</tr>
-			<?php } ?>
-		</table>
-		<?php } elseif($display_manufacturer == 'radio') { ?>
-		<table>
-			<?php foreach($manufacturers as $manufacturer) { ?>
-			<tr>
-				<td>
-					<input id="manufacturer_<?php echo $manufacturer['manufacturer_id']?>" class="manufacturer_value filtered"
-						   type="radio" name="manufacturer[]"
-						   value="<?php echo $manufacturer['manufacturer_id']?>">
-				</td>
-				<td>
-					<label for="manufacturer_<?php echo $manufacturer['manufacturer_id']?>"><?php echo $manufacturer['name']?></label>
-				</td>
-			</tr>
-			<?php } ?>
-		</table>
-		<?php }?>
 	</div>
-</div>
 	<?php } ?>
 
 	<?php if($attributes) { ?>

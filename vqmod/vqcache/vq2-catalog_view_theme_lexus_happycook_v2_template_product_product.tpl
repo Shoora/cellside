@@ -585,17 +585,6 @@
 	<?php } ?>
 	<?php if ($review_status) { ?>
 	<div id="tab-review" class="tab-content">
-<?php if ($this->config->get('config_product_reviews_status')) { ?>
-			<?php if ($this->config->get('config_product_reviews_sort_status')) { ?>
-			<div class="product_review_sort"><b><?php echo $text_sort; ?></b>
-				<select onchange="$('#review').fadeOut('slow'); $('#review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>&sort=' + this.value); $('#review').fadeIn('slow');">
-					<?php foreach ($product_review_sorts as $sorts) { ?>
-					<option value="<?php echo $sorts['value']; ?>"><?php echo $sorts['text']; ?></option>
-					<?php } ?>
-				</select>
-			</div>
-			<?php } ?>
-			<?php } ?>
 		<div id="review"></div>
 		<h2 id="review-title"><?php echo $text_write; ?></h2>
 		<b><?php echo $entry_name; ?></b><br />
@@ -606,46 +595,7 @@
 		<textarea name="text" cols="40" rows="8" style="width: 98%;"></textarea>
 		<span style="font-size: 11px;"><?php echo $text_note; ?></span><br />
 		<br />
-		<b><?php echo $entry_rating; ?></b> <?php if ($this->config->get('config_product_reviews_status')) {
-				if ($ratings) {
-					echo'<table class="product_rating">';
-					foreach ($ratings as $rating) {
-						echo'<tr><td>' . $rating['name'] . '</td><td><input type="hidden" name="rating[' . $rating['rating_id'] . ']" value="" /><div class="rating_star2" data-average="5" data-id="' . $rating['rating_id'] . '"></div></td></tr>';
-					}
-					echo'</table>';
-
-					if ($this->config->get('config_product_reviews_pros_status') || $this->config->get('config_product_reviews_cons_status')) {
-					echo'<table class="pros_cons">';
-					echo'<tr>';
-
-					if ($this->config->get('config_product_reviews_pros_status')) {
-					echo'<td class="pros">' . $entry_add_pros . '</td>';
-					}
-
-					if ($this->config->get('config_product_reviews_cons_status')) {
-					echo'<td class="cons">' . $entry_add_cons . '</td>';
-					}
-
-					echo'</tr>';
-					echo'<tr>';
-
-					if ($this->config->get('config_product_reviews_pros_status')) {
-					echo'<td><input type="text" name="review_pros[]" /></td>';
-					}
-
-					if ($this->config->get('config_product_reviews_cons_status')) {
-					echo'<td><input type="text" name="review_cons[]" /></td>';
-					}
-
-					echo'</tr>';
-					echo'</table>';
-					}
-
-					if ($this->config->get('config_product_reviews_image_status')) {
-					echo'<div style="margin-top: 20px;">' . $entry_review_image . ' <span class="left-button-org"><span class="right-button-org"><input type="button" value="' . $button_upload . '" id="review_image" class="button"></span></span><input type="hidden" name="review_image" value="" /></div>';
-					}
-				}
-			} else { ?><span><?php echo $entry_bad; ?></span>&nbsp;
+		<b><?php echo $entry_rating; ?></b> <span><?php echo $entry_bad; ?></span>&nbsp;
 		<input type="radio" name="rating" value="1" />
 		&nbsp;
 		<input type="radio" name="rating" value="2" />
@@ -655,7 +605,7 @@
 		<input type="radio" name="rating" value="4" />
 		&nbsp;
 		<input type="radio" name="rating" value="5" />
-		&nbsp;<span><?php echo $entry_good; ?></span><?php } ?><br />
+		&nbsp;<span><?php echo $entry_good; ?></span><br />
 		<br />
 		<b><?php echo $entry_captcha; ?></b><br /> <br /> 
 	<img src="index.php?route=product/product/captcha" alt="" id="captcha" />
@@ -951,7 +901,7 @@ $('#button-review').bind('click', function() {
 		url: 'index.php?route=product/product/write&product_id=<?php echo $product_id; ?>',
 		type: 'post',
 		dataType: 'json',
-		data: 'name=' + encodeURIComponent($('input[name=\'name\']').val()) + '&text=' + encodeURIComponent($('textarea[name=\'text\']').val()) + '&<?php if ($this->config->get('config_product_reviews_status')) { ?>' + $('input[name^=\'rating\']').serialize() + '&' + $('input[name^=\'review_pros\']').serialize() + '&' + $('input[name^=\'review_cons\']').serialize() + '&review_image=' + $('input[name^=\'review_image\']').val() + '<?php } else { ?>rating=' + encodeURIComponent($('input[name=\'rating\']:checked').val() ? $('input[name=\'rating\']:checked').val() : '') + '<?php } ?>&captcha=' + encodeURIComponent($('input[name=\'captcha\']').val()),
+		data: 'name=' + encodeURIComponent($('input[name=\'name\']').val()) + '&text=' + encodeURIComponent($('textarea[name=\'text\']').val()) + '&rating=' + encodeURIComponent($('input[name=\'rating\']:checked').val() ? $('input[name=\'rating\']:checked').val() : '') + '&captcha=' + encodeURIComponent($('input[name=\'captcha\']').val()),
 		beforeSend: function() {
 			$('.success, .warning').remove();
 			$('#button-review').attr('disabled', true);
@@ -969,25 +919,7 @@ $('#button-review').bind('click', function() {
 			if (data['success']) {
 				$('#review-title').after('<div class="success">' + data['success'] + '</div>');
 								
-				
-			<?php if ($this->config->get('config_product_reviews_status')) { ?>
-			$('input[name^=\'review_pros\']').each(function(index) {
-				if (!$(this).is(':last-child')) {
-					$(this).remove();
-				}
-			});
-
-			$('input[name^=\'review_cons\']').each(function(index) {
-				if (!$(this).is(':last-child')) {
-					$(this).remove();
-				}
-			});
-
-			$('input[name^=\'rating\']').each(function(index) {
-				$(this).val('');
-			});
-			<?php } ?>
-			
+				$('input[name=\'name\']').val('');
 				$('textarea[name=\'text\']').val('');
 				$('input[name=\'rating\']:checked').attr('checked', '');
 				$('input[name=\'captcha\']').val('');
@@ -1145,178 +1077,6 @@ P2
   </div>
 </div> 
 <?php  } ?> 
-			
-<?php if ($this->config->get('config_product_reviews_status')) {
-			echo'<style>' . html_entity_decode($this->config->get('config_product_reviews_form_css'), ENT_QUOTES, 'UTF-8') . "\n" . html_entity_decode($this->config->get('config_product_reviews_list_css'), ENT_QUOTES, 'UTF-8') . "\n" . html_entity_decode($this->config->get('config_product_reviews_rating_css'), ENT_QUOTES, 'UTF-8') . "\n" . html_entity_decode($this->config->get('config_product_reviews_helpfulness_css'), ENT_QUOTES, 'UTF-8') . "\n" . html_entity_decode($this->config->get('config_product_reviews_sort_css'), ENT_QUOTES, 'UTF-8') . "\n" . html_entity_decode($this->config->get('config_product_reviews_total_rating_css'), ENT_QUOTES, 'UTF-8') . "\n" . html_entity_decode($this->config->get('config_product_reviews_image_css'), ENT_QUOTES, 'UTF-8') . '</style>';
-			} ?>
-
-			  <?php if ($this->config->get('config_product_reviews_status')) { ?>
-			  <?php if ($this->config->get('config_product_reviews_report_abuse_status')) { ?>
-			  <input type="hidden" name="r_id" value="" />
-			  <div id="dialog-report-abuse" title="<?php echo $text_report_abuse; ?>">
-			    <p class="validateTips"></p>
-				<?php foreach ($reasons as $reason) { ?>
-			    <input type="radio" name="reason_id" value="<?php echo $reason['reason_id']; ?>" /> <?php echo $reason['name']; ?><br />
-			    <?php } ?>
-			    <input type="radio" name="reason_id" value="0" /> <?php echo $text_other_reason; ?><br /><input type="text" name="other" value="" class="ui-widget-content ui-corner-all" style="margin: 3px 0 0 25px;" />
-			  </div>
-			  <?php } ?>
-
-			  <?php if ($this->config->get('config_product_reviews_image_status')) { ?>
-			  <script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.js"></script>
-			  <?php } ?>
-			  <script type="text/javascript"><!--
-			  $(document).ready(function(){
-			    <?php if ($this->config->get('config_product_reviews_report_abuse_status')) { ?>
-				$("a#report_abuse").live('click', function() {
-				  <?php if ($this->config->get('config_product_reviews_report_abuse_guest') && !$this->customer->isLogged()) { ?>
-				  alert('<?php echo $error_logged_report_abuse; ?>');
-				  <?php } else { ?>
-				  $('input[name="r_id"]').val($(this).attr("rel"));
-
-				  $("#dialog-report-abuse").dialog("open");
-				  <?php } ?>
-				});
-
-				 $("#dialog-report-abuse").dialog({
-				  autoOpen: false,
-				  height: 300,
-				  width: 350,
-				  modal: true,
-				  buttons: {
-				    "<?php echo $button_continue; ?>": function() {
-					  $.ajax({
-					    url: 'index.php?route=product/product/reportabuse&review_id=' + $('input[name="r_id"]').val(),
-						type: 'post',
-						dataType: 'json',
-						data: 'reason_id=' + encodeURIComponent($('input[name=\'reason_id\']:checked').val()) + '&def=' + encodeURIComponent($('input[name=\'other\']').val()),
-						beforeSend: function() {
-						  $(".validateTips").text("").removeClass("ui-state-highlight ui-state-error ui-state-success");
-						},
-						complete: function() { },
-						success: function(data) {
-						  if (data['error']) {
-						    $(".validateTips").text(data['error']).addClass("ui-state-highlight ui-state-error").css('padding', '10px');
-						  }
-
-						  if (data['success']) {
-							$(".validateTips").text(data['success']).addClass("ui-state-highlight ui-state-success").css('padding', '10px');
-
-							$("#dialog-report-abuse").siblings('.ui-dialog-buttonpane').find('button:first').hide();
-						  }
-						}
-					  });
-				    },
-				    Cancel: function() {
-				      $(this).dialog("close");
-				    }
-				  },
-				  close: function() {
-					$(".validateTips").text("").removeClass("ui-state-highlight ui-state-error ui-state-success").css('padding', '0px');
-					$("#dialog-report-abuse").siblings('.ui-dialog-buttonpane').find('button:first').show();
-					$('input[name=\'other\']').val('');
-				  }
-				});
-				<?php } ?>
-
-				$('.rating_star2').jRating({
-					smallStarsPath: 'catalog/view/javascript/jRating-master/jquery/icons/small.png',
-					mediumStarsPath: 'catalog/view/javascript/jRating-master/jquery/icons/medium.png',
-					bigStarsPath: 'catalog/view/javascript/jRating-master/jquery/icons/stars.png',
-					step: true,
-					type: '<?php echo $this->config->get('config_product_reviews_appearance_type'); ?>',
-					length: 5,
-					rateMax: 5,
-					showRateInfo: false,
-					canRateAgain: true,
-					nbRates: 7,
-					onClick : function(element, rate) {
-						$('input[name="rating[' + $(element).attr('data-id') + ']"]').val(rate);
-					}
-				});
-
-				<?php if ($this->config->get('config_product_reviews_helpfulness_status')) { ?>
-				$('.product_review_vote button').live('click', function() {
-					<?php if ($this->config->get('config_product_reviews_helpfulness_guest') && !$this->customer->isLogged()) { ?>
-					alert('<?php echo $error_logged_helpfull; ?>');
-					<?php } else { ?>
-					var helpfull_box = $(this).parents('.product_review_helpfulness').find('span:first');
-					var helpfull_box_copy = helpfull_box.html();
-
-					$.ajax({
-						url: 'index.php?route=product/product/vote&product_id=<?php echo $this->request->get['product_id']?>',
-						type: 'post',
-						dataType: 'json',
-						data: 'vote=' + encodeURIComponent($(this).attr('data-vote')) + '&review_id=' + encodeURIComponent($(this).attr('data-review-id')),
-						beforeSend: function() {
-							helpfull_box.html('<img src="catalog/view/theme/default/image/loading.gif" alt="" /> <?php echo $text_please_wait; ?>');
-						},
-						complete: function() { },
-						success: function(data) {
-							if (data['error']) {
-								alert(data['error']);
-
-								helpfull_box.html(helpfull_box_copy);
-							}
-
-							if (data['success']) {
-								helpfull_box.html(data['success']);
-							}
-						}
-					});
-					<?php } ?>
-				});
-				<?php } ?>
-			});
-
-			$('.pros_cons').on('keyup', 'input[name^="review_pros"], input[name^="review_cons"]', function() {
-				name = $(this).attr('name').replace('[]', '');
-
-				if (this.value != '') {
-					if ($('input[name^="' + name + '"]:last').val() != '') {
-						$('input[name^="' + name + '"]:last').after('<input type="text" name="' + name + '[]" />');
-					}
-				} else {
-					if (this.value == '' && $('input[name^="' + name + '"]').length > 1) {
-						if (!$(this).is(':last-child')) {
-							$(this).remove();
-							$('input[name^="' + name + '"]:last').focus();
-						}
-					}
-				}
-			});
-
-			<?php if ($this->config->get('config_product_reviews_image_status')) { ?>
-			new AjaxUpload('#review_image', {
-				action: 'index.php?route=product/product/reviewimageupload',
-				name: 'file',
-				autoSubmit: true,
-				responseType: 'json',
-				onSubmit: function(file, extension) {
-					$('#review_image').after('<img src="catalog/view/theme/default/image/loading.gif" class="loading" style="padding-left: 5px;" />');
-					$('#review_image').attr('disabled', true);
-				},
-				onComplete: function(file, json) {
-					$('#review_image').attr('disabled', false);
-
-					$('.error').remove();
-
-					if (json['success']) {
-						alert(json['success']);
-
-						$('input[name=\'review_image\']').attr('value', json['file']);
-					}
-
-					if (json['error']) {
-						$('#review_image').after('<span class="error">' + json['error'] + '</span>');
-					}
-
-					$('.loading').remove();	
-				}
-			});
-			<?php } ?>
-			//--></script>
-			<?php } ?>
 			
 <?php echo $footer; ?>
  

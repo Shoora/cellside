@@ -373,7 +373,7 @@ $category_counts_enabled = $this->config->get('config_category_counts');
 				$product_total1 = $this->model_catalog_product->getTotalProducts($data);				
 				
 				$this->data['categories'][] = array(
-					'name'  => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total1 . ')' : ''),
+					'name'  => $result['name'] . ($this->config->get('config_product_count') ? ' <span class="pull-right">(' . $product_total1 . ')</span>' : ''),
 					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
 				);
 			}
