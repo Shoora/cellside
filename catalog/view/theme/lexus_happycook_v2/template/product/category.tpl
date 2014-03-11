@@ -69,7 +69,7 @@
 				<?php } ?>
 				<?php if ($products) { ?>
 				<div class="row product-filter clearfix">
-				<div class="col-md-2"><span style="color:#AF0917; font-size:13px;"><?php echo count($products)." Item(s)"; ?></span></div>
+				<div class="col-md-2"><span style="color:#AF0917; font-size:13px;"><span id="countProducts"><?php echo count($products)." </span> Item(s)"; ?></span></div>
 				<div class="col-md-5" style="border-bottom:1px solid #E4E4E4; margin:11px 0 0 0;"></div>
 				<div class="col-md-1">
 					<div class="display">
@@ -113,7 +113,7 @@
 			<div class="product-list"> <div class="products-block">
 					<?php
 				$cols = $MAX_ITEM_ROW ;
-				// print_r($products); die();
+				//print_r($products); die();
 
 				foreach ($products as $i => $product) {?>
 

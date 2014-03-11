@@ -104,6 +104,7 @@ class ControllerModulePavproductcarousel extends Controller {
 		if( isset($setting['tabs']['bestseller']) ){
 			$products = $this->getProducts( $this->model_catalog_product->getBestSellerProducts( $data['limit'] ), $setting );
 			$this->data['heading_title'] = $this->language->get('text_bestseller');
+			//print_r($setting); die();
 	 	}
 		if( isset($setting['tabs']['special']) ){
 			$products = $this->getProducts( $this->model_catalog_product->getProductSpecials( $data ), $setting );
@@ -169,6 +170,7 @@ class ControllerModulePavproductcarousel extends Controller {
 				'product_id' => $result['product_id'],
 				'thumb'   	 => $image,
 				'name'    	 => $result['name'],
+				'quantity'   => $result['quantity'],
 				'price'   	 => $price,
 				'special' 	 => $special,
 				'rating'     => $rating,

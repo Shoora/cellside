@@ -1222,6 +1222,7 @@ class ModelModuleFilterPro extends Model {
 				$product_data[$result['product_id']] = $this->model_catalog_product->getProduct($result['product_id']);
 			}
 		}
+		// var_dump($product_data); die();
 		return $product_data;
 	}
 

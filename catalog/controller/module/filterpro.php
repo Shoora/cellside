@@ -209,6 +209,21 @@ class ControllerModuleFilterPro extends Controller {
 					$this->data['expanded_manufacturer'] = isset($filterpro_setting['expanded_manufacturer']) ? 1 : 0;
 				}
 			}
+
+			$this->data['byModel'] = array();
+			foreach ($this->model_module_filterpro->getSubcategories(array( 'category_id' => 59 )) as $key => $value) {
+				$this->data['byModel'][] = $this->model_module_filterpro->getSubcategories(array( 'category_id' => $value['category_id'] ));
+			}
+
+			//print_r($model_list); die();
+
+
+			// $this->data['byBrand'] = $this->model_catalog_category->getCategories(59); // subcategories of SHOP NOW
+			// foreach ($this->data['byBrand'] as $key => $value) {
+			// 	$this->data['byModel'][$value['category_id']] = $this->model_catalog_category->getCategories($value['category_id']);
+			// }
+
+
 			$this->data['options'] = $this->model_module_filterpro->getOptions($data);
 			$this->load->model('tool/image');
 			foreach($this->data['options'] as $i => $option) {

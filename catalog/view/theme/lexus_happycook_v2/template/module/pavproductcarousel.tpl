@@ -36,18 +36,24 @@
 									<a class="img" href="<?php echo $product['href']; ?>" ><img id="image<?php echo $id;?>" data="<?php echo $product['product_id'];?>" src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
 									<?php } ?>
 									<div class="product-meta" style="float:right !important; width:80%;">
-										<div class="name top_banner_header"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
+										<div class="name top_banner_header best_seller_category"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
 										<div class="description" style="display:block;"><?php echo utf8_substr(strip_tags($product['description']),0,90); ?>...</div>
 										<?php if ($product['price']) { ?>
-										<div class="price">
+										<div class="price priceCarousel">
 											<?php if (!$product['special']) { ?>
 											<?php echo $product['price']; ?>
 											<?php } else { ?>
-											<span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+											<span class="price-new"><?php echo $product['special']; ?></span>
+											<span class="price-old"><?php echo $product['price']; ?></span> 
 											<?php } ?>
 										</div>
 										<?php } ?>
-										<div class="top_banner_avail">Available in stock</div>
+										<?php if($product['quantity'] > 0) : ?>					
+										 	<div class="top_banner_avail"><span class="fa fa-check"></span> Available in stock</div>
+										<?php else : ?>
+											<div class="top_banner_avail"><span class="fa fa-times-circle"></span> Not available in stock</div>
+										<?php endif; ?>
+										
 									</div>
 								</div>
 								<?php //end product-inner?>
@@ -95,19 +101,27 @@
 									<?php } ?>
 									<div class="product_left_buttons">
 										<?php if($byModel) : ?>
-											<select name="" id="" class="findphone sel" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-												<option>Find your phone</option>
-												<?php foreach ($byModel as $key => $value) : ?>
+											<div class="select_decor">
+												<select name="" id="" class="findphone sel" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+													<option>Find your phone</option>
+													<?php foreach ($byModel as $model) : ?>
+														<?php foreach ($model as $value) : ?>
+															<option value="/index.php?route=product/category&path=<?php echo $value['parent_id'].'_'.$value['category_id'];?>"><?php echo $value['name']; ?></option>
+														<?php endforeach; ?>
+													<?php endforeach; ?>
+												</select>
+												<div class="step-item-decor"><div class="step-item-decor-inner"></div></div>
+											</div>
+										<?php endif; ?>
+										<div class="select_decor">
+											<select name="" id="" class="shopBrand sel" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+												<option>Shop by Brand</option>
+												<?php foreach ($byBrand as $key => $value) : ?>
 													<option value="/index.php?route=product/category&path=<?php echo $value['parent_id'].'_'.$value['category_id'];?>"><?php echo $value['name']; ?></option>
 												<?php endforeach; ?>
 											</select>
-										<?php endif; ?>
-										<select name="" id="" class="shopBrand sel" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-											<option>Shop by Brand</option>
-											<?php foreach ($byBrand as $key => $value) : ?>
-												<option value="/index.php?route=product/category&path=<?php echo $value['parent_id'].'_'.$value['category_id'];?>"><?php echo $value['name']; ?></option>
-											<?php endforeach; ?>
-										</select>
+											<div class="step-item-decor"><div class="step-item-decor-inner"></div></div>
+										</div>
 									</div>
 								</div>
 								<?php //end product-inner?>
