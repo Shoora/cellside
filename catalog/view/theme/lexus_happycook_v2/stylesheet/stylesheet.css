@@ -2011,7 +2011,7 @@ ul.box-filter span {
 }
 .product-info h1 {
 	text-transform: none !important;
-	font-size: 24px !important;
+	font-size: 24px;
 	font-weight: normal !important;
 	/*font-family: "proximanova-semibold", serif !important;*/
 }
@@ -2125,7 +2125,7 @@ ul.box-filter span {
 }
 .product-info .image {
 	position: relative;
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	text-align: center;
 }
 .product-info .price {
@@ -2164,7 +2164,6 @@ ul.box-filter span {
 }
 .product-info .description span {
 	color: #21272c;
-	font-weight: bold;
 	padding-right: 10px;
 }
 .product-info .compare-wish {
@@ -2204,12 +2203,12 @@ ul.box-filter span {
 	color: #6e6e6e;
 	font-size: 60px;
 	cursor: pointer;
-	top: -7px;
+	/*top: -7px;*/
 }
 .product-info .image-additional a {
 	float: left;
 	display: block;
-	margin-left: 10px;
+	margin-right: 10px;
 	margin-bottom: 10px;
 }
 .product-info .image-additional img {
@@ -3717,8 +3716,9 @@ body,
 		display: inline-block;
 }
 .prd_title{
-	font: 18px "titillium_websemibold", sans-serif !important;
+	font: 20px "titillium_websemibold", sans-serif !important;
 		color: #AF0917 !important;
+		margin: 0;
 		margin-bottom: 10px !important;
 }
 .prd_share{
@@ -3739,7 +3739,7 @@ body,
 }
 .price-cart{
 	margin:25px 0;
-	border-bottom:1px solid #d7d7d7;
+	/*border-bottom:1px solid #d7d7d7;*/
 	min-height:65px;
 }
 .relatedhead{

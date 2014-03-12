@@ -232,6 +232,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['heading_title'] = $product_info['name'];
 			
 			$this->data['text_select'] = $this->language->get('text_select');
+			$this->data['text_item'] = $this->language->get('text_item');
 			$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
 			$this->data['text_model'] = $this->language->get('text_model');
 			$this->data['text_reward'] = $this->language->get('text_reward');
@@ -250,6 +251,9 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_share'] = $this->language->get('text_share');
 			$this->data['text_wait'] = $this->language->get('text_wait');
 			$this->data['text_tags'] = $this->language->get('text_tags');
+			$this->data['text_new_price'] = $this->language->get('text_new_price');
+			$this->data['text_old_price'] = $this->language->get('text_old_price');
+			$this->data['text_save'] = $this->language->get('text_save');
 			$this->data['text_in_same_category'] = $this->language->get('text_in_same_category');
 			
 			$this->data['entry_name'] = $this->language->get('entry_name');
@@ -278,6 +282,8 @@ class ControllerProductProduct extends Controller {
 			$this->data['model'] = $product_info['model'];
 			$this->data['reward'] = $product_info['reward'];
 			$this->data['points'] = $product_info['points'];
+
+			// print_r($product_info); die();
 
 			$this->data['quantity'] = $product_info['quantity'];
 			
@@ -380,6 +386,9 @@ class ControllerProductProduct extends Controller {
 						
 			if ((float)$product_info['special']) {
 				$this->data['special'] = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+				$you_save_div = $product_info['price'] - $product_info['special'];
+				$you_save_per = $you_save_div * 100 / $product_info['price'];
+				$this->data['you_save'] = $this->currency->format($this->tax->calculate($you_save_div, $product_info['tax_class_id'], $this->config->get('config_tax'))) . '('.ceil($you_save_per).'%)';
 			} else {
 				$this->data['special'] = false;
 			}
@@ -454,12 +463,11 @@ class ControllerProductProduct extends Controller {
 			
 			$this->data['review_status'] = $this->config->get('config_review_status');
 			$this->data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']);
+			$this->data['reviews_count'] = (int)$product_info['reviews'];
 			$this->data['rating'] = (int)$product_info['rating'];
+			$this->data['rating_decimal'] = $product_info['rating'];
 
-			$temp = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
-			$temp = explode('-----', $temp);
-			$this->data['description'] = $temp[0];
-			$this->data['technical'] = $temp[1];
+			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
 			
 			$this->data['products'] = array();
@@ -500,6 +508,7 @@ class ControllerProductProduct extends Controller {
 					'special' 	 => $special,
 					'rating'     => $rating,
 					'reviews'    => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+					'reviews_count' => (int)$result['reviews'],
 					'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
 			}	
