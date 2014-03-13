@@ -460,7 +460,52 @@
 			</div></div>
 	 <?php } ?> 
 	</div>
-			
+
+
+	<div id="together">
+		<h2 class="relatedhead green" style=""><?php echo $text_together; ?></h2>
+		<div class="box-content">
+			<div class="box-products">
+				<div class="carousel-inner" style="overflow:hidden;margin-top:25px;">
+					<p class="save_line"><?php echo $text_together_save; ?></p>
+					<?php foreach ($together_list['items'] as $key => $value) : ?>
+						<div class="together-block col-xs-3">
+							<div class="item-block col-xs-6">
+								<div class="image">
+									<a href="/index.php?route=product/product&amp;product_id=<?php echo $value['product_id']; ?>">
+										<img src="image/<?php echo $value['image'];?>" alt="">
+									</a>
+								</div>
+								<?php if ($product['rating']) : ?>
+									<div class="rating"><img src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
+								<?php else : ?>
+									<div class="norating"><img src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-0.png"></div>
+								<?php endif; ?>
+								<a href="/index.php?route=product/product&amp;product_id=<?php echo $value['product_id']; ?>">
+									<p class="name"><?php echo $value['name'];?></p>
+								</a>
+								<p class="price">
+									<?php if($value['special']) { echo $value['special']; } else { echo $value['price']; } ?>
+								</p>
+							</div>
+							<div class="symbol col-xs-6">
+								<?php 
+									if ($key == count($together_list['items']) - 1) {
+										echo '=';
+									} else { echo '+'; }
+								?>
+							</div>
+						</div>
+					<?php endforeach; ?>
+					<div class="total col-xs-3">
+						<div class="price"><?php echo $together_list['total']; ?></div>
+						<div class="cart" style="width:auto !important;"><a href="javascript:void(0);" id="button-cart" class="add_cart cart-single btn btn-lg btn-success"><span class="fa fa-shopping-cart"></span>Add to Cart</a></div>
+						<div class="save"><?php echo $text_save_single; ?></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>		
 	
 	<?php 
 		// $cols = 4;
@@ -545,7 +590,7 @@
 									<div class="image" style="border:none !important;">
 										
 									<?php if( $product['special'] ) {   ?>
-										<span class="salebg" style="top:9px !important;left:32% !important;"><img src="../image/salebg.png"></span>
+										<span class="salebg" style="!important;left:32% !important;"><img src="../image/salebg.png"></span>
 										<!--<div class="product-label-special label"><?php echo $this->language->get( 'text_sale' ); ?></div>-->
 									<?php } ?>
 									<a class="img" href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
@@ -574,7 +619,7 @@
 											<input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" />-->
 										</div>
 										<?php if ($product['price']) { ?>
-									<div class="price" style="padding:0px; margin: -20px 0 0 0; min-height:42px;">
+									<div class="price" style="padding:0px;">
 										<?php if (!$product['special']) { ?>
 										<?php //echo $product['price']; ?>
 										<span class="price-old"></span>

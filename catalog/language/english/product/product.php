@@ -32,9 +32,12 @@ $_['text_available'] = 'Available in stock';
 $_['text_not_available'] = 'Not available';
 $_['text_in_stock'] = 'in stock';
 $_['text_in_same_category'] = 'More items in the same category';
+$_['text_together'] = 'Frequently bought together';
+$_['text_together_save'] = 'Save %s when you combine these %d itmes';
 $_['text_old_price'] = 'Retail Price: ';
 $_['text_new_price'] = 'Last Day Sitewide Sale: ';
 $_['text_save'] = 'You Save: ';
+$_['text_save_single'] = 'Save ';
 
 $_['text_trial_description'] = '%s every %d %s(s) for %d payment(s) then';
 $_['text_payment_description'] = '%s every %d %s(s) for %d payment(s)';

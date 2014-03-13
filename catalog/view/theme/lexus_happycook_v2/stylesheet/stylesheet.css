@@ -1125,7 +1125,7 @@ body.layout-boxed-lg #page #breadcrumb {
 }
 .box .box-content {
 	/*background: #fff;*/
-	padding: 10px 0px;
+	/*padding: 10px 0px;*/
 }
 .box.highlighted .box-heading,
 .box.orange .box-heading,
@@ -1736,7 +1736,7 @@ body.layout-boxed-lg #page #breadcrumb {
 	border:1px solid #ededed;
 }
 .sidebar .box {
-	padding: 5px 0px;
+	/*padding: 5px 0px;*/
 }
 .sidebar .box .box-heading span {
 	padding-bottom: 7px;

@@ -42,7 +42,7 @@ class ControllerProductProduct extends Controller {
 			
 			// Set the last category breadcrumb
 			$category_info = $this->model_catalog_category->getCategory($category_id);
-				
+
 			if ($category_info) {			
 				$url = '';
 				
@@ -255,6 +255,8 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_old_price'] = $this->language->get('text_old_price');
 			$this->data['text_save'] = $this->language->get('text_save');
 			$this->data['text_in_same_category'] = $this->language->get('text_in_same_category');
+			$this->data['text_together'] = $this->language->get('text_together');
+			//$this->data['text_together_save'] = $this->language->get('text_together_save');
 			
 			$this->data['entry_name'] = $this->language->get('entry_name');
 			$this->data['entry_review'] = $this->language->get('entry_review');
@@ -319,6 +321,25 @@ class ControllerProductProduct extends Controller {
 					'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'))
 				);
 			}	
+
+			///////////////////////////////
+
+			$together_list = array( 0 => 33, 1 => 34, 2 => 36 ); $sum = 0;
+			foreach ($together_list as $key => $value) {
+				$item = $this->model_catalog_product->getProduct($value);
+				$sum += $item['special'] ? $item['special'] : $item['price'];
+				if($item['special']) {
+					$item['special'] = $this->currency->format($this->tax->calculate($item['special'], $item['tax_class_id'], $this->config->get('config_tax')));
+				}
+				$item['price'] = $this->currency->format($this->tax->calculate($item['price'], $item['tax_class_id'], $this->config->get('config_tax')));
+				$items[] = $item;
+			}
+			$save = "$30";
+			$this->data['together_list']['items'] = $items;
+			$this->data['together_list']['total'] = $this->currency->format($this->tax->calculate($sum, $items[0]['tax_class_id'], $this->config->get('config_tax')));
+			$this->data['text_together_save'] = sprintf($this->language->get('text_together_save'), $save, count($together_list));
+			$this->data['text_save_single'] = $this->language->get('text_save_single') . $save;
+
 
 			///////////////////////////////
 			$products_same_cat = $this->model_catalog_product->getProducts(array(
