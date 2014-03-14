@@ -4326,6 +4326,10 @@ background-color: #3498db;
 	text-transform:uppercase
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .label-other{
 	font-size:18px !important
 }
@@ -4449,11 +4453,11 @@ ul.select-device > li:last-child{
 
 .select-device input[type="radio"]:checked + label > span{
 	text-shadow:0 1px 1px #999;
-	color:#fff
+	color: #fff;
 }
 
 .select-device i.entypo{
-	font-size:200px;
+	font-size:40px;
 	font-style:normal
 }
 

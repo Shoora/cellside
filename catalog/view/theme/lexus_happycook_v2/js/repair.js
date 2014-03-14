@@ -1,3 +1,23 @@
+function gotoStep(step)
+{
+    switch (step) {
+        case 1:
+            document.location = '/index.php?route=repair/repair';
+            break;
+        case 2:
+            document.location = '/index.php?route=repair/repair/step_two';
+            break;
+        case 3:
+            document.location = '/index.php?route=repair/repair/step_three';
+            break;
+        case 4:
+            document.location = '/index.php?route=repair/repair/step_four';
+            break;
+        default:
+            document.location = '/index.php?route=repair/repair';
+    }
+}
+
 (function($){
     /*
      * Step 1
@@ -54,4 +74,115 @@
             });
         }
     });
+
+
+    /*
+     * Step 2
+     */
+
+    // Selection color
+    $('[id^="color-item-"]').on('click',function(){
+        $('[id^="color-item-"]')
+            .removeClass('product-trigger-selected')
+            .css({ boxShadow:'none' });
+        $(this)
+            .addClass('product-trigger-selected')
+            .css({ boxShadow:'0 0 4px 4px #333' });
+    });
+
+    // Next Step
+    $('#goto-step-3').on('click', function(){
+        var id = $('.product-trigger-selected').attr('id');
+        if ( !id ) {
+            alert('Please, select color of your device');
+        } else {
+            id = id.split('-')[2];
+            $.ajax({
+                url     : '/index.php?route=repair/repair/ajax',
+                type    : 'POST',
+                data    : 'act=color&color=' + id,
+                dataType: 'json',
+                success : function (response) {
+                    if ( response.error !== 0 ) {
+                        alert(response.error)
+                    } else {
+                        document.location = '/index.php?route=repair/repair/step_three';
+                    }
+                }
+            });
+        }
+    });
+
+    function getXmlHttp(){
+        try {
+            return new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try {
+                return new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (ee) {
+            }
+        }
+        if (typeof XMLHttpRequest!='undefined') {
+            return new XMLHttpRequest();
+        }
+    }
+
+    /*
+     * Step 3
+     */
+
+    // Next Step
+    $('#goto-step-4').on('click', function(){
+        var ids = new Array();
+        $('input[type="checkbox"]:checked').each(function(a,b){
+            ids.push( $(b).attr('id').split('-')[2] );
+        });
+
+        if ( !ids ) {
+            alert('Please, select issues of your device');
+        } else {
+            $.ajax({
+                url     : '/index.php?route=repair/repair/ajax',
+                type    : 'POST',
+                data    : 'act=issue&issue=' + ids.join(','),
+                dataType: 'json',
+                success : function (response) {
+                    if ( response.error !== 0 ) {
+                        alert(response.error)
+                    } else {
+                        document.location = '/index.php?route=repair/repair/step_four';
+                    }
+                }
+            });
+        }
+    });
+
+
+    /*
+     * Step 4
+     */
+
+    // Next Step
+    $('#goto-step-5').on('click', function(){
+        var id = $('input[type="radio"]:checked').attr('id');
+        console.log(id);
+        if ( !id ) {
+            alert('Please, select the service for repair your device');
+        } else {
+            $.ajax({
+                url     : '/index.php?route=repair/repair/ajax',
+                type    : 'POST',
+                data    : 'act=service&service=' + id,
+                dataType: 'json',
+                success : function (response) {
+                    if ( response.error !== 0 ) {
+                        alert(response.error)
+                    } else {
+                        document.location = '/index.php?route=repair/repair/step_five';
+                    }
+                }
+            });
+        }
+    });
+
 })(jQuery);
