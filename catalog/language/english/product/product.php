@@ -37,6 +37,7 @@ $_['text_together_save'] = 'Save %s when you combine these %d itmes';
 $_['text_old_price'] = 'Retail Price: ';
 $_['text_new_price'] = 'Last Day Sitewide Sale: ';
 $_['text_save'] = 'You Save: ';
+$_['text_warranty'] = 'Warranty: ';
 $_['text_save_single'] = 'Save ';
 
 $_['text_trial_description'] = '%s every %d %s(s) for %d payment(s) then';

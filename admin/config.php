@@ -27,6 +27,6 @@ define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_DATABASE', 'cellside_dev2');
 define('DB_PREFIX', '');
-error_reporting(0);
-@ini_set('display_errors', 0);
+// error_reporting(0);
+// @ini_set('display_errors', 0);
 ?>

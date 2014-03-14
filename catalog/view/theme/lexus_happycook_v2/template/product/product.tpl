@@ -16,7 +16,7 @@
 	$languageID = $this->config->get('config_language_id');
 	$productConfig = array_merge( $productConfig, $themeConfig ); 
 ?>
-<?php echo $header; ?>
+<?php echo $header;?>
 
 
 <?php require( DIR_TEMPLATE.$this->config->get('config_template')."/template/common/breadcrumb.tpl" );  ?>  
@@ -79,17 +79,22 @@
 					<h1 class="prd_title"><?php echo $heading_title; ?></h1>
 						<div class="description container">
 							<?php if ($manufacturer) { ?>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-xs-12 col-sm-3">
 									<span><?php echo $text_manufacturer; ?></span>
 									<a href="<?php echo $manufacturers; ?>"><?php echo $manufacturer; ?></a>
 								</div>
 							<?php } ?>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-xs-12 col-sm-3">
 									<span><?php echo $text_item; ?></span> <?php echo $product_id; ?>
 								</div>
 							<?php if ($points) { ?>
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-xs-12 col-sm-3">
 									<span><?php echo $text_reward; ?></span> <?php echo $points; ?><br />
+								</div>
+							<?php } ?>
+							<?php if ($warranty) { ?>
+								<div class="col-xs-12 col-sm-3">
+									<span><?php echo $text_warranty; ?></span> <?php echo $warranty; ?><br />
 								</div>
 							<?php } ?>
 							<!-- <span><?php echo $text_stock; ?></span> <?php echo $stock; ?> -->
@@ -107,6 +112,23 @@
 							</div>
 						</div>
 					<?php } ?>
+
+					<div class="row">
+						<ul id="bulletList">
+							<?php foreach ($attribute_groups as $attribute_group) { ?>
+								<?php if($attribute_group['name'] == "Bullet List") : ?>
+									<?php foreach ($attribute_group['attribute'] as $attribute) { ?>
+										<?php //if($attribute['name'] == "List") : ?>
+											<li>
+												<?php echo $attribute['text']; ?>
+											</li>
+										<?php //endif; ?>
+									<?php } ?>
+								<?php endif; ?>
+							<?php } ?>
+						</ul>
+					</div>
+
 					<div class="row">
 						<div class="col-xs-6 col-sm-5">
 							<select name="" id="ColorDesign" class="sel">
@@ -114,7 +136,7 @@
 							</select>
 						</div>
 						<div class="col-xs-6 col-sm-7">
-							Share 
+							<span>Share</span> 
 							<div class="social-media" style="display: inline-block;"><a class="fb" href="#">&nbsp;</a><a class="twtt" href="#">&nbsp;</a><a class="youtube" href="#">&nbsp;</a><a class="instagram" href="#">&nbsp;</a><a class="pinterest" href="#">&nbsp;</a></div>
 						</div>
 					</div>
@@ -373,9 +395,9 @@
 	<div class="tabs-group">
 	<div id="tabs" class="htabs clearfix">
 		<a href="#tab-description"><?php echo $tab_description; ?></a>
-		<?php if ($attribute_groups) { ?>
+		<!--<?php if ($attribute_groups) { ?>
 		<a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
-		<?php } ?>
+		<?php } ?> -->
 		<?php if ($review_status) { ?>
 		<a href="#tab-review"><?php echo $tab_review; ?></a>
 		<?php } ?>
@@ -395,27 +417,27 @@
 		?>
 	</div>
 	<div id="tab-fb" class="tab-content">FACEBOOK COMMENTS</div>
-	<?php if ($attribute_groups) { ?>
-	<div id="tab-attribute" class="tab-content">
-		<table class="attribute">
-			<?php foreach ($attribute_groups as $attribute_group) { ?>
-			<thead>
-				<tr>
-					<td colspan="2"><?php echo $attribute_group['name']; ?></td>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($attribute_group['attribute'] as $attribute) { ?>
-				<tr>
-					<td><?php echo $attribute['name']; ?></td>
-					<td><?php echo $attribute['text']; ?></td>
-				</tr>
+	<!--<?php if ($attribute_groups) { ?>
+		<div id="tab-attribute" class="tab-content">
+			<table class="attribute">
+				<?php foreach ($attribute_groups as $attribute_group) { ?>
+				<thead>
+					<tr>
+						<td colspan="2"><?php echo $attribute_group['name']; ?></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($attribute_group['attribute'] as $attribute) { ?>
+					<tr>
+						<td><?php echo $attribute['name']; ?></td>
+						<td><?php echo $attribute['text']; ?></td>
+					</tr>
+					<?php } ?>
+				</tbody>
 				<?php } ?>
-			</tbody>
-			<?php } ?>
-		</table>
-	</div>
-	<?php } ?>
+			</table>
+		</div>
+	<?php } ?> -->
 	<?php if ($review_status) { ?>
 	<div id="tab-review" class="tab-content">
 		<div id="review"></div>
@@ -461,51 +483,54 @@
 	 <?php } ?> 
 	</div>
 
+	<?php echo $content_bottom; ?></div>
 
-	<div id="together">
+	<!-- <div id="together">
 		<h2 class="relatedhead green" style=""><?php echo $text_together; ?></h2>
 		<div class="box-content">
 			<div class="box-products">
 				<div class="carousel-inner" style="overflow:hidden;margin-top:25px;">
 					<p class="save_line"><?php echo $text_together_save; ?></p>
-					<?php foreach ($together_list['items'] as $key => $value) : ?>
-						<div class="together-block col-xs-3">
-							<div class="item-block col-xs-6">
-								<div class="image">
+					<div class="container">
+						<?php foreach ($together_list['items'] as $key => $value) : ?>
+							<div class="together-block col-xs-3">
+								<div class="item-block col-xs-7 text-center">
+									<div class="image">
+										<a href="/index.php?route=product/product&amp;product_id=<?php echo $value['product_id']; ?>">
+											<img src="image/<?php echo $value['image'];?>" alt="">
+										</a>
+									</div>
+									<?php if ($product['rating']) : ?>
+										<div class="rating"><img src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
+									<?php else : ?>
+										<div class="norating"><img src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-0.png"></div>
+									<?php endif; ?>
 									<a href="/index.php?route=product/product&amp;product_id=<?php echo $value['product_id']; ?>">
-										<img src="image/<?php echo $value['image'];?>" alt="">
+										<p class="name"><?php echo $value['name'];?></p>
 									</a>
+									<p class="price">
+										<?php if($value['special']) { echo $value['special']; } else { echo $value['price']; } ?>
+									</p>
 								</div>
-								<?php if ($product['rating']) : ?>
-									<div class="rating"><img src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
-								<?php else : ?>
-									<div class="norating"><img src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-0.png"></div>
-								<?php endif; ?>
-								<a href="/index.php?route=product/product&amp;product_id=<?php echo $value['product_id']; ?>">
-									<p class="name"><?php echo $value['name'];?></p>
-								</a>
-								<p class="price">
-									<?php if($value['special']) { echo $value['special']; } else { echo $value['price']; } ?>
-								</p>
+								<div class="symbol col-xs-5">
+									<?php 
+										if ($key == count($together_list['items']) - 1) {
+											echo '=';
+										} else { echo '+'; }
+									?>
+								</div>
 							</div>
-							<div class="symbol col-xs-6">
-								<?php 
-									if ($key == count($together_list['items']) - 1) {
-										echo '=';
-									} else { echo '+'; }
-								?>
-							</div>
+						<?php endforeach; ?>
+						<div class="total col-xs-3">
+							<div class="price-total"><?php echo $together_list['total']; ?></div>
+							<div class="cart" style="width:auto !important;"><a href="javascript:void(0);" id="button-cart" class="add_cart cart-single btn btn-lg btn-success"><span class="fa fa-shopping-cart"></span>Add to Cart</a></div>
+							<div class="save text-center"><?php echo $text_save_single; ?></div>
 						</div>
-					<?php endforeach; ?>
-					<div class="total col-xs-3">
-						<div class="price"><?php echo $together_list['total']; ?></div>
-						<div class="cart" style="width:auto !important;"><a href="javascript:void(0);" id="button-cart" class="add_cart cart-single btn btn-lg btn-success"><span class="fa fa-shopping-cart"></span>Add to Cart</a></div>
-						<div class="save"><?php echo $text_save_single; ?></div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>		
+	</div>	 -->	
 	
 	<?php 
 		// $cols = 4;
@@ -640,8 +665,6 @@
 			</div>
 		</div>
 
-
-	<?php echo $content_bottom; ?></div>
 	<?php if( $productConfig['product_enablezoom'] ) { ?>
 </div>
 <script type="text/javascript" src=" catalog/view/javascript/jquery/elevatezoom/elevatezoom-min.js"></script>

@@ -324,21 +324,22 @@ class ControllerProductProduct extends Controller {
 
 			///////////////////////////////
 
-			$together_list = array( 0 => 33, 1 => 34, 2 => 36 ); $sum = 0;
-			foreach ($together_list as $key => $value) {
-				$item = $this->model_catalog_product->getProduct($value);
-				$sum += $item['special'] ? $item['special'] : $item['price'];
-				if($item['special']) {
-					$item['special'] = $this->currency->format($this->tax->calculate($item['special'], $item['tax_class_id'], $this->config->get('config_tax')));
-				}
-				$item['price'] = $this->currency->format($this->tax->calculate($item['price'], $item['tax_class_id'], $this->config->get('config_tax')));
-				$items[] = $item;
-			}
-			$save = "$30";
-			$this->data['together_list']['items'] = $items;
-			$this->data['together_list']['total'] = $this->currency->format($this->tax->calculate($sum, $items[0]['tax_class_id'], $this->config->get('config_tax')));
-			$this->data['text_together_save'] = sprintf($this->language->get('text_together_save'), $save, count($together_list));
-			$this->data['text_save_single'] = $this->language->get('text_save_single') . $save;
+			// $together_list = array( 0 => 423, 1 => 34, 2 => 36 ); $sum = 0;
+			// foreach ($together_list as $key => $value) {
+			// 	$item = $this->model_catalog_product->getProduct($value);
+			// 	$sum += $item['special'] ? $item['special'] : $item['price'];
+			// 	if($item['special']) {
+			// 		$item['special'] = $this->currency->format($this->tax->calculate($item['special'], $item['tax_class_id'], $this->config->get('config_tax')));
+			// 	}
+			// 	$item['price'] = $this->currency->format($this->tax->calculate($item['price'], $item['tax_class_id'], $this->config->get('config_tax')));
+			// 	$items[] = $item;
+			// }
+			// $save = "$30";
+			// $this->data['together_list']['items'] = $items;
+			// $this->data['together_list']['total'] = $this->currency->format($this->tax->calculate($sum, $items[0]['tax_class_id'], $this->config->get('config_tax')));
+			// $this->data['text_together_save'] = sprintf($this->language->get('text_together_save'), $save, count($together_list));
+			// $this->data['text_save_single'] = $this->language->get('text_save_single') . $save;
+
 
 
 			///////////////////////////////
@@ -547,6 +548,8 @@ class ControllerProductProduct extends Controller {
 				}
 			}
             
+            $this->data['warranty'] = $product_info['warranty'];
+
             $this->data['text_payment_profile'] = $this->language->get('text_payment_profile');
             $this->data['profiles'] = $this->model_catalog_product->getProfiles($product_info['product_id']);
 			

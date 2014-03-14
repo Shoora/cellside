@@ -2316,7 +2316,43 @@ select[name="address_id"] {
 #together .symbol {
 	color: #41a62a;
 	text-align: center;
-	font-size: 50px;
+	font-size: 60px;
 	line-height: 70px;
 	font-weight: 600;
+}
+#together .image {
+	height: 103px;
+	overflow: hidden;
+	border: 1px solid #c1c1c1;
+}
+#together .image img {
+	width: 100%;
+	padding: 5px;
+}
+#together .name {
+	margin-top: 10px;
+}
+#together .container {
+	margin: 25px 0;
+}
+#together .price {
+	font-size: 25px;
+	color: #af0917;
+}
+#together .price-total {
+	color: #41a62a;
+	font-size: 50px;
+	font-weight: 600;
+}
+#together .total .save {
+	color: #af0917;
+	font-weight: 600;
+	font-size: 30px;
+	line-height: 50px;
+}
+#together .item-block {
+	position: relative;
+}
+#bulletList li {
+	list-style-image: url(../image/green_check.png);
 }

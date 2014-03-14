@@ -1,8 +1,8 @@
 <?php
 // Heading 
-$_['heading_title']    				= 'Special offer';
+$_['heading_title']    				= 'Frequently bought together';
 $_['chain_add_to_cart_btn'] 		= 'Add set to Cart';
-$_['text_total_save'] 				= 'You save';
+$_['text_total_save'] 				= 'Save';
 $_['text_free'] 					= 'Free!';
 $_['text_options']					= 'Select Options';
 $_['text_select_options_js_error'] 	= 'Error: Please, select options for {0}';

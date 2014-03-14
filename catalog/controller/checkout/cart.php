@@ -274,7 +274,7 @@ class ControllerCheckoutCart extends Controller {
                 if(!empty($detail['special'])) {
                 	$old = $this->currency->format($detail['price']);
                 	$dv = $this->currency->format($detail['price'] - $detail['special']);
-                }
+                } else { $old = ""; $dv = ""; }
                 //echo '<pre>';
                 //print_r($this->currency->format($old)); die();
 
