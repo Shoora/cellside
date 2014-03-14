@@ -36,10 +36,13 @@ class ControllerModulePavproductcarousel extends Controller {
 		$this->data['tooltip_hide'] = isset($setting['tooltip_hide'])?(int)$setting['tooltip_hide']:100;
 		$this->data['show_button'] = isset($setting['btn_view_more'])?$setting['btn_view_more']:0;
 		
-		$this->data['byBrand'] = $this->model_catalog_category->getCategories(59); // subcategories of SHOP NOW
-		// foreach ($this->data['byBrand'] as $key => $value) {
-		// 	$this->data['byModel'][$value['category_id']] = $this->model_catalog_category->getCategories($value['category_id']);
-		// }
+		$this->data['byCategory'] = $this->model_catalog_category->getCategories(59); // subcategories of SHOP NOW
+		foreach ($this->data['byCategory'] as $key => $value) {
+		 	$this->data['byModel'][$value['category_id']] = $this->model_catalog_category->getCategories($value['category_id']);
+		}
+		$this->load->model('catalog/manufacturer'); 
+		$this->data['byBrand'] = $this->model_catalog_manufacturer->getManufacturers();
+		// print_r($this->data['byBrand'] ); die();
 
 		
 		// if (strpos($_GET['path'], '_') !== FALSE) {

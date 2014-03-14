@@ -2,6 +2,7 @@
 // Text
 $_['text_search']       = 'Search';
 $_['text_brand']        = 'Brand';
+$_['text_item']         = 'Item ID: ';
 $_['text_manufacturer'] = 'Brand:';
 $_['text_model']        = 'Product Code:';
 $_['text_reward']       = 'Reward Points:'; 
@@ -16,7 +17,7 @@ $_['text_qty']          = 'Quantity';
 $_['text_minimum']      = 'This product has a minimum quantity of %s';
 $_['text_or']           = '- OR -';
 $_['text_reviews']      = '%s reviews'; 
-$_['text_write']        = 'Write a review';
+$_['text_write']        = 'Be the first to review this product!';
 $_['text_no_reviews']   = 'There are no reviews for this product.';
 $_['text_on']           = ' on ';
 $_['text_note']         = '<span style="color: #FF0000;">Note:</span> HTML is not translated!';
@@ -31,6 +32,13 @@ $_['text_available'] = 'Available in stock';
 $_['text_not_available'] = 'Not available';
 $_['text_in_stock'] = 'in stock';
 $_['text_in_same_category'] = 'More items in the same category';
+$_['text_together'] = 'Frequently bought together';
+$_['text_together_save'] = 'Save %s when you combine these %d itmes';
+$_['text_old_price'] = 'Retail Price: ';
+$_['text_new_price'] = 'Last Day Sitewide Sale: ';
+$_['text_save'] = 'You Save: ';
+$_['text_warranty'] = 'Warranty: ';
+$_['text_save_single'] = 'Save ';
 
 $_['text_trial_description'] = '%s every %d %s(s) for %d payment(s) then';
 $_['text_payment_description'] = '%s every %d %s(s) for %d payment(s)';
@@ -50,7 +58,7 @@ $_['entry_bad']         = 'Bad';
 $_['entry_captcha']     = 'Enter the code in the box below:';
 
 // Tabs
-$_['tab_description']   = 'More Info';
+$_['tab_description']   = 'Description';
 $_['tab_technical']   	= 'Technical';
 $_['tab_faq']   		= 'FAQ';
 $_['tab_attribute']     = 'Specification';

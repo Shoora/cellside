@@ -34,7 +34,7 @@ var chain_shoping_cart_href = '<?php echo $chain_shoping_cart_href ?>';
 }
 
 #chain_container .chain-item {
-	width: <?php echo index_value($chain_settings, 'chain_display_image_width');?>px;
+	/*width: <?php echo index_value($chain_settings, 'chain_display_image_width');?>px;*/
 	padding: 5px;
 }
 #chain_container .chain-result {
@@ -133,163 +133,163 @@ var chain_shoping_cart_href = '<?php echo $chain_shoping_cart_href ?>';
 <?php echo index_value($chain_settings, 'chain_style_extra_css');?>
 </style>
 
-
-
 <? /* MAIN TPL FOR CHAIN */ ?>
-
-<?php if (index_value($chain_settings, 'chain_style') == 'classic') { ?>
-<div class="box">
-  <div class="box-heading"><?php echo $heading_title; ?></div>
-  <div class="box-content">
-<?php } elseif (index_value($chain_settings, 'chain_style') == 'user_style') { ?>
-	<div class="chain_style_single_container">
-	<?php if (index_value($chain_settings, 'chain_style_header_show')) { ?>
-		<div class="chain_style_single_container_header"><?php echo $heading_title; ?></div>
-	<?php } ?>
-<?php } ?>
-
-  <div class="flexslider-chain">
-      <ul id="chain-ul" class="slides">
-	  <?php foreach($products as $chain_id => $chain) { ?>
-		<li id="chain<?php echo $chain_id; ?>">
-		
-		<input type="hidden" name="chain_id" value="<?php echo $chain_id; ?>">
-		
-		<table>
-		<tbody>
-		<tr>
-		<td>		
-			<!-- chain products -->
-			<?php foreach($chain as $product) { ?>
-				
-					<div class="chain-item" id="chain-item<?php echo $product['product_id']; ?>" item-name="<?php echo $product['name']; ?>">
-						
-						<input type="hidden" value="<?php echo $product['product_id']; ?>" name="chain_product_id[<?php echo $product['product_id']; ?>]">
-						<input type="hidden" value="<?php echo $product['product_quantity']; ?>" name="chain_quantity[<?php echo $product['product_id']; ?>]">
-						
-						<?php if ($product['you_save'] > 0 && index_value($chain_settings, 'chain_display_discount_percent')) { ?>
-							<div class="chain_you_save">
-								<span>-<?php echo $product['you_save']; ?></span>%
-							</div>
-						<?php } ?>
-						
-						<?php if ($product['product_quantity'] > 1) { ?>
-							<div class="chain_product_quantity" title="<?php printf($text_quantity, $product['product_quantity']); ?>">
-								<?php echo $product['product_quantity']; ?>x
-							</div>
-						<?php } ?>
-						
-						<!--options-->
-						<?php if (!empty($product['options'])) { ?>
-								<a title="<?php echo $text_options; ?>" data-chain_id="<?php echo $chain_id; ?>" data-id="<?php echo $product['product_id']; ?>" class="chain_option"></a>
-						<?php } ?>
-						
-						<?php if ($product['options']) { ?>
-						  <div class="container_for_chan_options" id="chain_options_list<?php echo $product['product_id']; ?>" style="display: none;">
-						  <div class="chain_options_list" data-id="<?php echo $product['product_id']; ?>" data-chain_id="<?php echo $chain_id; ?>">
-							<div class="chain_options_header attention">
-							
-								<?php  
-								
-									if (mb_strlen($product['name'], 'utf-8') < index_value($chain_settings, 'chain_options_title_lenght')) { 
-										$product_title = '<span class="chain_options_header_product_name">'.$product['name'].'</span>'; 
-									} else { 
-										$product_title = '<span class="chain_options_header_product_name">'. mb_substr($product['name'], 0, index_value($chain_settings, 'chain_options_title_lenght'), 'utf-8') . '</span>...'; 
-									}; 
-									printf($text_select_options, $product_title);
-								?>
-							</div>
-							<?php if (index_value($chain_settings, 'chain_options_show_image') && $product['popup']) { ?>
-								<div class="image"><img src="<?php echo $product['popup']; ?>" alt="<?php echo $product['name']; ?>" ></div>
-							<?php } ?>
-							
-							<?php foreach ($product['options'] as $option) { 
-								$p_id = $product['product_id'];
-								include $option_tpl;
-								unset($p_id);
-							 } ?>
-							
-							<?php /*
-							<div style="text-align: center; display: none;">
-								<a class="button chain_options_save" data-chain_id="<?php echo $chain_id; ?>" data-product_id="<?php echo $product['product_id']; ?>">Save</a>
-							</div>
-							*/ ?>
-							
-						  </div>
-						  </div>
-						<?php } ?>
-						<!--/options-->
-						<?php if ($product['thumb']) { ?>
-						<div class="image">
-							<a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
-						</div>
-						<?php } ?>
-						<div class="name">
-							<a class="name" href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
-						</div>
-						
-						<?php if ($product['price_string']) { ?>
-						<div class="price">
-							<?php if ($product['combo_price'] == $product['full_price_with_tax']) { ?>
-								<?php if ($product['special']) { ?>
-									<span class="price-old">
-										<?php echo $product['price_string']; ?><br />
-									</span>
-									<?php echo $product['special_price_string']; ?>
-								<?php } else { ?>
-									<?php echo $product['price_string']; ?>
-								<?php } ?>
-							<?php } else { ?>
-								<?php if (index_value($chain_settings, 'chain_display_old_price') && $product['combo_price'] < $product['full_price_with_tax']) { ?>
-									<span class="price-old">
-										<?php echo $product['price_string']; ?><br />
-									</span>
-								<?php } ?>
-								<?php if ($product['combo_price'] > 0) { ?>
-									<span class="price-new">
-										 <?php echo $product['combo_price_string']; ?>
-									</span>
-								<?php } else { ?>
-									<span class="price-free">
-										 <?php echo $text_free; ?>
-									</span>
-								<?php } ?>
-								
-							<?php } ?>
-						</div>
-						<?php } ?>
-					
-					</div><!-- / .chain-item -->
-				<?php if ($product != end($chain)) { ?>
-					<div class="chain-symbol chain-plus">+</div>
-				<?php } else { ?>
-					<div class="chain-symbol chain-sum">=</div>
-				<?php } ?>
-				
+<div id="together">
+		<?php if (index_value($chain_settings, 'chain_style') == 'classic') { ?>
+			<h2 class="relatedhead green" style=""><?php echo $heading_title; ?></h2>
+				<div class="box-content">
+		<?php } elseif (index_value($chain_settings, 'chain_style') == 'user_style') { ?>
+			<div class="chain_style_single_container">
+			<?php if (index_value($chain_settings, 'chain_style_header_show')) { ?>
+				<div class="chain_style_single_container_header"><?php echo $heading_title; ?></div>
 			<?php } ?>
-			<!--/ chain products -->
-			<div class="chain-result">
-				<div class="total_price"><?php echo $total_price[$chain_id]; ?></div>
-				<div><a class="button" onclick="addChainToCart('<?php echo $chain_id; ?>')"><span><?php echo $chain_add_to_cart_btn; ?></span></a></div>
-				<?php if (index_value($chain_settings, 'chain_display_you_save')) { ?>
-					<div class="total_save"><?php echo $text_total_save; ?>: <span><?php echo $total_save[$chain_id]; ?></span></div>
-				<?php } ?>
-			</div>
-		</td>
-		</tr>
-		</tbody>	
-		</table>
-		</li>
-	  <?php } ?>
-	  
-		
-	  </ul>
-	  </div>
-<?php if (index_value($chain_settings, 'chain_style') == 'classic') { ?>
-  </div>
-</div>
-<?php } elseif (index_value($chain_settings, 'chain_style') == 'user_style') { ?>
-	</div>
-<?php } ?>	  
-  
+		<?php } ?>
 
+		<div class="flexslider-chain">
+			<ul id="chain-ul" class="slides">
+				<?php foreach($products as $chain_id => $chain) : ?>
+					<li id="chain<?php echo $chain_id; ?>">
+						<input type="hidden" name="chain_id" value="<?php echo $chain_id; ?>">
+						
+						<div class="box-products">
+							<div class="carousel-inner" style="overflow:hidden;margin-top:25px;">
+								<p class="save_line"><?php echo $text_together_save; ?></p>
+								<div class="container">
+									<!-- chain products -->
+									<?php foreach($chain as $key => $product) : ?>
+										
+											<div class="chain-item together-block col-xs-3" id="chain-item<?php echo $product['product_id']; ?>" item-name="<?php echo $product['name']; ?>">
+												
+												<input type="hidden" value="<?php echo $product['product_id']; ?>" name="chain_product_id[<?php echo $product['product_id']; ?>]">
+												<input type="hidden" value="<?php echo $product['product_quantity']; ?>" name="chain_quantity[<?php echo $product['product_id']; ?>]">
+												
+												<div class="item-block col-xs-7 text-center">
+													<?php if ($product['you_save'] > 0 && index_value($chain_settings, 'chain_display_discount_percent')) { ?>
+														<div class="chain_you_save">
+															<span>-<?php echo $product['you_save']; ?></span>%
+														</div>
+													<?php } ?>
+													
+													<?php if ($product['product_quantity'] > 1) { ?>
+														<div class="chain_product_quantity" title="<?php printf($text_quantity, $product['product_quantity']); ?>">
+															<?php echo $product['product_quantity']; ?>x
+														</div>
+													<?php } ?> 
+													
+													<!--options-->
+													<?php if (!empty($product['options'])) { ?>
+															<a title="<?php echo $text_options; ?>" data-chain_id="<?php echo $chain_id; ?>" data-id="<?php echo $product['product_id']; ?>" class="chain_option"></a>
+													<?php } ?>
+													
+													<?php if ($product['options']) { ?>
+														<div class="container_for_chan_options" id="chain_options_list<?php echo $product['product_id']; ?>" style="display: none;">
+														<div class="chain_options_list" data-id="<?php echo $product['product_id']; ?>" data-chain_id="<?php echo $chain_id; ?>">
+														<div class="chain_options_header attention">
+														
+															<?php  
+															
+																if (mb_strlen($product['name'], 'utf-8') < index_value($chain_settings, 'chain_options_title_lenght')) { 
+																	$product_title = '<span class="chain_options_header_product_name">'.$product['name'].'</span>'; 
+																} else { 
+																	$product_title = '<span class="chain_options_header_product_name">'. mb_substr($product['name'], 0, index_value($chain_settings, 'chain_options_title_lenght'), 'utf-8') . '</span>...'; 
+																}; 
+																printf($text_select_options, $product_title);
+															?>
+														</div>
+														<?php if (index_value($chain_settings, 'chain_options_show_image') && $product['popup']) { ?>
+															<div class="image"><img src="<?php echo $product['popup']; ?>" alt="<?php echo $product['name']; ?>" ></div>
+														<?php } ?>
+														
+														<?php foreach ($product['options'] as $option) { 
+															$p_id = $product['product_id'];
+															include $option_tpl;
+															unset($p_id);
+														 } ?>
+														
+														<?php /*
+														<div style="text-align: center; display: none;">
+															<a class="button chain_options_save" data-chain_id="<?php echo $chain_id; ?>" data-product_id="<?php echo $product['product_id']; ?>">Save</a>
+														</div>
+														*/ ?>
+														
+														</div>
+														</div>
+													<?php } ?>
+													<!--/options-->
+
+													<?php if ($product['thumb']) : ?>
+														<div class="image">
+															<a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
+														</div>
+													<?php endif; ?>
+													<?php if ($product['rating']) : ?>
+														<div class="rating"><img src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
+													<?php else : ?>
+														<div class="norating"><img src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-0.png"></div>
+													<?php endif; ?>
+													<div class="name">
+														<a class="name" href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+													</div>
+													<?php if ($product['price_string']) { ?>
+														<div class="price">
+															<?php if ($product['combo_price'] == $product['full_price_with_tax']) { ?>
+																<?php if ($product['special']) { ?>
+																	<span class="price-old">
+																		<?php echo $product['price_string']; ?><br />
+																	</span>
+																	<?php echo $product['special_price_string']; ?>
+																<?php } else { ?>
+																	<?php echo $product['price_string']; ?>
+																<?php } ?>
+															<?php } else { ?>
+																<?php if (index_value($chain_settings, 'chain_display_old_price') && $product['combo_price'] < $product['full_price_with_tax']) { ?>
+																	<span class="price-old">
+																		<?php echo $product['price_string']; ?><br />
+																	</span>
+																<?php } ?>
+																<?php if ($product['combo_price'] > 0) { ?>
+																	<span class="price-new">
+																		 <?php echo $product['combo_price_string']; ?>
+																	</span>
+																<?php } else { ?>
+																	<span class="price-free">
+																		 <?php echo $text_free; ?>
+																	</span>
+																<?php } ?>
+																
+															<?php } ?>
+														</div>
+													<?php } ?>
+													<!-- <p class="price">
+														<?php if($value['special']) { echo $value['special']; } else { echo $value['price']; } ?>
+													</p> -->
+												</div>
+												<div class="symbol col-xs-5">
+													<?php 
+														if ($key == count($chain)) {
+															echo '=';
+														} else { echo '+'; }
+													?>
+												</div>
+											
+											</div><!-- / .chain-item -->
+										
+									<?php endforeach; ?>
+									<!--/ chain products -->
+									<div class="total col-xs-3">
+										<div class="price-total"><?php echo $total_price[$chain_id]; ?></div>
+										<div class="cart" style="width:auto !important;"><a href="javascript:void(0);" id="button-cart" class="add_cart cart-single btn btn-lg btn-success" onclick="addChainToCart('<?php echo $chain_id; ?>')"><span class="fa fa-shopping-cart"></span>Add to Cart</a></div>
+										<?php if (index_value($chain_settings, 'chain_display_you_save')) { ?>
+											<div class="save text-center"><?php echo $text_total_save.' '.$total_save[$chain_id]; ?></span></div>
+										<?php } ?>
+										<div class="save text-center"><?php echo $text_save_single; ?></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</div>	
+</div>	

@@ -16,7 +16,7 @@
 	$languageID = $this->config->get('config_language_id');
 	$productConfig = array_merge( $productConfig, $themeConfig ); 
 ?>
-<?php echo $header; ?>
+<?php echo $header;?>
 
 
 <?php require( DIR_TEMPLATE.$this->config->get('config_template')."/template/common/breadcrumb.tpl" );  ?>  
@@ -27,128 +27,152 @@
 			<?php echo $column_left; ?>
 		</aside>	
 	<?php endif; ?> 
-	<section class="col-lg-<?php echo $SPAN[1];?> col-md-<?php echo $SPAN[1];?> col-sm-12 col-xs-12">
+<section class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 	<div id="content"><?php echo $content_top; ?>
-	
- 
-	<div class="product-info">
-	<div class="row">
-		
+		<div class="product-info">
+			<div class="row">
 				<?php if ($thumb || $images) { ?>
-		<div class="col-lg-5 col-md-5 col-sm-6 image-container">
-	<?php if( $special )  { ?>
-					<div class="product-label-special label"><?php echo $this->language->get( 'text_sale' ); ?></div>
-				<?php } ?>
-				<?php if ($thumb) { ?>
-				<div class="image"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox">
-					<img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image"  data-zoom-image="<?php echo $popup; ?>" class="product-image-zoom"/></a></div>
-				<?php } ?>
-				<?php if ($images) { ?>
-				<div class="image-additional slide carousel" id="image-additional"><div class="carousel-inner">
-				<?php 
-				if( $productConfig['product_zoomgallery'] == 'slider' && $thumb ) {  
-					$eimages = array( 0=> array( 'popup'=>$popup,'thumb'=> $thumb )  ); 
-					$images = array_merge( $eimages, $images );
-				}
-				$icols = 3; $i= 0;
-				foreach ($images as  $image) { ?>
-					<?php if( (++$i)%$icols == 1 ) { ?>
-					<div class="item">
-					<?php } ?>
-
-							<a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="colorbox" data-zoom-image="<?php echo $image['popup']; ?>" data-image="<?php echo $image['popup']; ?>">
-								<img src="<?php echo $image['thumb']; ?>" style="max-width:<?php echo $this->config->get('config_image_additional_width');?>px"  title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" data-zoom-image="<?php echo $image['popup']; ?>" class="product-image-zoom" />
-							</a>
-						<?php if( $i%$icols == 0 || $i==count($images) ) { ?>
+					<div class="col-lg-5 col-md-5 col-sm-4 image-container">
+						<?php if( $special )  { ?>
+							<div class="product-label-special label"><?php echo $this->language->get( 'text_sale' ); ?></div>
+						<?php } ?>
+						<?php if ($thumb) { ?>
+							<div class="image">
+								<img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image"/><!-- data-zoom-image="<?php echo $popup; ?>" class="product-image-zoom" -->
+								<a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox viewLarger"><span class="fa fa-search"></span> View Lager</a>
+							</div>   
+						<?php } ?>
+						<?php if ($images) { ?>
+							<div class="image-additional slide carousel" id="image-additional" style="<?php if(count($images) < 4) echo "padding: 0 !important;" ?>">
+								<div class="carousel-inner">
+									<?php 
+										if( $productConfig['product_zoomgallery'] == 'slider' && $thumb ) {  
+											$eimages = array( 0=> array( 'popup'=>$popup,'thumb'=> $thumb )  ); 
+											$images = array_merge( $eimages, $images );
+										}
+										$icols = 3; $i= 0;
+									foreach ($images as  $image) { ?>
+										<?php if( (++$i)%$icols == 1 ) { ?>
+											<div class="item">
+										<?php } ?>
+											<a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="colorbox" data-zoom-image="<?php echo $image['popup']; ?>" data-image="<?php echo $image['popup']; ?>">
+												<img src="<?php echo $image['thumb']; ?>" style="max-width:<?php echo $this->config->get('config_image_additional_width');?>px"  title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" data-zoom-image="<?php echo $image['popup']; ?>" class="product-image-zoom" />
+											</a>
+										<?php if( $i%$icols == 0 || $i==count($images) ) { ?>
+											</div>
+										<?php } ?>
+									<?php } ?>
+								</div>
+								<?php if(count($images) > 4) : ?>
+									<div class="carousel-control left" href="#image-additional" data-slide="prev">&lsaquo;</div>
+									<div class="carousel-control right" href="#image-additional" data-slide="next">&rsaquo;</div>
+								<?php endif; ?>
 							</div>
+							<script type="text/javascript">
+								$('#image-additional .item:first').addClass('active');
+								$('#image-additional').carousel({interval:false})
+							</script>
+						<?php } ?>
+					</div>
+				<?php } ?>
+				<div class="col-lg-7 col-md-7 col-sm-8">
+					<h1 class="prd_title"><?php echo $heading_title; ?></h1>
+						<div class="description container">
+							<?php if ($manufacturer) { ?>
+								<div class="col-xs-12 col-sm-3">
+									<span><?php echo $text_manufacturer; ?></span>
+									<a href="<?php echo $manufacturers; ?>"><?php echo $manufacturer; ?></a>
+								</div>
+							<?php } ?>
+								<div class="col-xs-12 col-sm-3">
+									<span><?php echo $text_item; ?></span> <?php echo $product_id; ?>
+								</div>
+							<?php if ($points) { ?>
+								<div class="col-xs-12 col-sm-3">
+									<span><?php echo $text_reward; ?></span> <?php echo $points; ?><br />
+								</div>
+							<?php } ?>
+							<?php if ($warranty) { ?>
+								<div class="col-xs-12 col-sm-3">
+									<span><?php echo $text_warranty; ?></span> <?php echo $warranty; ?><br />
+								</div>
+							<?php } ?>
+							<!-- <span><?php echo $text_stock; ?></span> <?php echo $stock; ?> -->
+					</div>
+
+					 <?php if ($review_status) { ?>
+						<div class="review">
+							<div style="font-size:18px;font-weight:bold !important;border-top:1px solid #d7d7d7;border-bottom:1px solid #d7d7d7;line-height:22px !important;padding:13px 0 !important;">
+								<img style="height:19px !important;width:120px !important;" src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />
+								<div class="review_block"><?php echo $rating_decimal; ?><span> (<?php echo $reviews; ?>)</span></div>
+								<!-- <a style="color:#af0917 !important;" onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $reviews; ?></a> -->
+								<?php if ($reviews_count == 0) : ?>
+									<a id="writeReview" onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $text_write; ?></a>
+								<?php endif; ?>
+							</div>
+						</div>
 					<?php } ?>
-				<?php } ?>
-			</div>
-						<div class="carousel-control left" href="#image-additional" data-slide="prev">&lsaquo;</div>
-				<div class="carousel-control right" href="#image-additional" data-slide="next">&rsaquo;</div>
-				</div>
-					<script type="text/javascript">
-						$('#image-additional .item:first').addClass('active');
-						$('#image-additional').carousel({interval:false})
-					</script>
 
-				<?php } ?>
-		 
-				 </div>
-		<?php } ?>
-		<div class="col-lg-7 col-md-7 col-sm-6">
-		 <h1 class="prd_title"><?php echo $heading_title; ?></h1>
-		<div class="description">
-				<?php if ($manufacturer) { ?>
-				<span><?php echo $text_manufacturer; ?></span> <a href="<?php echo $manufacturers; ?>"><?php echo $manufacturer; ?></a><br />
-				<?php } ?>
-				<span><?php echo $text_model; ?></span> <?php echo $model; ?><br />
-				<?php if ($reward) { ?>
-				<span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
-				<?php } ?>
-				<!-- <span><?php echo $text_stock; ?></span> <?php echo $stock; ?> -->
-		</div>
+					<div class="row">
+						<ul id="bulletList">
+							<?php foreach ($attribute_groups as $attribute_group) { ?>
+								<?php if($attribute_group['name'] == "Bullet List") : ?>
+									<?php foreach ($attribute_group['attribute'] as $attribute) { ?>
+										<?php //if($attribute['name'] == "List") : ?>
+											<li>
+												<?php echo $attribute['text']; ?>
+											</li>
+										<?php //endif; ?>
+									<?php } ?>
+								<?php endif; ?>
+							<?php } ?>
+						</ul>
+					</div>
 
-		 <?php if ($review_status) { ?>
-			<div class="review">
-			<div style="color:#af0917 !important;font-size:18px;font-weight:bold !important;border-top:1px solid #d7d7d7;border-bottom:1px solid #d7d7d7;line-height:22px !important;padding:7px 0 !important;"><img style="height:15px !important;width:100px !important;" src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;<a style="color:#af0917 !important;" onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a style="color:#af0917 !important;" onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $text_write; ?></a></div>
-			</div>
-			<?php } ?>
-
-		<!-- <div class="row">
-			<div class="col-md-4 prd_share">
-				<div class="share clearfix">
-					<div class="addthis_default_style"><a class="addthis_button_compact"><?php echo $text_share; ?></a> <a class="addthis_button_email"></a><a class="addthis_button_print"></a> <a class="addthis_button_facebook"></a> <a class="addthis_button_twitter"></a></div>
-					<script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js"></script> 
-				</div>
-			</div>
-			<div class="col-md-4 compare-wish">
-				<a class="wishlist" onclick="addToWishList('<?php echo $product_id; ?>');"><span class="fa fa-heart"></span><?php echo $button_wishlist; ?></a>
-			</div>
-			<div class="col-md-4 compare-wish">
-				<a class="compare" onclick="addToCompare('<?php echo $product_id; ?>');"><span class="fa fa-retweet"></span><?php echo $button_compare; ?></a>
-			</div>
-		</div> -->
-		<div class="row" style="border-bottom:1px solid #d7d7d7;padding:10px;">
-			<?php if ($price) { ?>
-			<div class="price prd_price col-xs-6">
-			 <?php if (!$special) { ?>
-				<?php echo $price; ?>
-				<?php } else { ?>
-				<span class="price-new"><?php echo $special; ?></span>
-				<div class="price-old"><?php echo $price; ?></div> 
-				<?php } ?>
-			</div>
-			<?php if ($price) { ?>
-				<div class="price-other">
-				<?php if ($tax) { ?>
-				<span class="price-tax"><?php echo $text_tax; ?> <?php echo $tax; ?></span><br />
-				<?php } ?>
-				<?php if ($points) { ?>
-				<span class="reward"><small><?php echo $text_points; ?> <?php echo $points; ?></small></span><br />
-				<?php } ?>
-				<?php if ($discounts) { ?>
-				<br />
-				<div class="discount">
-					<?php foreach ($discounts as $discount) { ?>
-					<?php echo sprintf($text_discount, $discount['quantity'], $discount['price']); ?><br />
-					<?php } ?>
-				</div>
-				<?php } ?>
-				</div>
-				<?php } ?>
-			<?php } ?>
-		</div>
+					<div class="row">
+						<div class="col-xs-6 col-sm-5">
+							<select name="" id="ColorDesign" class="sel">
+								<option value="">Select Color/Design</option>
+							</select>
+						</div>
+						<div class="col-xs-6 col-sm-7">
+							<span>Share</span> 
+							<div class="social-media" style="display: inline-block;"><a class="fb" href="#">&nbsp;</a><a class="twtt" href="#">&nbsp;</a><a class="youtube" href="#">&nbsp;</a><a class="instagram" href="#">&nbsp;</a><a class="pinterest" href="#">&nbsp;</a></div>
+						</div>
+					</div>
+					<div class="row ProductPriceContainer">
+						<?php if ($price) { ?>
+							<div class="price prd_price">
+								<?php if (!$special) { ?>
+									<div class="col-xs-6"><div class="onePrice"><?php echo $price; ?></div></div>
+									<div class="col-xs-6 text-center"><img src="/catalog/view/theme/lexus_happycook_v2/image/pay.png" alt=""></div>
+								<?php } else { ?>
+									<div class="col-xs-6 price_block">
+										<p class="old_price row"><?php echo $text_old_price; ?> <span><?php echo $price; ?></span></p>
+										<p class="new_price row"><?php echo $text_new_price; ?> <span><?php echo $special; ?></span></p>
+										<p class="you_save row"><?php echo $text_save; ?> <span><?php echo $you_save; ?></span></p>
+									</div>
+									<div class="col-xs-6 text-center">
+										<img src="/catalog/view/theme/lexus_happycook_v2/image/deal.png" alt="">
+										<img src="/catalog/view/theme/lexus_happycook_v2/image/pay.png" alt="">
+									</div>
+								<?php } ?>
+							</div>
+							<?php if ($price) { ?>
+								<div class="price-other">
+									<?php if ($discounts) { ?>
+										<div class="discount">
+											<?php foreach ($discounts as $discount) { ?>
+												<?php echo sprintf($text_discount, $discount['quantity'], $discount['price']); ?><br />
+											<?php } ?>
+										</div>
+									<?php } ?>
+								</div>
+							<?php } ?>
+						<?php } ?>
+					</div>
 
 		<div class="price-cart row">
-			<div class="col-xs-5 col-sm-6">
-				<div class="cart" style="width:auto !important;">
-						<a href="javascript:void(0);" id="button-cart" class="add_cart cart-single btn btn-lg btn-success"><span class="fa fa-shopping-cart"></span>Add to Cart</a>
-			<!--<span class="fa fa-shopping-cart"></span>
-						<input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />-->
-					</div>
-			</div>
-
 			<div class="col-xs-7 col-sm-6">
 				<div class="product-extra">
 					
@@ -175,6 +199,12 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
+			
+			<div class="col-xs-5 col-sm-6">
+				<div class="cart" style="width:auto !important;">
+					<a href="javascript:void(0);" id="button-cart" class="add_cart cart-single btn btn-lg btn-success"><span class="fa fa-shopping-cart"></span>Add to Cart</a>
+				</div>
+			</div>
 
 			<?php if ($profiles): ?>
 			<div class="option">
@@ -197,7 +227,7 @@
 	
  
 			<?php if ($options) { ?>
-			<div class="options">
+			<!-- <div class="options">
 				<h2><?php echo $text_option; ?></h2>
 				<br />
 				<?php foreach ($options as $option) { ?>
@@ -340,12 +370,12 @@
 				<br />
 				<?php } ?>
 				<?php } ?>
-			</div>
+			</div> -->
 			<?php } ?>
 	
 		</div>
 		<?php if ($tags) { ?>
-		<div class="tags"><b><?php echo $text_tags; ?></b>
+		<!-- <div class="tags"><b><?php echo $text_tags; ?></b>
 			<?php for ($i = 0; $i < count($tags); $i++) { ?>
 			<?php if ($i < (count($tags) - 1)) { ?>
 			<a href="<?php echo $tags[$i]['href']; ?>"><?php echo $tags[$i]['tag']; ?></a>,
@@ -353,49 +383,61 @@
 			<a href="<?php echo $tags[$i]['href']; ?>"><?php echo $tags[$i]['tag']; ?></a>
 			<?php } ?>
 			<?php } ?>
-		</div>
+		</div> -->
 		<?php } ?>
+		<div id="dealSlasher">
+			<div class="col-xs-5 text-center header_deal">Deal Slasher</div>
+			<div class="col-xs-7 text-center">Share this product and receive an additional discount!</div>
+			<div class="clearfix"></div>
+		</div>
 	</div>
 	</div>
 	<div class="tabs-group">
 	<div id="tabs" class="htabs clearfix">
 		<a href="#tab-description"><?php echo $tab_description; ?></a>
-		<?php if ($attribute_groups) { ?>
+		<!--<?php if ($attribute_groups) { ?>
 		<a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
-		<?php } ?>
+		<?php } ?> -->
 		<?php if ($review_status) { ?>
 		<a href="#tab-review"><?php echo $tab_review; ?></a>
 		<?php } ?>
-		<a href="#tab-technical"><?php echo $tab_technical; ?></a>
 		<a href="#tab-faq"><?php echo $tab_faq; ?></a>
+		<a href="#tab-fb">FACEBOOK COMMENTS</a>
 		<?php if( $productConfig['enable_product_customtab'] && isset($productConfig['product_customtab_name'][$languageID]) ) { ?>
 		 <a href="#tab-customtab"><?php echo $productConfig['product_customtab_name'][$languageID]; ?></a>
 	 <?php } ?> 
 
 	</div>
 	<div id="tab-description" class="tab-content"><?php echo $description; ?></div>
-	<div id="tab-technical" class="tab-content"><?php echo $technical; ?></div>
-	<?php if ($attribute_groups) { ?>
-	<div id="tab-attribute" class="tab-content">
-		<table class="attribute">
-			<?php foreach ($attribute_groups as $attribute_group) { ?>
-			<thead>
-				<tr>
-					<td colspan="2"><?php echo $attribute_group['name']; ?></td>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($attribute_group['attribute'] as $attribute) { ?>
-				<tr>
-					<td><?php echo $attribute['name']; ?></td>
-					<td><?php echo $attribute['text']; ?></td>
-				</tr>
-				<?php } ?>
-			</tbody>
-			<?php } ?>
-		</table>
+	<div id="tab-faq" class="tab-content">
+		<?php 
+			// $helper = ThemeControlHelper::getInstance( $this->registry, $themeName );
+			// $modules = $helper->getModulesByPosition( 'content_bottom' );
+			// print_r($modules); 
+		?>
 	</div>
-	<?php } ?>
+	<div id="tab-fb" class="tab-content">FACEBOOK COMMENTS</div>
+	<!--<?php if ($attribute_groups) { ?>
+		<div id="tab-attribute" class="tab-content">
+			<table class="attribute">
+				<?php foreach ($attribute_groups as $attribute_group) { ?>
+				<thead>
+					<tr>
+						<td colspan="2"><?php echo $attribute_group['name']; ?></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($attribute_group['attribute'] as $attribute) { ?>
+					<tr>
+						<td><?php echo $attribute['name']; ?></td>
+						<td><?php echo $attribute['text']; ?></td>
+					</tr>
+					<?php } ?>
+				</tbody>
+				<?php } ?>
+			</table>
+		</div>
+	<?php } ?> -->
 	<?php if ($review_status) { ?>
 	<div id="tab-review" class="tab-content">
 		<div id="review"></div>
@@ -440,7 +482,55 @@
 			</div></div>
 	 <?php } ?> 
 	</div>
-			
+
+	<?php echo $content_bottom; ?></div>
+
+	<!-- <div id="together">
+		<h2 class="relatedhead green" style=""><?php echo $text_together; ?></h2>
+		<div class="box-content">
+			<div class="box-products">
+				<div class="carousel-inner" style="overflow:hidden;margin-top:25px;">
+					<p class="save_line"><?php echo $text_together_save; ?></p>
+					<div class="container">
+						<?php foreach ($together_list['items'] as $key => $value) : ?>
+							<div class="together-block col-xs-3">
+								<div class="item-block col-xs-7 text-center">
+									<div class="image">
+										<a href="/index.php?route=product/product&amp;product_id=<?php echo $value['product_id']; ?>">
+											<img src="image/<?php echo $value['image'];?>" alt="">
+										</a>
+									</div>
+									<?php if ($product['rating']) : ?>
+										<div class="rating"><img src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
+									<?php else : ?>
+										<div class="norating"><img src="catalog/view/theme/<?php echo $this->config->get('config_template');?>/image/stars-0.png"></div>
+									<?php endif; ?>
+									<a href="/index.php?route=product/product&amp;product_id=<?php echo $value['product_id']; ?>">
+										<p class="name"><?php echo $value['name'];?></p>
+									</a>
+									<p class="price">
+										<?php if($value['special']) { echo $value['special']; } else { echo $value['price']; } ?>
+									</p>
+								</div>
+								<div class="symbol col-xs-5">
+									<?php 
+										if ($key == count($together_list['items']) - 1) {
+											echo '=';
+										} else { echo '+'; }
+									?>
+								</div>
+							</div>
+						<?php endforeach; ?>
+						<div class="total col-xs-3">
+							<div class="price-total"><?php echo $together_list['total']; ?></div>
+							<div class="cart" style="width:auto !important;"><a href="javascript:void(0);" id="button-cart" class="add_cart cart-single btn btn-lg btn-success"><span class="fa fa-shopping-cart"></span>Add to Cart</a></div>
+							<div class="save text-center"><?php echo $text_save_single; ?></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	 -->	
 	
 	<?php 
 		// $cols = 4;
@@ -525,7 +615,7 @@
 									<div class="image" style="border:none !important;">
 										
 									<?php if( $product['special'] ) {   ?>
-										<span class="salebg" style="top:9px !important;left:32% !important;"><img src="../image/salebg.png"></span>
+										<span class="salebg" style="!important;left:32% !important;"><img src="../image/salebg.png"></span>
 										<!--<div class="product-label-special label"><?php echo $this->language->get( 'text_sale' ); ?></div>-->
 									<?php } ?>
 									<a class="img" href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
@@ -554,7 +644,7 @@
 											<input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" />-->
 										</div>
 										<?php if ($product['price']) { ?>
-									<div class="price" style="padding:0px; margin: -20px 0 0 0; min-height:42px;">
+									<div class="price" style="padding:0px;">
 										<?php if (!$product['special']) { ?>
 										<?php //echo $product['price']; ?>
 										<span class="price-old"></span>
@@ -575,24 +665,22 @@
 			</div>
 		</div>
 
-
-	<?php echo $content_bottom; ?></div>
 	<?php if( $productConfig['product_enablezoom'] ) { ?>
 </div>
 <script type="text/javascript" src=" catalog/view/javascript/jquery/elevatezoom/elevatezoom-min.js"></script>
 <script type="text/javascript">
  <?php if( $productConfig['product_zoomgallery'] == 'slider' ) {  ?>
-	$("#image").elevateZoom({gallery:'image-additional', cursor: 'pointer', galleryActiveClass: 'active'}); 
+	//$("#image").elevateZoom({gallery:'image-additional', cursor: 'pointer', galleryActiveClass: 'active'}); 
 	<?php } else { ?>
-	var zoomCollection = '<?php echo $productConfig["product_zoomgallery"]=="basic"?".product-image-zoom":"#image";?>';
-	 $( zoomCollection ).elevateZoom({
-			<?php if( $productConfig['product_zoommode'] != 'basic' ) { ?>
-			zoomType        : "<?php echo $productConfig['product_zoommode'];?>",
-			<?php } ?>
-			lensShape : "<?php echo $productConfig['product_zoomlensshape'];?>",
-			lensSize    : <?php echo (int)$productConfig['product_zoomlenssize'];?>,
+	//var zoomCollection = '<?php echo $productConfig["product_zoomgallery"]=="basic"?".product-image-zoom":"#image";?>';
+	 // $( zoomCollection ).elevateZoom({
+		// 	<?php if( $productConfig['product_zoommode'] != 'basic' ) { ?>
+		// 	zoomType        : "<?php echo $productConfig['product_zoommode'];?>",
+		// 	<?php } ?>
+		// 	lensShape : "<?php echo $productConfig['product_zoomlensshape'];?>",
+		// 	lensSize    : <?php echo (int)$productConfig['product_zoomlenssize'];?>,
 	
-	 });
+	 // });
 	<?php } ?> 
 </script>
 <?php } ?>

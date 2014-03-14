@@ -1256,6 +1256,10 @@ if (isset($this->error['custom_title'])) {
 						'product_option_value_id' => $product_option_value['product_option_value_id'],
 						'option_value_id'         => $product_option_value['option_value_id'],
 						'quantity'                => $product_option_value['quantity'],
+
+				'option_image'                => $product_option_value['option_image'],
+				'thumb'               		 => !empty($product_option_value['option_image']) ? $this->model_tool_image->resize($product_option_value['option_image'], 100, 100) : $this->model_tool_image->resize('no_image.jpg', 100, 100),
+			
 						'subtract'                => $product_option_value['subtract'],
 						'price'                   => $product_option_value['price'],
 						'price_prefix'            => $product_option_value['price_prefix'],

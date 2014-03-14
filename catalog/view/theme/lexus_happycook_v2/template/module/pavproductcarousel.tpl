@@ -102,11 +102,11 @@
 									<div class="product_left_buttons">
 										<?php if($byModel) : ?>
 											<div class="select_decor">
-												<select name="" id="" class="findphone sel" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-													<option>Find your phone</option>
+												<select name="" id="" class="findphone sel">
+													<option value="59">Find your phone</option>
 													<?php foreach ($byModel as $model) : ?>
 														<?php foreach ($model as $value) : ?>
-															<option value="/index.php?route=product/category&path=<?php echo $value['parent_id'].'_'.$value['category_id'];?>"><?php echo $value['name']; ?></option>
+															<option value="<?php echo $value['category_id'];?>"><?php echo $value['name']; ?></option>
 														<?php endforeach; ?>
 													<?php endforeach; ?>
 												</select>
@@ -114,14 +114,36 @@
 											</div>
 										<?php endif; ?>
 										<div class="select_decor">
-											<select name="" id="" class="shopBrand sel" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-												<option>Shop by Brand</option>
+											<select name="" id="" class="shopBrand sel">
+												<option value="undefined">Shop by Brand</option>
 												<?php foreach ($byBrand as $key => $value) : ?>
-													<option value="/index.php?route=product/category&path=<?php echo $value['parent_id'].'_'.$value['category_id'];?>"><?php echo $value['name']; ?></option>
+													<option value="<?php echo $value['manufacturer_id']; ?>"><?php echo $value['name']; ?></option>
 												<?php endforeach; ?>
 											</select>
 											<div class="step-item-decor"><div class="step-item-decor-inner"></div></div>
 										</div>
+										<div class="btn btn-success" id="filter_search">Search</div>
+										<script>
+											$('#filter_search').click(function() {
+												var cat_id = $(this).parent().find('.findphone').val();
+												var man_id = $(this).parent().find('.shopBrand').val();
+												var query ='/index.php?route=product/category&path=59_'+cat_id+'#category_id='+cat_id+'&page=0&path=59_224&sort=p.sort_order&order=ASC&limit=15&manufacturer%5B%5D='+man_id+'&min_price=0&max_price=5000';
+												if (man_id == 'undefined') query ='/index.php?route=product/category&path=59_'+cat_id+'#category_id='+cat_id+'&page=0&path=59_224&sort=p.sort_order&order=ASC&limit=15&min_price=0&max_price=5000';
+												window.location.href = query;
+											});
+										</script>
+										<?php if($byCategory) : ?>
+											<div class="select_decor shopByCategory">
+												<select name="" id="" class="sel" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+													<option value="59">Shop by Category</option>
+													<?php foreach ($byCategory as $value) : ?>
+														<option value="/index.php?route=product/category&path=<?php echo $value['category_id'];?>"><?php echo $value['name']; ?></option>
+													<?php endforeach; ?>
+												</select>
+												<div class="step-item-decor"><div class="step-item-decor-inner"></div></div>
+											</div>
+										<?php endif; ?>
+										
 									</div>
 								</div>
 								<?php //end product-inner?>
