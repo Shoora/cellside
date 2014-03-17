@@ -127,15 +127,15 @@
                         <h3 class="service-name-detail">Order info</h3>
                         <div class="row">
                             <div class="col-xs-4 order-info-label">Phone Model</div>
-                            <div class="col-xs-8 order-info-value"><span>iPhone 4s</span></div>
+                            <div class="col-xs-8 order-info-value"><span><?= $manufacturer['name'] ?> <?= $device['name'] ?></span></div>
                         </div>
                         <div class="row">
                             <div class="col-xs-4 order-info-label">Color</div>
-                            <div class="col-xs-8 order-info-value"><span>Black</span></div>
+                            <div class="col-xs-8 order-info-value"><span><?= $color['name'] ?></span></div>
                         </div>
                         <div class="row">
                             <div class="col-xs-4 order-info-label">Issue</div>
-                            <div class="col-xs-8 order-info-value"><span>Broken Screen</span></div>
+                            <div class="col-xs-8 order-info-value"><span><?= $issue['name'] ?></span></div>
                         </div>
                     </div>
                     <div class="mail-in-section">
@@ -231,7 +231,7 @@
                                 <div class="col-lg-5 add-to-cart">
                                     <a href="clearfix">
                                         <span class="icon-cart"><i class="fa fa-shopping-cart"></i></span>
-                                        <span class="label-cart">Submit</span>
+                                        <span class="label-cart" id="submit">Submit</span>
                                     </a>
                                 </div>
                             </div>
@@ -396,7 +396,7 @@
                     </li>
                     <li class="recommend-item">
                         <div class="col-product-item">
-                            <div class="product-item-thumb"><a href=""><img src="/catalog/view/theme/lexus_happycook_v2/images/new/product-row-4.png" alt=""/></a>
+                            <div class="*-product-item-thumb"><a href=""><img src="/catalog/view/theme/lexus_happycook_v2/images/new/product-row-4.png" alt=""/></a>
                             </div>
                             <div class="product-item-name"><h5>
                                     <a href="">Premium Line 10ft Micro-USB Charge & Data Sync Cable (Blue) for HTC One</a>

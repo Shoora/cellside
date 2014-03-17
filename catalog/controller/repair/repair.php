@@ -166,12 +166,47 @@ class ControllerRepairRepair extends Controller
             case 'walk':
                 $this->document->setTitle('Walk-in repair');
                 $this->template = $this->config->get('config_template') . '/template/repair/repair-1-5-walk.tpl';
+
                 break;
 
             // Mail-in Repair
             default:
                 $this->document->setTitle('Mail-in repair');
                 $this->template = $this->config->get('config_template') . '/template/repair/repair-1-5-mail.tpl';
+                $this->data['mail'] = 'cods.max@gmail.com';
+
+                // Template vars
+                $this->data['issue_id'] = $this->_getInfo('issue');
+                $this->data['color_id'] = $this->_getInfo('color');
+                $this->data['device_id']= $this->_getInfo('device');
+
+                $this->data['issue'] = $this->model_catalog_category->getCategory( $this->data['issue_id'] );
+                $this->data['color'] = $this->model_catalog_category->getCategory( $this->data['color_id'] );
+                $this->data['device'] = $this->model_catalog_category->getCategory( $this->data['device_id'] );
+                $this->data['manufacturer'] = $this->model_catalog_category->getCategory( $this->data['device']['parent_id'] );
+                $this->data['product'] = reset($this->model_catalog_product->getProducts( array( 'filter_category_id' => $this->data['issue_id'] ) ));
+                $this->data['product']['price'] = $this->currency->format($this->data['product']['price']);
+
+                // Data for pdf
+                $data = array(
+                    array(
+                        'var'   => 'First Name',
+                        'val'   => 'Jopetto'
+                    ),
+                    array(
+                        'var'   => 'Last Name',
+                        'val'   => 'Patrono'
+                    ),
+                    array(
+                        'var'   => 'Phone',
+                        'val'   => '+11111111111'
+                    ),
+                    array(
+                        'var'   => ''
+                    ),
+                );
+
+               // $link_to_download = $this->_getPdfLink('/index.php?ssid=' . session_id() . '&route=repair/repair/info');
                 break;
         }
 
@@ -179,6 +214,40 @@ class ControllerRepairRepair extends Controller
          * Render
          */
         $this->response->setOutput($this->render());
+    }
+
+    /**
+     * Getting formatted data for convert to pdf
+     */
+    public function info()
+    {
+        $id = isset($_GET['ssid']) ? $_GET['ssid'] : null;
+        if ( is_null($id) ) {
+            die('No data here');
+        }
+
+        $file = dirname(__FILE__) . DIRECTORY_SEPARATOR . '_cache' . DIRECTORY_SEPARATOR . $id . '.php';
+
+        // Display data
+        if ( file_exists($file) ) {
+            /*
+             * Load & display
+             */
+            $this->document->setTitle('Mail-in repair');
+            $this->template = $this->config->get('config_template') . '/template/repair/mail-report.tpl';
+
+            $data = array();
+            include $file;
+
+            $this->data['report'] = $data;
+
+            /*
+             * Render
+             */
+            $this->response->setOutput($this->render());
+        } else {
+            die('No data here');
+        }
     }
 
     /**
@@ -345,5 +414,37 @@ class ControllerRepairRepair extends Controller
     private function _getInfo($var)
     {
         return $_SESSION['repair']['phone'][ $var ];
+    }
+
+
+    private function _sendMailRepair()
+    {
+
+    }
+
+    /**
+     * Cached info about user
+     * @param $data
+     * @return bool
+     */
+    private function _putInfo($data)
+    {
+        $file = dirname(__FILE__) . DIRECTORY_SEPARATOR . '_cache' . DIRECTORY_SEPARATOR . session_id() . '.php';
+        return file_put_contents( $file, '<?php' . PHP_EOL . '$data = ' . var_export($data, true) . ';' );
+    }
+
+    /**
+     * @param $link
+     *
+     * @return string
+     */
+    private function _getPdfLink($link)
+    {
+        $url = 'http://www.web2pdfconvert.com/engine.aspx';
+        $data = '?cURL=http://' . $_SERVER['HTTP_HOST'] . '/' . urlencode($link) . '&lowquality=false&porient=portrait&infostamp=false&logostamp=true&allowplugins=false&allowscript=true&showpagenr=false&margintop=10&marginleft=5&marginbottom=10&marginright=5&psize=a4&userpass=&ownerpass=&allowcopy=true&allowedit=true&allowprint=true&title=&author=&subject=&keywords=&conversiondelay=1&printtype=false&nobackground=false&outline=false&ref=form';
+        $response = file_get_contents($url . $data);
+
+        preg_match('/href="(.+?\.pdf)"/i', $response, $matches);
+        return $matches[1];
     }
 }
