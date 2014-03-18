@@ -121,7 +121,7 @@
             </div>
         </section>
         <section class="mail-in-repair">
-            <div class="row">
+            <div class="row" id="replacement">
                 <div class="col-sm-5 order-info">
                     <div class="mail-in-section">
                         <h3 class="service-name-detail">Order info</h3>
@@ -214,7 +214,7 @@
                         </div>
                         <div class="mail-in-section">
                             <h4 class="service-name-section">Describe any additional problems you're having</h4>
-                            <textarea class="describe-problems" rows="12"></textarea>
+                            <textarea id="description" class="describe-problems" rows="12"></textarea>
                         </div>
                         <div class="more-detail-spec">
                             <span class="entypo circled-info"></span> Submit to get instructions/video on how to ship the phone and a receipt
@@ -229,9 +229,9 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-5 add-to-cart">
-                                    <a href="clearfix">
+                                    <a href="javascript:void(0);">
                                         <span class="icon-cart"><i class="fa fa-shopping-cart"></i></span>
-                                        <span class="label-cart" id="submit">Submit</span>
+                                        <span class="label-cart" id="mail-in-submit">Submit</span>
                                     </a>
                                 </div>
                             </div>

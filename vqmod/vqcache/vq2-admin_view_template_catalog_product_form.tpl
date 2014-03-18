@@ -433,6 +433,9 @@
                 <tr>
                   <td class="left"><?php echo $entry_option_value; ?></td>
                   <td class="right"><?php echo $entry_quantity; ?></td>
+
+				<td class="left"><?php echo $entry_image; ?></td>
+			
                   <td class="left"><?php echo $entry_subtract; ?></td>
                   <td class="right"><?php echo $entry_price; ?></td>
                   <td class="right"><?php echo $entry_option_points; ?></td>
@@ -456,6 +459,11 @@
                     </select>
                     <input type="hidden" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][product_option_value_id]" value="<?php echo $product_option_value['product_option_value_id']; ?>" /></td>
                   <td class="right"><input type="text" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][quantity]" value="<?php echo $product_option_value['quantity']; ?>" size="3" /></td>
+
+				<td class="center"><div class="image"><img src="<?php echo $product_option_value['thumb']; ?>" alt="" id="thumb-option-<?php echo $option_value_row; ?>" /><br />
+                  <input type="hidden" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][option_image]" value="<?php echo $product_option_value['option_image']; ?>" id="image-option-<?php echo $option_value_row; ?>" />
+                  <a onclick="image_upload('image-option-<?php echo $option_value_row; ?>', 'thumb-option-<?php echo $option_value_row; ?>');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb-option-<?php echo $option_value_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image-option-<?php echo $option_value_row; ?>').attr('value', '');"><?php echo $text_clear; ?></a></div></td>
+			
                   <td class="left"><select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][subtract]">
                       <?php if ($product_option_value['subtract']) { ?>
                       <option value="1" selected="selected"><?php echo $text_yes; ?></option>
@@ -511,7 +519,9 @@
               <?php } ?>
               <tfoot>
                 <tr>
-                  <td colspan="6"></td>
+                  
+				<td colspan="7"></td>
+			
                   <td class="left"><a onclick="addOptionValue('<?php echo $option_row; ?>');" class="button"><?php echo $button_add_option_value; ?></a></td>
                 </tr>
               </tfoot>
@@ -666,6 +676,32 @@
             </tfoot>
           </table>
         </div>
+
+				<script>
+					 //add the button to nav
+					$('<a href="#tab-chain"><?php echo $this->language->get('entry_chain_discount_moudle'); ?></a>').hide().appendTo("#tabs").fadeIn(1000);
+					$('#tab-general').before('<div id="tab-chain"><img src="view/image/chain_loader.gif"></div>');
+					$('#tabs a').tabs();
+
+					var chain_group_tpl = '';
+					var chain_manager_ad = '<?php echo (defined(DIR_APPLICATION) && file_exists(DIR_APPLICATION . 'controller/module/chain_manager.php')) ? 'true' : 'false'; ?>';
+					var token = '<?php echo $token; ?>';
+					var product_id = '<?php echo $this->request->get['product_id']; ?>';
+<?php
+	if (version_compare(VERSION, '1.5.1.3', '<'))
+		{
+			$autocomplite = '151';
+		}
+	else 
+		{
+			$autocomplite = '152';
+		}
+?>
+					var autocomplite = '<?php echo $autocomplite; ?>';
+				</script>
+				<script type="text/javascript" src="view/javascript/chain.js"></script>
+							
+			
         <div id="tab-image">
           <table id="images" class="list">
             <thead>
@@ -1196,6 +1232,9 @@ $('input[name=\'option\']').catcomplete({
 			html += '      <tr>';
 			html += '        <td class="left"><?php echo $entry_option_value; ?></td>';
 			html += '        <td class="right"><?php echo $entry_quantity; ?></td>';
+
+				html += '        <td class="left"><?php echo $entry_image; ?></td>';
+			
 			html += '        <td class="left"><?php echo $entry_subtract; ?></td>';
 			html += '        <td class="right"><?php echo $entry_price; ?></td>';
 			html += '        <td class="right"><?php echo $entry_option_points; ?></td>';
@@ -1205,7 +1244,9 @@ $('input[name=\'option\']').catcomplete({
 			html += '  	 </thead>';
 			html += '    <tfoot>';
 			html += '      <tr>';
-			html += '        <td colspan="6"></td>';
+			
+				html += '        <td colspan="7"></td>';
+			
 			html += '        <td class="left"><a onclick="addOptionValue(' + option_row + ');" class="button"><?php echo $button_add_option_value; ?></a></td>';
 			html += '      </tr>';
 			html += '    </tfoot>';
@@ -1255,6 +1296,11 @@ function addOptionValue(option_row) {
 	html += $('#option-values' + option_row).html();
 	html += '    </select><input type="hidden" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][product_option_value_id]" value="" /></td>';
 	html += '    <td class="right"><input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][quantity]" value="" size="3" /></td>'; 
+
+				html += '    <td class="center"><div class="image"><img src="<?php echo $no_image; ?>" alt="" id="thumb-option-' + option_value_row + '" /><br />';
+                html += '  <input type="hidden" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][option_image]" value="" id="image-option-' + option_value_row + '" />';
+                html += '  <a onclick="image_upload(\'image-option-' + option_value_row + '\', \'thumb-option-' + option_value_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb-option-' + option_value_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image-option-' + option_value_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a></div></td>';
+			
 	html += '    <td class="left"><select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][subtract]">';
 	html += '      <option value="1"><?php echo $text_yes; ?></option>';
 	html += '      <option value="0"><?php echo $text_no; ?></option>';

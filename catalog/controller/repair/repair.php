@@ -124,11 +124,6 @@ class ControllerRepairRepair extends Controller
         $this->document->setTitle('Choose service');
 
         /*
-         * Assigning template vars
-         */
-        // ...
-
-        /*
          * Render
          */
         $this->response->setOutput($this->render());
@@ -187,26 +182,6 @@ class ControllerRepairRepair extends Controller
                 $this->data['product'] = reset($this->model_catalog_product->getProducts( array( 'filter_category_id' => $this->data['issue_id'] ) ));
                 $this->data['product']['price'] = $this->currency->format($this->data['product']['price']);
 
-                // Data for pdf
-                $data = array(
-                    array(
-                        'var'   => 'First Name',
-                        'val'   => 'Jopetto'
-                    ),
-                    array(
-                        'var'   => 'Last Name',
-                        'val'   => 'Patrono'
-                    ),
-                    array(
-                        'var'   => 'Phone',
-                        'val'   => '+11111111111'
-                    ),
-                    array(
-                        'var'   => ''
-                    ),
-                );
-
-               // $link_to_download = $this->_getPdfLink('/index.php?ssid=' . session_id() . '&route=repair/repair/info');
                 break;
         }
 
@@ -291,6 +266,75 @@ class ControllerRepairRepair extends Controller
                 } else {
                     die( json_encode(array( 'error' => 'Please, select service for your device' )) );
                 }
+                break;
+            case 'mail-in':
+                $this->data['mail'] = 'cods.max@gmail.com';
+
+                // Template vars
+                $this->data['issue_id'] = $this->_getInfo('issue');
+                $this->data['color_id'] = $this->_getInfo('color');
+                $this->data['device_id']= $this->_getInfo('device');
+
+                $this->data['issue'] = $this->model_catalog_category->getCategory( $this->data['issue_id'] );
+                $this->data['color'] = $this->model_catalog_category->getCategory( $this->data['color_id'] );
+                $this->data['device'] = $this->model_catalog_category->getCategory( $this->data['device_id'] );
+                $this->data['manufacturer'] = $this->model_catalog_category->getCategory( $this->data['device']['parent_id'] );
+                $this->data['product'] = reset($this->model_catalog_product->getProducts( array( 'filter_category_id' => $this->data['issue_id'] ) ));
+                $this->data['product']['price'] = $this->currency->format($this->data['product']['price']);
+
+                // Data for pdf
+
+                $data = array(
+                    array(
+                        'var'   => 'First Name',
+                        'val'   => $_POST['first_name']
+                    ),
+                    array(
+                        'var'   => 'Last Name',
+                        'val'   => $_POST['last_name']
+                    ),
+                    array(
+                        'var'   => 'Phone',
+                        'val'   => $_POST['phone']
+                    ),
+                    array(
+                        'var'   => 'E-Mail',
+                        'val'   => $_POST['email']
+                    ),
+                    array(
+                        'var'   => 'Fax',
+                        'val'   => $_POST['fax']
+                    ),
+                    array(
+                        'var'   => 'Address',
+                        'val'   => $_POST['address']
+                    ),
+                    array(
+                        'var'   => 'Address 2',
+                        'val'   => $_POST['address2']
+                    ),
+                    array(
+                        'var'   => 'City',
+                        'val'   => $_POST['city']
+                    ),
+                    array(
+                        'var'   => 'Province',
+                        'val'   => $_POST['province']
+                    ),
+                    array(
+                        'var'   => 'Postal Code',
+                        'val'   => $_POST['zip']
+                    ),
+                    array(
+                        'var'   => 'Description',
+                        'val'   => $_POST['description']
+                    )
+                );
+
+                $this->_putInfo( $data );
+                $pdf_link = $this->_getPdfLink('/index.php?ssid=' . session_id() . '&route=repair/repair/info');
+
+                die( json_encode(array( 'error' => 0, 'result' => $pdf_link )) );
                 break;
             default:
                 die( json_encode(array( 'error' => 'Some error happens' )) );

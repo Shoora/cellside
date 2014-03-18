@@ -97,6 +97,10 @@ $_['text_length_month']      = 'Month';
 $_['text_length_month_semi'] = 'Semi Month';
 $_['text_length_year']       = 'Year';
 
+
+				$_['entry_chain_discount_moudle'] = 'Chain Discount Module';
+							
+			
 // Error
 $_['error_warning']          = 'Warning: Please check the form carefully for errors!';
 $_['error_permission']       = 'Warning: You do not have permission to modify products!';

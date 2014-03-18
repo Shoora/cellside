@@ -284,22 +284,7 @@ if(array_intersect($page_name, $get_route)){
 								<li><a href="<?php echo $option; ?>"><?php echo $text_option; ?></a></li>
 								<li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
 								<li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-
-			  <li><a class="parent">Product Reviews</a>
-                <ul>
-				  <li><a href="<?php echo $product_reviews_review; ?>">Reviews</a></li>
-				  <li><a href="<?php echo $product_reviews_rating; ?>">Manage ratings</a></li>
-				  <li><a href="<?php echo $product_reviews_report; ?>">Abuse reports</a></li>
-				  <li><a href="<?php echo $product_reviews_attribute; ?>">Pros and Cons</a></li>
-				  <li><a href="<?php echo $product_reviews_optimize; ?>">Optimize tables</a></li>
-				</ul>
-			  </li>
 								<li><a href="<?php echo $review; ?>"><?php echo $text_review; ?></a></li>
-
-          <?php if(isset($qap)) { ?>
-          <li><a href="<?php echo $qap; ?>"><?php echo $text_questions_and_answers; ?></a></li>
-          <?php } ?>
-            
 								<li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
 <?php if(isset($this->session->data['show'])=="1"){ ?> 
 			<li><a href="<?php echo $snippets_product; ?>">GR Rich Snippets-Product</a></li>
@@ -314,7 +299,6 @@ if(array_intersect($page_name, $get_route)){
 								<li><a href="<?php echo $payment; ?>"><?php echo $text_payment; ?></a></li>
 								<li><a href="<?php echo $total; ?>"><?php echo $text_total; ?></a></li>
 								<li><a href="<?php echo $feed; ?>"><?php echo $text_feed; ?></a></li>
-          <li><a href="<?php echo $googleprint; ?>"><?php echo $text_googleprint; ?></a></li>
 								<li><a class="parent"><?php echo $text_openbay_extension; ?></a>
 									<ul>
 										<li><a href="<?php echo $openbay_link_extension; ?>"><?php echo $text_openbay_dashboard; ?></a></li>

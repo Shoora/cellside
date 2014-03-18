@@ -170,4 +170,41 @@ function gotoStep(step)
             });
         }
     });
+
+    /*
+     * Mail-in repair service
+     */
+    $('#mail-in-submit').on('click',function(){
+        $(this).text('Loading...');
+
+        var data = 'first_name=' + encodeURIComponent( $('#firstname').val() ) +
+            '&last_name=' + encodeURIComponent( $('#lastname').val() ) +
+            '&phone=' + encodeURIComponent( $('#Telephone').val() ) +
+            '&fax=' + encodeURIComponent( $('#Fax').val() ) +
+            '&address=' + encodeURIComponent( $('#Address').val() ) +
+            '&address2=' + encodeURIComponent( $('#Address2').val() ) +
+            '&province=' + encodeURIComponent( $('#Province').val() ) +
+            '&zip=' + encodeURIComponent( $('#PostalCode').val() ) +
+            '&description=' + encodeURIComponent( $('#description').val() ) +
+            '&email=' + encodeURIComponent( $('#Email').val() );
+
+        $.ajax({
+            url     : '/index.php?route=repair/repair/ajax',
+            type    : 'POST',
+            data    : 'act=mail-in&' + data,
+            dataType: 'json',
+            success : function (response) {
+                if ( response.error !== 0 ) {
+                    alert(response.error)
+                } else {
+                    $('#replacement')
+                        .html('<div class="add-to-cart">' +
+                        '<a href="' + response.result + '">' +
+                        '<span style="padding-left: 20px;" class="label-cart" id="mail-in-submit">Download PDF</span>' +
+                        '</a></div>')
+                        .css('text-align', 'center');
+                }
+            }
+        });
+    });
 })(jQuery);

@@ -141,6 +141,13 @@ $_['column_notify']                           = 'Customer Notified';
 $_['column_action']                           = 'Action';
 
 // Entry
+
+
+$_['button_vinvoice']                            = 'View Invoice';
+$_['button_vinvoice2']                           = 'View Invoice';
+
+
+
 $_['entry_store']                             = 'Store:';
 $_['entry_customer']                          = 'Customer:';
 $_['entry_customer_group']                    = 'Customer Group:';
